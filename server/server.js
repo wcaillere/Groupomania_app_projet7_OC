@@ -1,9 +1,9 @@
-//import packages
+//imports packages
 const app = require('./app');
 const mysql = require('mysql');
 require('dotenv').config();
 
-//return a port. Val can be a string or a Number
+//returns a port. Val can be a string or a Number
 const normalizePort = val => {
     const port = parseInt(val, 10);
   
@@ -18,11 +18,7 @@ const normalizePort = val => {
   const port = normalizePort(process.env.API_PORT || '3000');
   app.set('port', port);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-});
-
-//Create the connexion to MySQL DB
+//Creates the connection to MySQL DB
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -31,7 +27,7 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME,
 });
 
-//Establish the connexion
+//Establishes the connection
 connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
@@ -45,5 +41,9 @@ connection.connect(function(err) {
 //         console.log(err);
 //         return;
 //     }
-//     console.log('connexion endend');
+//     console.log('connection endend');
 // });
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
+});
