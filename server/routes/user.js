@@ -4,6 +4,7 @@ const userCrtl = require('../controllers/user')
 const router = express.Router();
 
 //routes
-router.get('/signup', userCrtl.signup)
+router.post('/signup', userCrtl.signup)
+router.post('/login', userCrtl.login)
 
 module.exports = router;
