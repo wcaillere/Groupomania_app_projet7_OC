@@ -9,5 +9,6 @@ router.get('/', postsCtrl.getAllPosts)
 router.get('/:id', postsCtrl.getOnePost)
 // router.post('/', multer, postsCtrl.createOnePost)
 // router.put('/:id', multer, postsCtrl.modifyOnePost)
+router.delete('/:id', postsCtrl.deleteOnePost)
 
 module.exports = router;
