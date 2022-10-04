@@ -10,7 +10,7 @@ root.render(
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/login" element={<Home />}/>
       </Routes>
     </Router>
   </React.StrictMode>

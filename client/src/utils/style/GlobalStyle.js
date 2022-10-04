@@ -3,7 +3,10 @@ import { createGlobalStyle } from 'styled-components'
 
 const StyledGlobalStyle = createGlobalStyle`
     * {
-      font-family: 'Trebuchet MS', Helvetica, sans-serif;
+      font-family: 'Lato', Helvetica, sans-serif;
+    }
+    body {
+        margin: 0px;
     }
 `
 
