@@ -4,11 +4,12 @@ import login_img from '../../assets/login_img.jpg';
 
 const ConnectionContainer = styled.div`
   display: flex;
-  width: 65%;
-  margin: 60px auto;
-  height: 650px;
+  width: 60%;
+  margin: 75px auto;
+  height: 600px;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 2px 5px 15px 0px rgba(171, 171, 171, 0.72);
 `;
 
 const ConnectionLeft = styled.div`
