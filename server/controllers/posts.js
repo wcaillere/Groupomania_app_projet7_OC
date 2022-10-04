@@ -61,3 +61,26 @@ exports.deleteOnePost = (req, res, next) => {
         // }
 //     })
 }
+
+//Manage the "like" functionnality of posts
+exports.manageLike = (req, res, next) => {
+    if (req.body.like == 1) {
+        connection.query(`INSERT INTO appreciate (users_id_users, posts_id_posts) VALUES (${req.body.userId}, ${req.params.id})`, function (error, results, fields) {
+            if (error) {
+                res.status(500).json({ error })
+            } else {
+                res.status(200).json({ message : "post liké" })
+            }
+        })
+    } else if (req.body.like == 0) {
+        connection.query(`DELETE FROM appreciate WHERE users_id_users = ${req.body.userId} AND posts_id_posts = ${req.params.id}`, function (error, resutls, fields) {
+            if (error) {
+                res.status(500).json({ error })
+            } else {
+                res.status(200).json({ message : "like retiré" })
+            }
+        })
+    } else {
+        res.status(400).json({message: "Requête invalide"})
+    }
+}
