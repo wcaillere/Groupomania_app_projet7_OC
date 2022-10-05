@@ -9,7 +9,8 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       connection.query(
-        `INSERT INTO users (firstname, lastname, email, password) VALUES ('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${hash}')`,
+        `INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)`,
+        [req.body.firstname, req.body.lastname, req.body.email, hash],
         function (error, results, fields) {
           if (error) {
             res.status(500).json({ error });
@@ -25,7 +26,8 @@ exports.signup = (req, res, next) => {
 //Allows an user to login on the site if he's in the Data Base
 exports.login = (req, res, next) => {
   connection.query(
-    `SELECT id_users, password FROM users WHERE email = '${req.body.email}'`,
+    `SELECT id_users, password FROM users WHERE email = ?`,
+    [req.body.email],
     function (error, results, fields) {
       if (error) {
         console.log(error);
