@@ -11,7 +11,7 @@ root.render(
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/login" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>

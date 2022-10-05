@@ -26,7 +26,7 @@ function Header() {
     <NavContainer>
       <HeaderLogo src={Logo} />
       <div>
-        <NavItem to="/login">Se connecter</NavItem>
+        <NavItem to="/">Se connecter</NavItem>
         <NavItem to="/signup">S'inscrire</NavItem>
       </div>
     </NavContainer>
