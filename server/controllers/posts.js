@@ -99,7 +99,11 @@ exports.manageLike = (req, res, next) => {
       [req.body.userId, req.params.id],
       function (error, results, fields) {
         if (error) {
-          res.status(500).json({ error });
+          if (error.errno == 1062) {
+            res.status(500).json({ message: 'Vous avez déjà liker ce post' });
+          } else {
+            res.status(500).json({ error });
+          }
         } else {
           res.status(200).json({ message: 'post liké' });
         }
