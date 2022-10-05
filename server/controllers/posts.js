@@ -1,5 +1,6 @@
 //Imports DB's connection and packages
 const connection = require('../db');
+const fs = require('fs');
 
 //Gets all posts of the Data Base
 exports.getAllPosts = (req, res, next) => {
@@ -50,22 +51,28 @@ exports.modifyOnePost = (req, res, next) => {
 
 // Deletes one post of the Data Base thanks to its ID
 exports.deleteOnePost = (req, res, next) => {
-  // connection.query(`SELECT users_id_users FROM posts WHERE id_posts = ${req.params.id}`, function (error, results, fields) {
-  //     if (results[0].users_id_users != req.auth.userId) {
-  //         res.status(403).json({message: 'Unauthorized request'})
-  //     } else {
   connection.query(
-    `DELETE FROM posts WHERE id_posts = ${req.params.id}`,
+    `SELECT users_id_users FROM posts WHERE id_posts = ${req.params.id}`,
     function (error, results, fields) {
-      if (error) {
-        res.status(500).json({ error });
+      if (results[0].users_id_users != req.auth.userId) {
+        res.status(403).json({ message: 'Unauthorized request' });
       } else {
-        res.status(200).json({ message: 'post supprimé !' });
+        const filename = results[0].image_url.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+          connection.query(
+            `DELETE FROM posts WHERE id_posts = ${req.params.id}`,
+            function (error, results, fields) {
+              if (error) {
+                res.status(500).json({ error });
+              } else {
+                res.status(200).json({ message: 'post supprimé !' });
+              }
+            }
+          );
+        });
       }
     }
   );
-  // }
-  //     })
 };
 
 //Manage the "like" functionnality of posts
