@@ -31,12 +31,12 @@ exports.getOnePost = (req, res, next) => {
 exports.createOnePost = (req, res, next) => {
   const postObject = req.file
     ? {
-        content: JSON.parse(req.body.post).content,
+        ...JSON.parse(req.body.post),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${
           req.file.filename
         }`,
       }
-    : { content: req.body.content, imageUrl: null };
+    : { ...req.body };
   connection.query(
     `INSERT INTO posts (content, image_url, users_id_users) VALUES ('${postObject.content}' , ${postObject.imageUrl} , ${req.auth.userId})`,
     function (error, results, fields) {
