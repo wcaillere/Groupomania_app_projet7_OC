@@ -7,7 +7,7 @@ const ConnectionContainer = styled.div`
   flex-direction: column;
   width: 90%;
   margin: auto;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
   background: ${colors.secondary};
   border-radius: 20px;
   overflow: hidden;
@@ -22,7 +22,7 @@ const Form = styled.form`
 const TitleInput = styled.label`
   font-size: 25px;
   font-weight: bold;
-  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const FormInput = styled.input`
@@ -44,7 +44,7 @@ const ConnectButton = styled.input`
   width: 80%;
   max-width: 250px;
   font-size: 25px;
-  margin: 70px auto 20px auto;
+  margin: 20px auto;
   padding: 20px;
   border: none;
   border-radius: 15px;
