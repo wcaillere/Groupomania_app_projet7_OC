@@ -8,7 +8,6 @@ const ConnectionContainer = styled.div`
   width: 90%;
   margin: auto;
   padding: 20px;
-  height: 600px;
   background: ${colors.secondary};
   border-radius: 20px;
   overflow: hidden;
@@ -55,7 +54,7 @@ const ConnectButton = styled.input`
 `;
 
 const SignupLink = styled(Link)`
-  margin: auto;
+  margin: 10px auto;
   color: ${colors.Tertiary};
   font-weight: bold;
   text-align: center;
@@ -78,7 +77,7 @@ function Connection() {
           <FormInput
             type="text"
             name="password"
-            placeholder="mot de passe"
+            placeholder="Mot de passe"
           ></FormInput>
         </TitleInput>
         <ConnectButton type="submit" value="Se connecter" />
