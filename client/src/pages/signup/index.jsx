@@ -19,9 +19,19 @@ const SignupContainer = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
-const TitleInput = styled.label`
+const FormColumn = styled.div`
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+`;
+
+const TitleInput = styled.div`
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 50px;
@@ -68,40 +78,52 @@ function Signup() {
       <Header />
       <SignupContainer>
         <Form>
-          <TitleInput>
-            Prénom
-            <FormInput
-              type="text"
-              name="firstname"
-              placeholder="John"
-            ></FormInput>
-          </TitleInput>
-          <TitleInput>
-            Nom de famille
-            <FormInput
-              type="text"
-              name="lastname"
-              placeholder="Doe"
-            ></FormInput>
-          </TitleInput>
-          <TitleInput>
-            Adresse email
-            <FormInput
-              type="text"
-              name="mail"
-              placeholder="John.Doe@mail.com"
-            ></FormInput>
-          </TitleInput>
-          <TitleInput>
-            Mot de passe
-            <FormInput
-              type="text"
-              name="password"
-              placeholder="Mot de passe"
-            ></FormInput>
-          </TitleInput>
-          <ConnectButton type="submit" value="S'inscrire" />
+          <FormColumn>
+            <TitleInput>
+              Prénom
+              <FormInput
+                type="text"
+                name="firstname"
+                placeholder="John"
+              ></FormInput>
+            </TitleInput>
+            <TitleInput>
+              Nom de famille
+              <FormInput
+                type="text"
+                name="lastname"
+                placeholder="Doe"
+              ></FormInput>
+            </TitleInput>
+          </FormColumn>
+          <FormColumn>
+            <TitleInput>
+              Adresse email
+              <FormInput
+                type="text"
+                name="mail"
+                placeholder="John.Doe@mail.com"
+              ></FormInput>
+            </TitleInput>
+            <TitleInput>
+              Mot de passe
+              <FormInput
+                type="text"
+                name="password"
+                placeholder="Mot de passe"
+              ></FormInput>
+            </TitleInput>
+            <TitleInput>
+              Confirmer
+              <FormInput
+                type="text"
+                name="confirm"
+                placeholder="Mot de passe"
+              ></FormInput>
+            </TitleInput>
+          </FormColumn>
         </Form>
+        <ConnectButton type="submit" value="S'inscrire" />
         <SignupLink to="/">Déjà un compte ? Connectez-vous ici !</SignupLink>
       </SignupContainer>
       <Footer />
