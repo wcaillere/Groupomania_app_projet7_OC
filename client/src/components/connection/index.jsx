@@ -1,34 +1,17 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import colors from '../../utils/style/colors';
-import login_img from '../../assets/login_img.jpg';
 
 const ConnectionContainer = styled.div`
   display: flex;
-  width: 60%;
-  margin: 75px auto;
-  height: 600px;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  background: ${colors.secondary};
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 2px 5px 15px 0px rgba(171, 171, 171, 0.72);
-`;
-
-const ConnectionLeft = styled.div`
-  width: 50%;
-`;
-
-const ConnectionRight = styled.div`
-  position: relative;
-  width: 50%;
-  padding: 60px;
-  background: ${colors.secondary};
-`;
-
-const LoginImg = styled.img`
-  width: 100%;
-  object-fit: cover;
-  height: 100%;
-  opacity: 60%;
 `;
 
 const Form = styled.form`
@@ -36,13 +19,13 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
-const TitleInput = styled.label`
-  font-size: 30px;
+const FormItem = styled.div`
+  font-size: 25px;
   font-weight: bold;
-  margin-top: 30px;
+  margin-bottom: 50px;
 `;
 
-const FormInput = styled.input`
+const FormItemInput = styled.input`
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -58,10 +41,11 @@ const FormInput = styled.input`
 `;
 
 const ConnectButton = styled.input`
-  width: 100%;
-  font-size: 36px;
-  margin: 70px auto 20px auto;
-  padding: 25px;
+  width: 80%;
+  max-width: 250px;
+  font-size: 25px;
+  margin: 20px auto;
+  padding: 20px;
   border: none;
   border-radius: 15px;
   color: white;
@@ -70,42 +54,39 @@ const ConnectButton = styled.input`
 `;
 
 const SignupLink = styled(Link)`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  margin: 10px auto;
   color: ${colors.Tertiary};
+  font-weight: bold;
+  text-align: center;
 `;
 
 function Connection() {
   return (
     <ConnectionContainer>
-      <ConnectionLeft>
-        <LoginImg src={login_img} alt="login" />
-      </ConnectionLeft>
-      <ConnectionRight>
-        <Form>
-          <TitleInput>
-            Adresse mail
-            <FormInput
-              type="text"
-              name="email"
-              placeholder="exemple@mail.com"
-            />
-          </TitleInput>
-          <TitleInput>
-            Mot de passe
-            <FormInput
-              type="text"
-              name="password"
-              placeholder="Entrez votre mot de passe"
-            />
-          </TitleInput>
-          <ConnectButton type="submit" value="Se connecter" />
-        </Form>
-        <SignupLink to="/signup">
-          Pas encore de compte ? Inscrivez-vous ici !
-        </SignupLink>
-      </ConnectionRight>
+      <Form>
+        <FormItem>
+          <label for="mail">Adresse email </label>
+          <FormItemInput
+            type="text"
+            name="mail"
+            id="mail"
+            placeholder="exemple@mail.com"
+          ></FormItemInput>
+        </FormItem>
+        <FormItem>
+          <label for="password">Mot de passe </label>
+          <FormItemInput
+            type="text"
+            name="password"
+            id="password"
+            placeholder="Mot de passe"
+          ></FormItemInput>
+        </FormItem>
+        <ConnectButton type="submit" value="Se connecter" />
+      </Form>
+      <SignupLink to="/signup">
+        Pas encore de compte ? Inscrivez-vous ici !
+      </SignupLink>
     </ConnectionContainer>
   );
 }
