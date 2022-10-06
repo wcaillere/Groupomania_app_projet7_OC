@@ -19,13 +19,13 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
-const TitleInput = styled.label`
+const FormItem = styled.div`
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 50px;
 `;
 
-const FormInput = styled.input`
+const FormItemInput = styled.input`
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -64,22 +64,24 @@ function Connection() {
   return (
     <ConnectionContainer>
       <Form>
-        <TitleInput>
-          Adresse mail
-          <FormInput
+        <FormItem>
+          <label for="mail">Adresse email </label>
+          <FormItemInput
             type="text"
             name="mail"
+            id="mail"
             placeholder="exemple@mail.com"
-          ></FormInput>
-        </TitleInput>
-        <TitleInput>
-          Mot de passe
-          <FormInput
+          ></FormItemInput>
+        </FormItem>
+        <FormItem>
+          <label for="password">Mot de passe </label>
+          <FormItemInput
             type="text"
             name="password"
+            id="password"
             placeholder="Mot de passe"
-          ></FormInput>
-        </TitleInput>
+          ></FormItemInput>
+        </FormItem>
         <ConnectButton type="submit" value="Se connecter" />
       </Form>
       <SignupLink to="/signup">
