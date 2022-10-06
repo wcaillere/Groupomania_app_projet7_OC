@@ -43,8 +43,8 @@ const FormInput = styled.input`
 
 const ConnectButton = styled.input`
   width: 80%;
-  max-width: 300px;
-  font-size: 30px;
+  max-width: 250px;
+  font-size: 25px;
   margin: 70px auto 20px auto;
   padding: 20px;
   border: none;
@@ -57,6 +57,8 @@ const ConnectButton = styled.input`
 const SignupLink = styled(Link)`
   margin: auto;
   color: ${colors.Tertiary};
+  font-weight: bold;
+  text-align: center;
 `;
 
 function Connection() {
