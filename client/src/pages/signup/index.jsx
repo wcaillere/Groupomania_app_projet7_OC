@@ -31,13 +31,13 @@ const FormColumn = styled.div`
   }
 `;
 
-const TitleInput = styled.div`
+const FormItem = styled.div`
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 50px;
 `;
 
-const FormInput = styled.input`
+const FormItemInput = styled.input`
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -79,48 +79,53 @@ function Signup() {
       <SignupContainer>
         <Form>
           <FormColumn>
-            <TitleInput>
-              Prénom
-              <FormInput
+            <FormItem>
+              <label for="firstname">Prénom </label>
+              <FormItemInput
                 type="text"
                 name="firstname"
+                id="firstname"
                 placeholder="John"
-              ></FormInput>
-            </TitleInput>
-            <TitleInput>
-              Nom de famille
-              <FormInput
+              ></FormItemInput>
+            </FormItem>
+            <FormItem>
+              <label for="lastname">Nom de famille </label>
+              <FormItemInput
                 type="text"
                 name="lastname"
+                id="lastname"
                 placeholder="Doe"
-              ></FormInput>
-            </TitleInput>
+              ></FormItemInput>
+            </FormItem>
           </FormColumn>
           <FormColumn>
-            <TitleInput>
-              Adresse email
-              <FormInput
+            <FormItem>
+              <label for="mail">Adresse email </label>
+              <FormItemInput
                 type="text"
                 name="mail"
+                id="mail"
                 placeholder="John.Doe@mail.com"
-              ></FormInput>
-            </TitleInput>
-            <TitleInput>
-              Mot de passe
-              <FormInput
+              ></FormItemInput>
+            </FormItem>
+            <FormItem>
+              <label for="password">Mot de passe </label>
+              <FormItemInput
                 type="text"
                 name="password"
+                id="password"
                 placeholder="Mot de passe"
-              ></FormInput>
-            </TitleInput>
-            <TitleInput>
-              Confirmer
-              <FormInput
+              ></FormItemInput>
+            </FormItem>
+            <FormItem>
+              <label for="confirm">Confirmer </label>
+              <FormItemInput
                 type="text"
                 name="confirm"
+                id="confirm"
                 placeholder="Mot de passe"
-              ></FormInput>
-            </TitleInput>
+              ></FormItemInput>
+            </FormItem>
           </FormColumn>
         </Form>
         <ConnectButton type="submit" value="S'inscrire" />
