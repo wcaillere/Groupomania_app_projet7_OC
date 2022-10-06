@@ -21,7 +21,7 @@ const Form = styled.form`
 `;
 
 const TitleInput = styled.label`
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   margin-top: 50px;
 `;
@@ -42,10 +42,11 @@ const FormInput = styled.input`
 `;
 
 const ConnectButton = styled.input`
-  width: 100%;
-  font-size: 36px;
+  width: 80%;
+  max-width: 300px;
+  font-size: 30px;
   margin: 70px auto 20px auto;
-  padding: 25px;
+  padding: 20px;
   border: none;
   border-radius: 15px;
   color: white;
@@ -80,7 +81,9 @@ function Connection() {
         </TitleInput>
         <ConnectButton type="submit" value="Se connecter" />
       </Form>
-      <SignupLink>Pas encore de compte ? Inscrivez-vous ici !</SignupLink>
+      <SignupLink to="/signup">
+        Pas encore de compte ? Inscrivez-vous ici !
+      </SignupLink>
     </ConnectionContainer>
   );
 }
