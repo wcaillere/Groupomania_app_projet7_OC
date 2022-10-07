@@ -2,7 +2,14 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import { Link } from 'react-router-dom';
+import {
+  Form,
+  FormItem,
+  FormItemInput,
+  ConnectButton,
+  SeparationBar,
+  SignupLoginLink,
+} from '../../utils/style/signup&login_Atoms';
 
 const SignupContainer = styled.div`
   display: flex;
@@ -20,68 +27,10 @@ const SignupContainer = styled.div`
   }
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`;
-
 const FormColumn = styled.div`
   @media (min-width: 768px) {
     width: 45%;
     padding-top: ${(props) => (props.id === 'firstColumn' ? '80px' : '20px')};
-  }
-`;
-
-const FormItem = styled.div`
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 50px;
-`;
-
-const FormItemInput = styled.input`
-  display: block;
-  width: 100%;
-  margin-top: 20px;
-  border: none;
-  border-radius: 15px;
-  font-size: 20px;
-  padding: 16px;
-  ::placeholder {
-    color: ${colors.Tertiary};
-    font-weight: bold;
-    opacity: 80%;
-  }
-`;
-
-const ConnectButton = styled.input`
-  width: 80%;
-  max-width: 250px;
-  font-size: 25px;
-  margin: 20px auto;
-  padding: 20px;
-  border: none;
-  border-radius: 15px;
-  color: white;
-  background: ${colors.primary};
-  box-shadow: 2px 3px 5px 0px #9c9c9c;
-`;
-
-const SignupLink = styled(Link)`
-  margin: 10px auto;
-  color: ${colors.Tertiary};
-  font-weight: bold;
-  text-align: center;
-`;
-
-const SeparationBar = styled.nav`
-  display: none;
-  border: 2px solid ${colors.primary};
-  @media (min-width: 768px) {
-    display: flex;
   }
 `;
 
@@ -143,7 +92,9 @@ function Signup() {
           </FormColumn>
         </Form>
         <ConnectButton type="submit" value="S'inscrire" />
-        <SignupLink to="/">Déjà un compte ? Connectez-vous ici !</SignupLink>
+        <SignupLoginLink to="/">
+          Déjà un compte ? Connectez-vous ici !
+        </SignupLoginLink>
       </SignupContainer>
       <Footer />
     </div>
