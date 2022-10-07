@@ -77,6 +77,11 @@ const ConnectButton = styled.input`
   color: white;
   background: ${colors.primary};
   box-shadow: 2px 3px 5px 0px #9c9c9c;
+  transition: all 0.3s;
+  :hover {
+    cursor: pointer;
+    box-shadow: 2px 4px 10px 2px #9c9c9c;
+  }
 `;
 
 const SignupLink = styled(Link)`
