@@ -16,7 +16,7 @@ const SignupContainer = styled.div`
   overflow: hidden;
   box-shadow: 2px 5px 15px 0px rgba(171, 171, 171, 0.72);
   @media (min-width: 768px) {
-    padding: 40px 40px 20px 40px;
+    padding: 40px 2% 20px 2%;
   }
 `;
 
@@ -32,7 +32,7 @@ const Form = styled.form`
 const FormColumn = styled.div`
   @media (min-width: 768px) {
     width: 45%;
-    padding-top: ${(props) => (props.id === 'firstColumn' ? '60px' : '0px')};
+    padding-top: ${(props) => (props.id === 'firstColumn' ? '80px' : '20px')};
   }
 `;
 
