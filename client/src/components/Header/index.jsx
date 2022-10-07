@@ -6,6 +6,10 @@ import colors from '../../utils/style/colors';
 const HeaderLogo = styled.img`
   height: 30px;
   margin: 10px 0px;
+  @media (min-width: 993px) {
+    height: 40px;
+    margin: 10px 20px;
+  }
 `;
 
 const HeaderContainer = styled.header`
@@ -14,11 +18,19 @@ const HeaderContainer = styled.header`
   margin-bottom: 40px;
   padding-top: 10px;
   background: white;
+  @media (min-width: 993px) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 80px;
+  }
 `;
 
 const NavContainer = styled.nav`
   display: flex;
   width: 100%;
+  @media (min-width: 993px) {
+    width: 300px;
+  }
 `;
 
 const NavItem = styled(Link)`

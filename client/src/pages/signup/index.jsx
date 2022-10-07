@@ -8,12 +8,16 @@ const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+  max-width: 1200px;
   margin: auto;
   padding: 40px 20px 20px 20px;
   background: ${colors.secondary};
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 2px 5px 15px 0px rgba(171, 171, 171, 0.72);
+  @media (min-width: 768px) {
+    padding: 40px 40px 20px 40px;
+  }
 `;
 
 const Form = styled.form`
@@ -28,6 +32,7 @@ const Form = styled.form`
 const FormColumn = styled.div`
   @media (min-width: 768px) {
     width: 45%;
+    padding-top: ${(props) => (props.id === 'firstColumn' ? '60px' : '0px')};
   }
 `;
 
@@ -72,13 +77,21 @@ const SignupLink = styled(Link)`
   text-align: center;
 `;
 
+const SeparationBar = styled.nav`
+  display: none;
+  border: 2px solid ${colors.primary};
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
 function Signup() {
   return (
     <div>
       <Header />
       <SignupContainer>
         <Form>
-          <FormColumn>
+          <FormColumn id="firstColumn">
             <FormItem>
               <label for="firstname">Prénom </label>
               <FormItemInput
@@ -98,7 +111,8 @@ function Signup() {
               ></FormItemInput>
             </FormItem>
           </FormColumn>
-          <FormColumn>
+          <SeparationBar />
+          <FormColumn id="secondColumn">
             <FormItem>
               <label for="mail">Adresse email </label>
               <FormItemInput
