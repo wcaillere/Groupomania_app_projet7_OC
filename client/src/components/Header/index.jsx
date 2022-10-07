@@ -44,6 +44,12 @@ const NavItem = styled(Link)`
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+  transition: 0.3s all;
+  :hover {
+    border-bottom: 5px solid
+      ${(props) =>
+        props.border === false ? 'rgba(67, 73, 112, 0.5)' : colors.Tertiary};
+  }
 `;
 
 function Header() {
