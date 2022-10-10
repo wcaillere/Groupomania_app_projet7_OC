@@ -10,7 +10,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
   background: ${colors.Tertiary};
 `;
 
