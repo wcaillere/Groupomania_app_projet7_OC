@@ -12,6 +12,7 @@ const PostContainer = styled.div`
 
 const PostDescrition = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 15px;
 `;
 
@@ -65,11 +66,18 @@ function Post() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
+            marginRight: '12px',
           }}
         >
           <PostAuthor>Fred Doe</PostAuthor>
           <PostDate>15/04/2012</PostDate>
         </div>
+        <i
+          class="fa-solid fa-shield-halved fa-lg"
+          style={{
+            color: `${colors.primary}`,
+          }}
+        ></i>
       </PostDescrition>
       <PostContent>
         Lorem ipsum dolor sit amet,
@@ -81,7 +89,7 @@ function Post() {
       <PostLike>
         8
         <PostLikeIcon>
-          <i class="fa-solid fa-thumbs-up"></i>
+          <i class="fa-solid fa-thumbs-up fa-lg"></i>
         </PostLikeIcon>
       </PostLike>
       <PostImage></PostImage>
