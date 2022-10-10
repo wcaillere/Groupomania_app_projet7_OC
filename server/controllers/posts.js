@@ -30,6 +30,7 @@ exports.getOnePost = (req, res, next) => {
 
 // Creates one post in the Data Base
 exports.createOnePost = (req, res, next) => {
+  //Verifies if there is a file in the request cause of multer
   const postObject = req.file
     ? {
         ...JSON.parse(req.body.post),
@@ -60,6 +61,7 @@ exports.modifyOnePost = (req, res, next) => {
       if (results[0].users_id_users != req.auth.userId) {
         res.status(403).json({ message: 'Unauthorized request' });
       } else {
+        //Verifies if there is a file in the request cause of multer
         const postObject = req.file
           ? {
               ...JSON.parse(req.body.post),
@@ -69,6 +71,7 @@ exports.modifyOnePost = (req, res, next) => {
             }
           : { ...req.body };
         if (results[0].image_url != null) {
+          //if the image is changed, the previous one is deleted from the 'images' file
           const filename = results[0].image_url.split('/images/')[1];
           fs.unlink(`images/${filename}`, () => {});
         }
@@ -120,6 +123,7 @@ exports.deleteOnePost = (req, res, next) => {
 //Manage the "like" functionnality of posts
 exports.manageLike = (req, res, next) => {
   if (req.body.like == 1) {
+    // if req.body.like == 1, the post is liked
     connection.query(
       `INSERT INTO appreciate (users_id_users, posts_id_posts) VALUES (?, ?)`,
       [req.body.userId, req.params.id],
@@ -136,6 +140,7 @@ exports.manageLike = (req, res, next) => {
       }
     );
   } else if (req.body.like == 0) {
+    // if req.body.like == 0, the post's like is removed
     connection.query(
       `DELETE FROM appreciate WHERE users_id_users = ? AND posts_id_posts = ?`,
       [req.body.userId, req.params.id],

@@ -30,9 +30,10 @@ exports.login = (req, res, next) => {
     [req.body.email],
     function (error, results, fields) {
       if (error) {
-        console.log(error);
         res.status(500).json({ error });
-      } else if (results.length == 0) {
+      }
+      // results.length == 0 means that the email is not in the DataBase, so we send a response to end the controller
+      else if (results.length == 0) {
         res
           .status(401)
           .json({ message: 'Paire email/mot de passe invalide !' });
