@@ -9,6 +9,7 @@ const PostContainer = styled.div`
   margin: 20px auto;
   padding: 12px;
   border-radius: 10px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 `;
 
 const PostDescrition = styled.div`
@@ -57,10 +58,10 @@ const PostLikeIcon = styled.div`
 
 const PostImage = styled.img`
   display: flex;
-  width: 100%;
+  width: 95%;
   justify-content: center;
-  border-radius: 15px;
-  margin: 15px auto;
+  border-radius: 10px;
+  margin: 15px auto 0px auto;
 `;
 
 function Post() {
