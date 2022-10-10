@@ -40,7 +40,7 @@ exports.createOnePost = (req, res, next) => {
     : { ...req.body };
   connection.query(
     `INSERT INTO posts (content, image_url, users_id_users) VALUES (? , ? , ?)`,
-    [postObject.content, postObject.imageUrl, eq.auth.userId],
+    [postObject.content, postObject.imageUrl, req.auth.userId],
     function (error, results, fields) {
       if (error) {
         res.status(500).json({ error });
@@ -53,13 +53,39 @@ exports.createOnePost = (req, res, next) => {
 
 // Modifies one post of the Data Base thanks to its ID
 exports.modifyOnePost = (req, res, next) => {
-  // connection.query(`UPDATE users SET content = ? , imageUrl = ? WHERE id_posts = req.params.id`, function (error, results, fields) {
-  //     if (error) {
-  //         res.status(500).json({ error })
-  //     } else {
-  //         res.status(200).json({message : "post modifié !"})
-  //     }
-  // })
+  connection.query(
+    `SELECT * FROM posts WHERE id_posts = ?`,
+    [req.params.id],
+    function (error, results, fields) {
+      if (results[0].users_id_users != req.auth.userId) {
+        res.status(403).json({ message: 'Unauthorized request' });
+      } else {
+        const postObject = req.file
+          ? {
+              ...JSON.parse(req.body.post),
+              imageUrl: `${req.protocol}://${req.get('host')}/images/${
+                req.file.filename
+              }`,
+            }
+          : { ...req.body };
+        if (results[0].image_url != null) {
+          const filename = results[0].image_url.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {});
+        }
+        connection.query(
+          `UPDATE posts SET content = ? , image_url = ? WHERE id_posts = ?`,
+          [postObject.content, postObject.imageUrl, req.params.id],
+          function (error, results, fields) {
+            if (error) {
+              res.status(500).json({ error });
+            } else {
+              res.status(200).json({ message: 'post modifié !' });
+            }
+          }
+        );
+      }
+    }
+  );
 };
 
 // Deletes one post of the Data Base thanks to its ID
