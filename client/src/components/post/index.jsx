@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import test from '../../assets/test.jpg';
 
 const PostContainer = styled.div`
   position: relative;
@@ -54,7 +55,13 @@ const PostLikeIcon = styled.div`
   margin-left: 5px;
 `;
 
-const PostImage = styled.img``;
+const PostImage = styled.img`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-radius: 15px;
+  margin: 15px auto;
+`;
 
 function Post() {
   return (
@@ -92,7 +99,7 @@ function Post() {
           <i class="fa-solid fa-thumbs-up fa-lg"></i>
         </PostLikeIcon>
       </PostLike>
-      <PostImage></PostImage>
+      <PostImage src={test}></PostImage>
     </PostContainer>
   );
 }
