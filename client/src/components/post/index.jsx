@@ -47,7 +47,7 @@ const PostDate = styled.div`
   font-size: 13px;
 `;
 
-const ButtonModify = styled.button`
+const PostButton = styled.button`
   border: none;
   color: white;
   padding: 10px;
@@ -57,12 +57,14 @@ const ButtonModify = styled.button`
   background: ${colors.primary};
   @media (min-width: 768px) {
     margin: 0px 0px 15px 20px;
-    padding: 10px 20px;
+  }
+  :hover {
+    cursor: pointer;
   }
 `;
 
 const PostContent = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   text-align: justify;
 `;
 
@@ -109,8 +111,18 @@ function Post() {
             }}
           ></i>
         </PostDescrition>
-        <ButtonModify>Modifier</ButtonModify>
-        <ButtonModify>Supprimer</ButtonModify>
+        <PostButton>
+          <i class="fa-solid fa-arrow-rotate-right"></i>
+          <span style={{ marginLeft: '10px', fontWeight: 'bold' }}>
+            Modifier
+          </span>
+        </PostButton>
+        <PostButton>
+          <i class="fa-solid fa-trash-can"></i>
+          <span style={{ marginLeft: '10px', fontWeight: 'bold' }}>
+            Supprimer
+          </span>
+        </PostButton>
       </PostHeader>
 
       <PostContent>

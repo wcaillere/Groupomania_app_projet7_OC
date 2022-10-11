@@ -35,7 +35,7 @@ function HeaderHome() {
             color: 'white',
           }}
         ></i>
-        <DeconnectionText>déconnexion</DeconnectionText>
+        <DeconnectionText>Déconnexion</DeconnectionText>
       </Link>
     </HeaderContainer>
   );
