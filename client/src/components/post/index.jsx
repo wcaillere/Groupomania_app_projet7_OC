@@ -5,7 +5,7 @@ import test from '../../assets/test.jpg';
 const PostContainer = styled.div`
   position: relative;
   width: 90%;
-  max-width: 600px;
+  max-width: 500px;
   background: white;
   margin: 20px auto;
   padding: 15px;
