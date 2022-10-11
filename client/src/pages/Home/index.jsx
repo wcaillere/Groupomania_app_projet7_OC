@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import HeaderHome from '../../components/HeaderHome';
 import FooterHome from '../../components/FooterHome';
 import Post from '../../components/post';
+import CreatePost from '../../components/CreatePost';
 
 const MainContainer = styled.main`
   background: #e7e7e7;
@@ -13,6 +14,7 @@ function Home() {
     <div>
       <HeaderHome />
       <MainContainer>
+        <CreatePost />
         <Post />
         <Post />
       </MainContainer>

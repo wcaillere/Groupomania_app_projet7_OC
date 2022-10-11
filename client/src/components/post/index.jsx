@@ -41,6 +41,16 @@ const PostDate = styled.div`
   font-size: 13px;
 `;
 
+const ButtonModify = styled.button`
+  border: none;
+  color: white;
+  padding: 10px;
+  margin: 0px 15px 15px 0px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  background: ${colors.primary};
+`;
+
 const PostContent = styled.div`
   font-size: 15px;
   text-align: justify;
@@ -88,6 +98,9 @@ function Post() {
           }}
         ></i>
       </PostDescrition>
+      <div style={{ display: 'flex' }}></div>
+      <ButtonModify>Modifier</ButtonModify>
+      <ButtonModify>Supprimer</ButtonModify>
       <PostContent>
         Lorem ipsum dolor sit amet,
         <br /> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -98,7 +111,7 @@ function Post() {
       <PostLike>
         8
         <PostLikeIcon>
-          <i class="fa-solid fa-thumbs-up fa-lg"></i>
+          <i class="fa-solid fa-thumbs-up fa-xl"></i>
         </PostLikeIcon>
       </PostLike>
       <PostImage src={test}></PostImage>
