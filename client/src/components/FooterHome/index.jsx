@@ -11,8 +11,28 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
+const Footerbutton = styled.button`
+  background: ${colors.Tertiary};
+  border: none;
+  color: white;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 function FooterHome() {
-  return <Footer>@Groupomania, 2022</Footer>;
+  return (
+    <Footer>
+      <Footerbutton>
+        <i class="fa-solid fa-sun fa-lg"></i>
+      </Footerbutton>
+      <span style={{ margin: '0px 30px' }}>@Groupomania, 2022</span>
+      <Footerbutton>
+        {' '}
+        <i class="fa-solid fa-chevron-up fa-xl"></i>
+      </Footerbutton>
+    </Footer>
+  );
 }
 
 export default FooterHome;
