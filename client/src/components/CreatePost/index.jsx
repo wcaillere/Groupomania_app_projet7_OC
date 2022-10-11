@@ -4,7 +4,7 @@ import colors from '../../utils/style/colors';
 const CreatePostContainer = styled.div`
   position: relative;
   width: 90%;
-  max-width: 500px;
+  max-width: 550px;
   background: white;
   margin: 20px auto;
   padding: 15px;
