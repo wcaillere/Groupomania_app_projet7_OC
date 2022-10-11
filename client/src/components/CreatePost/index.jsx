@@ -37,15 +37,14 @@ const PostAuthor = styled.div`
   margin-right: 10px;
 `;
 
-const ImageInput = styled.input`
-  margin-bottom: 10px;
-`;
+const ImageInput = styled.input``;
 
 const FormTextArea = styled.textarea`
   border: none;
   resize: none;
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   background: #e7e7e7;
   border-radius: 10px;
   font-size: 15px;
@@ -60,6 +59,8 @@ const PublishButton = styled.input`
   border-radius: 15px;
   color: white;
   background: ${colors.primary};
+  font-weight: bold;
+  font-size: 14px;
 `;
 
 function CreatePost() {
@@ -76,19 +77,19 @@ function CreatePost() {
         ></i>
       </PostDescrition>
       <form>
-        <label for="file">Ajouter une image</label>
-        <ImageInput
-          type="file"
-          id="file"
-          name="image"
-          accept="image/png, image/jpeg, image/jpeg"
-        />
         <FormTextArea
           id="txtid"
           name="txtname"
           rows={4}
           placeholder="Partagez vos pensées..."
         ></FormTextArea>
+        <label for="file">Ajouter une image : </label>
+        <ImageInput
+          type="file"
+          id="file"
+          name="image"
+          accept="image/png, image/jpeg, image/jpeg"
+        />
       </form>
       <PublishButton type="submit" value="Publier !" />
     </CreatePostContainer>

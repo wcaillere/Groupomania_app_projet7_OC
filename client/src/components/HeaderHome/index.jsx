@@ -1,6 +1,7 @@
 import Logo from '../../assets/logo_white.svg';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import { Link } from 'react-router-dom';
 
 const HeaderLogo = styled.img`
   height: 30px;
@@ -14,16 +15,28 @@ const HeaderContainer = styled.header`
   background: ${colors.Tertiary};
 `;
 
+const DeconnectionText = styled.span`
+  display: none;
+  margin-left: 10px;
+  color: white;
+  @media (min-width: 768px) {
+    display: inline;
+  }
+`;
+
 function HeaderHome() {
   return (
     <HeaderContainer>
       <HeaderLogo src={Logo} alt="Logo Groupomania" />
-      <i
-        class="fa-solid fa-power-off fa-lg"
-        style={{
-          color: 'white',
-        }}
-      ></i>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <i
+          class="fa-solid fa-power-off fa-lg"
+          style={{
+            color: 'white',
+          }}
+        ></i>
+        <DeconnectionText>déconnexion</DeconnectionText>
+      </Link>
     </HeaderContainer>
   );
 }
