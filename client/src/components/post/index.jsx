@@ -13,6 +13,12 @@ const PostContainer = styled.div`
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 `;
 
+const PostHeader = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
 const PostDescrition = styled.div`
   display: flex;
   align-items: center;
@@ -49,6 +55,10 @@ const ButtonModify = styled.button`
   border-radius: 10px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   background: ${colors.primary};
+  @media (min-width: 768px) {
+    margin: 0px 0px 15px 20px;
+    padding: 10px 20px;
+  }
 `;
 
 const PostContent = styled.div`
@@ -78,29 +88,31 @@ const PostImage = styled.img`
 function Post() {
   return (
     <PostContainer>
-      <PostDescrition>
-        <Postinitial>F</Postinitial>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            marginRight: '12px',
-          }}
-        >
-          <PostAuthor>Fred Doe</PostAuthor>
-          <PostDate>15/04/2012</PostDate>
-        </div>
-        <i
-          class="fa-solid fa-shield-halved fa-lg"
-          style={{
-            color: `${colors.primary}`,
-          }}
-        ></i>
-      </PostDescrition>
-      <div style={{ display: 'flex' }}></div>
-      <ButtonModify>Modifier</ButtonModify>
-      <ButtonModify>Supprimer</ButtonModify>
+      <PostHeader>
+        <PostDescrition>
+          <Postinitial>F</Postinitial>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              marginRight: '12px',
+            }}
+          >
+            <PostAuthor>Fred Doe</PostAuthor>
+            <PostDate>15/04/2012</PostDate>
+          </div>
+          <i
+            class="fa-solid fa-shield-halved fa-lg"
+            style={{
+              color: `${colors.primary}`,
+            }}
+          ></i>
+        </PostDescrition>
+        <ButtonModify>Modifier</ButtonModify>
+        <ButtonModify>Supprimer</ButtonModify>
+      </PostHeader>
+
       <PostContent>
         Lorem ipsum dolor sit amet,
         <br /> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

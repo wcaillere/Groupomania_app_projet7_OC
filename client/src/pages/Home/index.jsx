@@ -18,6 +18,11 @@ const SeparationBar = styled.div`
   max-width: 600px;
 `;
 
+//Used to not have a footer fixed hiding end of the page
+const ClearDiv = styled.div`
+  height: 30px;
+`;
+
 function Home() {
   return (
     <div>
@@ -28,6 +33,7 @@ function Home() {
         <Post />
         <Post />
       </MainContainer>
+      <ClearDiv />
       <FooterHome />
     </div>
   );
