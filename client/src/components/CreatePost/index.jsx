@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import { useState } from 'react';
 
 const CreatePostContainer = styled.div`
   position: relative;
@@ -37,7 +38,13 @@ const PostAuthor = styled.div`
   margin-right: 10px;
 `;
 
-const ImageInput = styled.input``;
+const ImageLabel = styled.label`
+  font-size: 15px;
+`;
+
+const ImageInput = styled.input`
+  display: none;
+`;
 
 const FormTextArea = styled.textarea`
   border: none;
@@ -61,9 +68,19 @@ const PublishButton = styled.input`
   background: ${colors.primary};
   font-weight: bold;
   font-size: 14px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 function CreatePost() {
+  const [picture, setPicture] = useState('Ajouter une image');
+
+  const onChangePicture = (e) => {
+    setPicture(e.target.files[0].name);
+  };
+
   return (
     <CreatePostContainer>
       <PostDescrition>
@@ -78,20 +95,24 @@ function CreatePost() {
       </PostDescrition>
       <form>
         <FormTextArea
-          id="txtid"
-          name="txtname"
-          rows={4}
+          id="PostContent"
+          name="PostContent"
+          rows={3}
           placeholder="Partagez vos pensées..."
         ></FormTextArea>
-        <label for="file">Ajouter une image : </label>
+        <ImageLabel for="image">
+          <i class="fa-solid fa-image" style={{ marginRight: '5px' }}></i>
+          {picture}
+        </ImageLabel>
         <ImageInput
           type="file"
-          id="file"
+          id="image"
           name="image"
           accept="image/png, image/jpeg, image/jpeg"
+          onChange={(e) => onChangePicture(e)}
         />
       </form>
-      <PublishButton type="submit" value="Publier !" />
+      <PublishButton type="submit" value="Publiez !" />
     </CreatePostContainer>
   );
 }
