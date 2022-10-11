@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 
 const Footer = styled.footer`
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   color: white;
   background: ${colors.Tertiary};
   text-align: center;

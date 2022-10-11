@@ -5,9 +5,10 @@ import test from '../../assets/test.jpg';
 const PostContainer = styled.div`
   position: relative;
   width: 90%;
+  max-width: 600px;
   background: white;
   margin: 20px auto;
-  padding: 12px;
+  padding: 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 `;
@@ -58,7 +59,7 @@ const PostLikeIcon = styled.div`
 
 const PostImage = styled.img`
   display: flex;
-  width: 95%;
+  width: 100%;
   justify-content: center;
   border-radius: 10px;
   margin: 15px auto 0px auto;
