@@ -75,7 +75,7 @@ export const PostButtonText = styled.span`
 `;
 
 export const PostContent = styled.div`
-  font-size: 14px;
+  font-size: 15px;
   text-align: justify;
 `;
 

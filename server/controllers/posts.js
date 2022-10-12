@@ -8,6 +8,16 @@ exports.getAllPosts = (req, res, next) => {
     if (error) {
       res.status(500).json({ error });
     } else {
+      results.forEach(async (element) => {
+        await connection.query(
+          `SELECT users_id_users FROM appreciate WHERE posts_id_posts = ?`,
+          [element.id_posts],
+          function (error, likes, fields) {
+            console.log(likes);
+            element.likes = likes;
+          }
+        );
+      });
       res.status(200).json(results);
     }
   });
@@ -33,14 +43,14 @@ exports.createOnePost = (req, res, next) => {
   //Verifies if there is a file in the request cause of multer
   const postObject = req.file
     ? {
-        ...JSON.parse(req.body.post),
+        content: req.body.content,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${
           req.file.filename
         }`,
       }
-    : { ...req.body };
+    : { content: req.body.content };
   connection.query(
-    `INSERT INTO posts (content, image_url, users_id_users) VALUES (? , ? , ?)`,
+    `INSERT INTO posts (content, image_url, date, users_id_users) VALUES (? , ? , DATE (NOW()), ?)`,
     [postObject.content, postObject.imageUrl, req.auth.userId],
     function (error, results, fields) {
       if (error) {
@@ -64,12 +74,12 @@ exports.modifyOnePost = (req, res, next) => {
         //Verifies if there is a file in the request cause of multer
         const postObject = req.file
           ? {
-              ...JSON.parse(req.body.post),
+              content: req.body.content,
               imageUrl: `${req.protocol}://${req.get('host')}/images/${
                 req.file.filename
               }`,
             }
-          : { ...req.body };
+          : { content: req.body.content };
         if (results[0].image_url != null) {
           //if the image is changed, the previous one is deleted from the 'images' file
           const filename = results[0].image_url.split('/images/')[1];
@@ -130,7 +140,7 @@ exports.manageLike = (req, res, next) => {
       function (error, results, fields) {
         if (error) {
           if (error.errno == 1062) {
-            res.status(500).json({ message: 'Vous avez déjà liker ce post' });
+            res.status(500).json({ message: 'Vous avez déjà liké ce post' });
           } else {
             res.status(500).json({ error });
           }
