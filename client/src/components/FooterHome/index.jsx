@@ -1,29 +1,7 @@
-import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+//imports components created with styled-components from style.jsx
+import { Footer, Footerbutton, FooterText } from './style';
 
-const Footer = styled.footer`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-  color: white;
-  background: ${colors.Tertiary};
-  text-align: center;
-`;
-
-const Footerbutton = styled.button`
-  background: ${colors.Tertiary};
-  border: none;
-  color: white;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const FooterText = styled.span`
-  margin: 0px 30px;
-`;
-
+//Returns the Footer for the homePage
 function FooterHome() {
   return (
     <Footer>

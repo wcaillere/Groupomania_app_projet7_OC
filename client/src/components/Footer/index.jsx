@@ -1,27 +1,7 @@
-import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+//imports components created with styled-components from style.jsx
+import { FooterContainer, Footerbutton, FooterText } from './style';
 
-const FooterContainer = styled.footer`
-  width: 100%;
-  margin-top: 30px;
-  padding: 20px;
-  color: ${colors.Tertiary};
-  text-align: center;
-`;
-
-const Footerbutton = styled.button`
-  background: white;
-  border: none;
-  color: ${colors.Tertiary};
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const FooterText = styled.span`
-  margin: 0px 30px;
-`;
-
+//returns the Footer for the Login and Signup pages
 function Footer() {
   return (
     <FooterContainer>

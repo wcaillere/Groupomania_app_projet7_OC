@@ -1,57 +1,8 @@
 import Logo from '../../assets/logo_grey.svg';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+//imports components created with styled-components from style.jsx
+import { HeaderLogo, HeaderContainer, NavContainer, NavItem } from './style';
 
-const HeaderLogo = styled.img`
-  height: 30px;
-  margin: 10px 0px;
-  @media (min-width: 993px) {
-    height: 40px;
-    margin: 10px 20px;
-  }
-`;
-
-const HeaderContainer = styled.header`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
-  padding-top: 10px;
-  background: white;
-  @media (min-width: 993px) {
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 80px;
-  }
-`;
-
-const NavContainer = styled.nav`
-  display: flex;
-  width: 100%;
-  @media (min-width: 993px) {
-    width: 300px;
-  }
-`;
-
-const NavItem = styled(Link)`
-  color: ${colors.Tertiary};
-  margin: auto;
-  padding: 15px 0px;
-  text-decoration: none;
-  width: 50%;
-  border-bottom: 5px solid
-    ${(props) => (props.border === true ? colors.Tertiary : 'white')};
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  transition: 0.3s all;
-  :hover {
-    border-bottom: 5px solid
-      ${(props) =>
-        props.border === false ? 'rgba(67, 73, 112, 0.5)' : colors.Tertiary};
-  }
-`;
-
+//Returns the Header for the Login and Signup pages
 function Header() {
   return (
     <HeaderContainer>
