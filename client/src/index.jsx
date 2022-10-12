@@ -5,6 +5,7 @@ import GlobalStyle from './utils/style/GlobalStyle';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import ErrorPage from './pages/ErrorPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Router>
       <GlobalStyle />
       <Routes>
+        <Route path="/:error" element={<ErrorPage />} />
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
