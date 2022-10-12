@@ -61,9 +61,9 @@ const PublishButton = styled.input`
   position: absolute;
   right: 15px;
   top: 15px;
-  padding: 12px 20px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   color: white;
   background: ${colors.primary};
   font-weight: bold;
@@ -87,32 +87,32 @@ function CreatePost() {
         <Postinitial>F</Postinitial>
         <PostAuthor>Fred Doe</PostAuthor>
         <i
-          class="fa-solid fa-shield-halved fa-lg"
+          className="fa-solid fa-shield-halved fa-lg"
           style={{
             color: `${colors.primary}`,
           }}
         ></i>
       </PostDescrition>
-      <form>
+      <form id="post-form">
         <FormTextArea
           id="PostContent"
           name="PostContent"
           rows={3}
           placeholder="Partagez vos pensées..."
         ></FormTextArea>
-        <ImageLabel for="image">
-          <i class="fa-solid fa-image" style={{ marginRight: '5px' }}></i>
+        <ImageLabel htmlFor="image">
+          <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
           {picture}
         </ImageLabel>
         <ImageInput
           type="file"
           id="image"
           name="image"
-          accept="image/png, image/jpeg, image/jpeg"
+          accept="image/png, image/jpeg, image/jpg"
           onChange={(e) => onChangePicture(e)}
         />
       </form>
-      <PublishButton type="submit" value="Publiez !" />
+      <PublishButton type="submit" form="post-form" value="Publiez !" />
     </CreatePostContainer>
   );
 }

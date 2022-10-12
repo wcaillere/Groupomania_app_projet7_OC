@@ -38,13 +38,20 @@ const Postinitial = styled.div`
   justify-content: center;
 `;
 
+const PostDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 12px;
+`;
+
 const PostAuthor = styled.div`
   font-weight: bold;
   font-size: 18px;
 `;
 
 const PostDate = styled.div`
-  font-size: 13px;
+  font-size: 12px;
 `;
 
 const PostButton = styled.button`
@@ -61,6 +68,11 @@ const PostButton = styled.button`
   :hover {
     cursor: pointer;
   }
+`;
+
+const PostButtonText = styled.span`
+  margin-left: 10px;
+  font-weight: bold;
 `;
 
 const PostContent = styled.div`
@@ -93,38 +105,32 @@ function Post() {
       <PostHeader>
         <PostDescrition>
           <Postinitial>F</Postinitial>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              marginRight: '12px',
-            }}
-          >
+          <PostDetails>
             <PostAuthor>Fred Doe</PostAuthor>
             <PostDate>15/04/2012</PostDate>
-          </div>
+          </PostDetails>
           <i
-            class="fa-solid fa-shield-halved fa-lg"
+            className="fa-solid fa-shield-halved fa-lg"
             style={{
               color: `${colors.primary}`,
             }}
           ></i>
         </PostDescrition>
         <PostButton>
-          <i class="fa-solid fa-arrow-rotate-right"></i>
-          <span style={{ marginLeft: '10px', fontWeight: 'bold' }}>
-            Modifier
-          </span>
+          <i className="fa-solid fa-arrow-rotate-right"></i>
+          <PostButtonText>Modifier</PostButtonText>
         </PostButton>
         <PostButton>
-          <i class="fa-solid fa-trash-can"></i>
-          <span style={{ marginLeft: '10px', fontWeight: 'bold' }}>
-            Supprimer
-          </span>
+          <i className="fa-solid fa-trash-can"></i>
+          <PostButtonText>Supprimer</PostButtonText>
         </PostButton>
       </PostHeader>
-
+      <PostLike>
+        8
+        <PostLikeIcon>
+          <i className="fa-solid fa-thumbs-up fa-xl"></i>
+        </PostLikeIcon>
+      </PostLike>
       <PostContent>
         Lorem ipsum dolor sit amet,
         <br /> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -132,12 +138,6 @@ function Post() {
         <br /> Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex.
       </PostContent>
-      <PostLike>
-        8
-        <PostLikeIcon>
-          <i class="fa-solid fa-thumbs-up fa-xl"></i>
-        </PostLikeIcon>
-      </PostLike>
       <PostImage src={test}></PostImage>
     </PostContainer>
   );

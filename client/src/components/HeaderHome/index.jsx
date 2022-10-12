@@ -15,6 +15,10 @@ const HeaderContainer = styled.header`
   background: ${colors.Tertiary};
 `;
 
+const Deconnectionbutton = styled(Link)`
+  text-decoration: none;
+`;
+
 const DeconnectionText = styled.span`
   display: none;
   margin-left: 10px;
@@ -28,15 +32,15 @@ function HeaderHome() {
   return (
     <HeaderContainer>
       <HeaderLogo src={Logo} alt="Logo Groupomania" />
-      <Link to="/" style={{ textDecoration: 'none' }}>
+      <Deconnectionbutton to="/">
         <i
-          class="fa-solid fa-power-off fa-lg"
+          className="fa-solid fa-power-off fa-lg"
           style={{
             color: 'white',
           }}
         ></i>
         <DeconnectionText>Déconnexion</DeconnectionText>
-      </Link>
+      </Deconnectionbutton>
     </HeaderContainer>
   );
 }

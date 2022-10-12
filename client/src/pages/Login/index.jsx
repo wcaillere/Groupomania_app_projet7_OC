@@ -58,7 +58,7 @@ function Login() {
           <SeparationBar />
           <FormColumn>
             <FormItem>
-              <label for="mail">Adresse email </label>
+              <label htmlFor="mail">Adresse email </label>
               <FormItemInput
                 type="text"
                 name="mail"
@@ -67,7 +67,7 @@ function Login() {
               ></FormItemInput>
             </FormItem>
             <FormItem>
-              <label for="password">Mot de passe </label>
+              <label htmlFor="password">Mot de passe </label>
               <FormItemInput
                 type="text"
                 name="password"

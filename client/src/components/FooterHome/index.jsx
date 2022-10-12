@@ -20,16 +20,19 @@ const Footerbutton = styled.button`
   }
 `;
 
+const FooterText = styled.span`
+  margin: 0px 30px;
+`;
+
 function FooterHome() {
   return (
     <Footer>
       <Footerbutton>
-        <i class="fa-solid fa-sun fa-lg"></i>
+        <i className="fa-solid fa-sun fa-lg"></i>
       </Footerbutton>
-      <span style={{ margin: '0px 30px' }}>@Groupomania, 2022</span>
+      <FooterText>@Groupomania, 2022</FooterText>
       <Footerbutton>
-        {' '}
-        <i class="fa-solid fa-chevron-up fa-xl"></i>
+        <i className="fa-solid fa-chevron-up fa-xl"></i>
       </Footerbutton>
     </Footer>
   );

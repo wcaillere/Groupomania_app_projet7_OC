@@ -32,6 +32,7 @@ function Home() {
         <SeparationBar />
         <Post />
         <Post />
+        <Post />
       </MainContainer>
       <ClearDiv />
       <FooterHome />

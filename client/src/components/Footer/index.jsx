@@ -9,8 +9,28 @@ const FooterContainer = styled.footer`
   text-align: center;
 `;
 
+const Footerbutton = styled.button`
+  background: white;
+  border: none;
+  color: ${colors.Tertiary};
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const FooterText = styled.span`
+  margin: 0px 30px;
+`;
+
 function Footer() {
-  return <FooterContainer>@Groupomania, 2022</FooterContainer>;
+  return (
+    <FooterContainer>
+      <Footerbutton>
+        <i className="fa-solid fa-sun fa-xl"></i>
+      </Footerbutton>
+      <FooterText> @Groupomania, 2022</FooterText>
+    </FooterContainer>
+  );
 }
 
 export default Footer;
