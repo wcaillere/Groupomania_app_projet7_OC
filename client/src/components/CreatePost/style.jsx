@@ -5,7 +5,8 @@ export const CreatePostContainer = styled.div`
   position: relative;
   width: 90%;
   max-width: 550px;
-  background: white;
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.Tertiary : 'white'};
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
@@ -35,10 +36,12 @@ export const PostAuthor = styled.div`
   font-weight: bold;
   font-size: 18px;
   margin-right: 10px;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
 export const ImageLabel = styled.label`
   font-size: 15px;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
 export const ImageInput = styled.input`
@@ -51,7 +54,7 @@ export const FormTextArea = styled.textarea`
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  background: #e7e7e7;
+  background: ${(props) => (props.theme === 'dark' ? 'white' : '#e7e7e7')};
   border-radius: 10px;
   font-size: 15px;
 `;
@@ -64,7 +67,8 @@ export const PublishButton = styled.input`
   border: none;
   border-radius: 10px;
   color: white;
-  background: ${colors.primary};
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.darkTheme : colors.primary};
   font-weight: bold;
   font-size: 14px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);

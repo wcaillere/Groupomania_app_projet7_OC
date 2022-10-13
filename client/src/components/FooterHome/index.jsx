@@ -5,12 +5,16 @@ import { ThemeContext } from '../../utils/context/index';
 
 //Returns the Footer for the homePage
 function FooterHome() {
-  const toggleTheme = useContext(ThemeContext).toggleTheme;
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
   return (
     <Footer>
       <Footerbutton onClick={() => toggleTheme()}>
-        <i className="fa-solid fa-sun fa-lg"></i>
+        {theme === 'dark' ? (
+          <i className="fa-solid fa-sun fa-xl"></i>
+        ) : (
+          <i class="fa-solid fa-moon fa-xl"></i>
+        )}
       </Footerbutton>
       <FooterText>@Groupomania, 2022</FooterText>
       <Footerbutton>

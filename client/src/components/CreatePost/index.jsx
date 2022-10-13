@@ -11,10 +11,12 @@ import {
 } from './style';
 //imports colors and useState utils
 import colors from '../../utils/style/colors';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ThemeContext } from '../../utils/context/index';
 
 //returns the tool used by users to create a Post
 function CreatePost() {
+  const theme = useContext(ThemeContext).theme;
   const [picture, setPicture] = useState('Ajouter une image');
 
   const onChangePicture = (e) => {
@@ -22,10 +24,10 @@ function CreatePost() {
   };
 
   return (
-    <CreatePostContainer>
+    <CreatePostContainer theme={theme}>
       <PostDescrition>
         <Postinitial>F</Postinitial>
-        <PostAuthor>Fred Doe</PostAuthor>
+        <PostAuthor theme={theme}>Fred Doe</PostAuthor>
         <i
           className="fa-solid fa-shield-halved fa-lg"
           style={{
@@ -39,8 +41,9 @@ function CreatePost() {
           name="PostContent"
           rows={3}
           placeholder="Partagez vos pensées..."
+          theme={theme}
         ></FormTextArea>
-        <ImageLabel htmlFor="image">
+        <ImageLabel htmlFor="image" theme={theme}>
           <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
           {picture}
         </ImageLabel>
@@ -52,7 +55,12 @@ function CreatePost() {
           onChange={(e) => onChangePicture(e)}
         />
       </form>
-      <PublishButton type="submit" form="post-form" value="Publiez !" />
+      <PublishButton
+        type="submit"
+        form="post-form"
+        value="Publiez !"
+        theme={theme}
+      />
     </CreatePostContainer>
   );
 }
