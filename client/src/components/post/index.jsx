@@ -18,7 +18,7 @@ import {
 } from './style';
 
 //Returns one Post, created from informations of the DataBase
-function Post() {
+function Post(props) {
   return (
     <PostContainer>
       <PostHeader>
@@ -35,7 +35,7 @@ function Post() {
             }}
           ></i>
         </PostDescrition>
-        <PostButton>
+        <PostButton onClick={() => props.setTrigger(true)}>
           <i className="fa-solid fa-arrow-rotate-right"></i>
           <PostButtonText>Modifier</PostButtonText>
         </PostButton>
