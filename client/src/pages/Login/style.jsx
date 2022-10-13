@@ -8,10 +8,11 @@ export const ConnectionContainer = styled.div`
   max-width: 1200px;
   margin: auto;
   padding: 40px 20px 20px 20px;
-  background: ${colors.secondary};
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.Tertiary : colors.secondary};
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 2px 5px 15px 0px rgba(171, 171, 171, 0.72);
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   @media (min-width: 768px) {
     padding: 40px 40px 20px 40px;
   }

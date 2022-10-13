@@ -8,20 +8,26 @@ import {
   ConnectButton,
   SeparationBar,
   SignupLoginLink,
+  FormLabel,
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
 import { SignupContainer, FormColumn } from './style';
+import { useContext } from 'react';
+import { ThemeContext } from '../../utils/context/index';
 
 //Returns the Signup page
 function Signup() {
+  const theme = useContext(ThemeContext).theme;
   return (
     <div>
       <Header />
-      <SignupContainer>
+      <SignupContainer theme={theme}>
         <Form>
           <FormColumn id="firstColumn">
             <FormItem>
-              <label for="firstname">Prénom </label>
+              <FormLabel htmlFor="firstname" theme={theme}>
+                Prénom{' '}
+              </FormLabel>
               <FormItemInput
                 type="text"
                 name="firstname"
@@ -30,7 +36,9 @@ function Signup() {
               ></FormItemInput>
             </FormItem>
             <FormItem>
-              <label for="lastname">Nom de famille </label>
+              <FormLabel htmlFor="lastname" theme={theme}>
+                Nom de famille{' '}
+              </FormLabel>
               <FormItemInput
                 type="text"
                 name="lastname"
@@ -39,10 +47,12 @@ function Signup() {
               ></FormItemInput>
             </FormItem>
           </FormColumn>
-          <SeparationBar />
+          <SeparationBar theme={theme} />
           <FormColumn id="secondColumn">
             <FormItem>
-              <label for="mail">Adresse email </label>
+              <FormLabel htmlFor="mail" theme={theme}>
+                Adresse email{' '}
+              </FormLabel>
               <FormItemInput
                 type="text"
                 name="mail"
@@ -51,7 +61,9 @@ function Signup() {
               ></FormItemInput>
             </FormItem>
             <FormItem>
-              <label for="password">Mot de passe </label>
+              <FormLabel htmlFor="password" theme={theme}>
+                Mot de passe{' '}
+              </FormLabel>
               <FormItemInput
                 type="text"
                 name="password"
@@ -60,7 +72,9 @@ function Signup() {
               ></FormItemInput>
             </FormItem>
             <FormItem>
-              <label for="confirm">Confirmer </label>
+              <FormLabel htmlFor="confirm" theme={theme}>
+                Confirmer{' '}
+              </FormLabel>
               <FormItemInput
                 type="text"
                 name="confirm"
@@ -70,7 +84,7 @@ function Signup() {
             </FormItem>
           </FormColumn>
         </Form>
-        <ConnectButton type="submit" value="S'inscrire" />
+        <ConnectButton type="submit" value="S'inscrire" theme={theme} />
         <SignupLoginLink to="/">
           Déjà un compte ? Connectez-vous ici !
         </SignupLoginLink>

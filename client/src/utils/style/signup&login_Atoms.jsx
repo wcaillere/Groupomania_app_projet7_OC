@@ -17,6 +17,10 @@ export const FormItem = styled.div`
   margin-bottom: 50px;
 `;
 
+export const FormLabel = styled.label`
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
+`;
+
 export const FormItemInput = styled.input`
   display: block;
   width: 100%;
@@ -41,8 +45,9 @@ export const ConnectButton = styled.input`
   border: none;
   border-radius: 15px;
   color: white;
-  background: ${colors.primary};
-  box-shadow: 2px 3px 5px 0px #9c9c9c;
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.darkTheme : colors.primary};
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   :hover {
     cursor: pointer;
@@ -52,7 +57,8 @@ export const ConnectButton = styled.input`
 
 export const SeparationBar = styled.nav`
   display: none;
-  border: 2px solid ${colors.primary};
+  border: 2px solid
+    ${(props) => (props.theme === 'dark' ? 'white' : colors.primary)};
   @media (min-width: 768px) {
     display: flex;
   }
