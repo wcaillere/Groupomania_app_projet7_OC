@@ -8,14 +8,14 @@ function Footer() {
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <FooterContainer>
-      <Footerbutton onClick={() => toggleTheme()}>
+      <Footerbutton onClick={() => toggleTheme()} theme={theme}>
         {theme === 'dark' ? (
           <i className="fa-solid fa-sun fa-xl"></i>
         ) : (
           <i class="fa-solid fa-moon fa-xl"></i>
         )}
       </Footerbutton>
-      <FooterText> @Groupomania, 2022</FooterText>
+      <FooterText theme={theme}> @Groupomania, 2022</FooterText>
     </FooterContainer>
   );
 }

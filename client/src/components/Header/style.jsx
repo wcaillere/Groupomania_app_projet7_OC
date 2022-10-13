@@ -16,7 +16,8 @@ export const HeaderContainer = styled.header`
   flex-direction: column;
   margin-bottom: 40px;
   padding-top: 10px;
-  background: white;
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.Tertiary : 'white'};
   @media (min-width: 993px) {
     flex-direction: row;
     justify-content: space-between;
@@ -33,13 +34,20 @@ export const NavContainer = styled.nav`
 `;
 
 export const NavItem = styled(Link)`
-  color: ${colors.Tertiary};
+  color: ${(props) => (props.theme === 'dark' ? 'white' : colors.Tertiary)};
   margin: auto;
   padding: 15px 0px;
   text-decoration: none;
   width: 50%;
   border-bottom: 5px solid
-    ${(props) => (props.border === true ? colors.Tertiary : 'white')};
+    ${(props) =>
+      props.border === true
+        ? props.theme === 'dark'
+          ? 'white'
+          : colors.Tertiary
+        : props.theme === 'dark'
+        ? colors.Tertiary
+        : 'white'};
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -47,6 +55,10 @@ export const NavItem = styled(Link)`
   :hover {
     border-bottom: 5px solid
       ${(props) =>
-        props.border === false ? 'rgba(67, 73, 112, 0.5)' : colors.Tertiary};
+        props.border === false
+          ? props.theme === 'dark'
+            ? '#b6bce3'
+            : 'rgba(67, 73, 112, 0.5)'
+          : (props.theme = 'dark' ? 'white' : colors.Tertiary)};
   }
 `;

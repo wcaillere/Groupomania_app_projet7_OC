@@ -5,14 +5,14 @@ export const FooterContainer = styled.footer`
   width: 100%;
   margin-top: 30px;
   padding: 20px;
-  color: ${colors.Tertiary};
   text-align: center;
 `;
 
 export const Footerbutton = styled.button`
-  background: white;
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.darkTheme : 'white'};
   border: none;
-  color: ${colors.Tertiary};
+  color: ${(props) => (props.theme === 'dark' ? 'white' : colors.Tertiary)};
   :hover {
     cursor: pointer;
   }
@@ -20,4 +20,5 @@ export const Footerbutton = styled.button`
 
 export const FooterText = styled.span`
   margin: 0px 30px;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : colors.Tertiary)};
 `;

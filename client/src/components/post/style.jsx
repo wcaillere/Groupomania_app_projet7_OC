@@ -5,7 +5,8 @@ export const PostContainer = styled.div`
   position: relative;
   width: 90%;
   max-width: 550px;
-  background: white;
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.Tertiary : 'white'};
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
@@ -42,6 +43,7 @@ export const PostDetails = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-right: 12px;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
 export const PostAuthor = styled.div`
@@ -60,7 +62,8 @@ export const PostButton = styled.button`
   margin: 0px 15px 15px 0px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-  background: ${colors.primary};
+  background: ${(props) =>
+    props.theme === 'dark' ? colors.darkTheme : colors.primary};
   @media (min-width: 768px) {
     margin: 0px 0px 15px 20px;
   }
@@ -77,6 +80,7 @@ export const PostButtonText = styled.span`
 export const PostContent = styled.div`
   font-size: 15px;
   text-align: justify;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
 export const PostLike = styled.div`

@@ -31,7 +31,7 @@ function CreatePost() {
         <i
           className="fa-solid fa-shield-halved fa-lg"
           style={{
-            color: `${colors.primary}`,
+            color: `${theme === 'dark' ? 'white' : colors.primary}`,
           }}
         ></i>
       </PostDescrition>

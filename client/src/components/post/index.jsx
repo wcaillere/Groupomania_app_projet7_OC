@@ -16,30 +16,34 @@ import {
   PostContent,
   PostImage,
 } from './style';
+import { useContext } from 'react';
+import { ThemeContext } from '../../utils/context/index';
 
 //Returns one Post, created from informations of the DataBase
 function Post(props) {
+  const theme = useContext(ThemeContext).theme;
+
   return (
-    <PostContainer>
+    <PostContainer theme={theme}>
       <PostHeader>
         <PostDescrition>
           <Postinitial>F</Postinitial>
-          <PostDetails>
+          <PostDetails theme={theme}>
             <PostAuthor>Fred Doe</PostAuthor>
             <PostDate>15/04/2012</PostDate>
           </PostDetails>
           <i
             className="fa-solid fa-shield-halved fa-lg"
             style={{
-              color: `${colors.primary}`,
+              color: `${theme === 'dark' ? 'white' : colors.primary}`,
             }}
           ></i>
         </PostDescrition>
-        <PostButton onClick={() => props.setTrigger(true)}>
+        <PostButton onClick={() => props.setTrigger(true)} theme={theme}>
           <i className="fa-solid fa-arrow-rotate-right"></i>
           <PostButtonText>Modifier</PostButtonText>
         </PostButton>
-        <PostButton>
+        <PostButton theme={theme}>
           <i className="fa-solid fa-trash-can"></i>
           <PostButtonText>Supprimer</PostButtonText>
         </PostButton>
@@ -50,7 +54,7 @@ function Post(props) {
           <i className="fa-solid fa-thumbs-up fa-xl"></i>
         </PostLikeIcon>
       </PostLike>
-      <PostContent>
+      <PostContent theme={theme}>
         Lorem ipsum dolor sit amet,
         <br /> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua.
