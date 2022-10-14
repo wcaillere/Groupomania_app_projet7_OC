@@ -14,14 +14,14 @@ function Header() {
       <NavContainer>
         <NavItem
           to="/"
-          border={window.location.href.endsWith('/')}
+          $border={window.location.href.endsWith('/')}
           theme={theme}
         >
           Se connecter
         </NavItem>
         <NavItem
           to="/signup"
-          border={window.location.href.endsWith('/signup')}
+          $border={window.location.href.endsWith('/signup')}
           theme={theme}
         >
           S'inscrire

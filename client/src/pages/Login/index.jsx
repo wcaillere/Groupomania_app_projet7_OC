@@ -1,3 +1,5 @@
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../utils/context/index';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LogoRed from '../../assets/logo_red.svg';
@@ -14,12 +16,12 @@ import {
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
 import { ConnectionContainer, ConnectionLogo, FormColumn } from './style';
-import { useContext } from 'react';
-import { ThemeContext } from '../../utils/context/index';
 
 //Returns Login page
 function Login() {
   const theme = useContext(ThemeContext).theme;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <div>
       <Header />
@@ -34,14 +36,17 @@ function Login() {
           <SeparationBar theme={theme} />
           <FormColumn>
             <FormItem>
-              <FormLabel htmlFor="mail" theme={theme}>
+              <FormLabel htmlFor="email" theme={theme}>
                 Adresse email
               </FormLabel>
               <FormItemInput
                 type="text"
-                name="mail"
-                id="mail"
+                name="email"
+                id="email"
                 placeholder="exemple@mail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
             <FormItem>
@@ -53,6 +58,9 @@ function Login() {
                 name="password"
                 id="password"
                 placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
           </FormColumn>

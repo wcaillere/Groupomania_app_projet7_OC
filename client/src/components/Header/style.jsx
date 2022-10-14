@@ -41,7 +41,7 @@ export const NavItem = styled(Link)`
   width: 50%;
   border-bottom: 5px solid
     ${(props) =>
-      props.border === true
+      props.$border === true
         ? props.theme === 'dark'
           ? 'white'
           : colors.Tertiary
@@ -55,7 +55,7 @@ export const NavItem = styled(Link)`
   :hover {
     border-bottom: 5px solid
       ${(props) =>
-        props.border === false
+        props.$border === false
           ? props.theme === 'dark'
             ? '#b6bce3'
             : 'rgba(67, 73, 112, 0.5)'

@@ -1,3 +1,5 @@
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../utils/context/index';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 //imports shared components with Login page, created with styled-components from signup&login_Atoms.jsx
@@ -12,12 +14,15 @@ import {
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
 import { SignupContainer, FormColumn } from './style';
-import { useContext } from 'react';
-import { ThemeContext } from '../../utils/context/index';
 
 //Returns the Signup page
 function Signup() {
   const theme = useContext(ThemeContext).theme;
+  const [firstname, setFirstname] = useState('');
+  const [lasttname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
   return (
     <div>
       <Header />
@@ -33,6 +38,9 @@ function Signup() {
                 name="firstname"
                 id="firstname"
                 placeholder="John"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
             <FormItem>
@@ -44,6 +52,9 @@ function Signup() {
                 name="lastname"
                 id="lastname"
                 placeholder="Doe"
+                value={lasttname}
+                onChange={(e) => setLastname(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
           </FormColumn>
@@ -58,6 +69,9 @@ function Signup() {
                 name="mail"
                 id="mail"
                 placeholder="John.Doe@mail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
             <FormItem>
@@ -69,6 +83,9 @@ function Signup() {
                 name="password"
                 id="password"
                 placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
             <FormItem>
@@ -80,6 +97,9 @@ function Signup() {
                 name="confirm"
                 id="confirm"
                 placeholder="Mot de passe"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                required
               ></FormItemInput>
             </FormItem>
           </FormColumn>
