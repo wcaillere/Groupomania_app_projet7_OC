@@ -22,6 +22,23 @@ function Login() {
   const theme = useContext(ThemeContext).theme;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function test() {
+    fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'pierre.simon@gmail.com',
+        password: 'pierreS',
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data.token));
+  }
+
   return (
     <div>
       <Header />
@@ -40,7 +57,7 @@ function Login() {
                 Adresse email
               </FormLabel>
               <FormItemInput
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 placeholder="exemple@mail.com"
@@ -54,7 +71,7 @@ function Login() {
                 Mot de passe
               </FormLabel>
               <FormItemInput
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="Mot de passe"
@@ -65,7 +82,12 @@ function Login() {
             </FormItem>
           </FormColumn>
         </Form>
-        <ConnectButton type="submit" value="Se connecter" theme={theme} />
+        <ConnectButton
+          type="submit"
+          value="Se connecter"
+          theme={theme}
+          onClick={() => test()}
+        />
         <SignupLoginLink to="/signup">
           Pas encore de compte ? Inscrivez-vous ici !
         </SignupLoginLink>

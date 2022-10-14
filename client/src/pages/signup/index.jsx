@@ -61,13 +61,13 @@ function Signup() {
           <SeparationBar theme={theme} />
           <FormColumn id="secondColumn">
             <FormItem>
-              <FormLabel htmlFor="mail" theme={theme}>
+              <FormLabel htmlFor="email" theme={theme}>
                 Adresse email{' '}
               </FormLabel>
               <FormItemInput
-                type="text"
-                name="mail"
-                id="mail"
+                type="email"
+                name="email"
+                id="email"
                 placeholder="John.Doe@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -79,7 +79,7 @@ function Signup() {
                 Mot de passe{' '}
               </FormLabel>
               <FormItemInput
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="Mot de passe"
@@ -93,7 +93,7 @@ function Signup() {
                 Confirmer{' '}
               </FormLabel>
               <FormItemInput
-                type="text"
+                type="password"
                 name="confirm"
                 id="confirm"
                 placeholder="Mot de passe"
