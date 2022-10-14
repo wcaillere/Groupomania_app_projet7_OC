@@ -23,20 +23,39 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function test() {
-    fetch('http://localhost:5000/api/auth/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: 'pierre.simon@gmail.com',
-        password: 'pierreS',
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data.token));
+  function sendLogin(emailInput, passwordInput) {
+    var inputValidation = true;
+    for (let input of document.querySelectorAll(
+      'input#email, input#password'
+    )) {
+      inputValidation &= input.reportValidity();
+    }
+    if (inputValidation) {
+      fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          password: passwordInput,
+        }),
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            if (result.message) {
+              console.log(result.message);
+            } else {
+              window.location.href = `./home`;
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
 
   return (
@@ -86,7 +105,7 @@ function Login() {
           type="submit"
           value="Se connecter"
           theme={theme}
-          onClick={() => test()}
+          onClick={() => sendLogin(email, password)}
         />
         <SignupLoginLink to="/signup">
           Pas encore de compte ? Inscrivez-vous ici !
