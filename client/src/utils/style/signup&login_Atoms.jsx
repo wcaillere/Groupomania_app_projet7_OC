@@ -66,7 +66,7 @@ export const SeparationBar = styled.nav`
 
 export const SignupLoginLink = styled(Link)`
   margin: 10px auto;
-  color: ${colors.Tertiary};
+  color: ${(props) => (props.theme === 'dark' ? 'white' : colors.Tertiary)};
   font-weight: bold;
   text-align: center;
 `;

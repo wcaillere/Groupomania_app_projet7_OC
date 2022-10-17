@@ -170,7 +170,7 @@ function Signup() {
             sendSignup(firstname, lastname, email, password, confirm)
           }
         />
-        <SignupLoginLink to="/">
+        <SignupLoginLink to="/" theme={theme}>
           Déjà un compte ? Connectez-vous ici !
         </SignupLoginLink>
       </SignupContainer>

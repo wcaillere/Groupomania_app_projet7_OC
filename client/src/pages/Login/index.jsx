@@ -120,7 +120,7 @@ function Login() {
           theme={theme}
           onClick={() => sendLogin(email, password)}
         />
-        <SignupLoginLink to="/signup">
+        <SignupLoginLink to="/signup" theme={theme}>
           Pas encore de compte ? Inscrivez-vous ici !
         </SignupLoginLink>
       </ConnectionContainer>
