@@ -50,7 +50,7 @@ function CreatePost() {
             ''
           ) : (
             <i
-              class="fa-solid fa-xmark"
+              className="fa-solid fa-xmark"
               style={{ marginLeft: '8px' }}
               onClick={() => setPicture('Ajouter une image (png, jpeg, jpg)')}
             ></i>
