@@ -17,7 +17,7 @@ import { ThemeContext } from '../../utils/context/index';
 //returns the tool used by users to create a Post
 function CreatePost() {
   const theme = useContext(ThemeContext).theme;
-  const [picture, setPicture] = useState('Ajouter une image');
+  const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
 
   const onChangePicture = (e) => {
     setPicture(e.target.files[0].name);
@@ -46,6 +46,15 @@ function CreatePost() {
         <ImageLabel htmlFor="image" theme={theme}>
           <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
           {picture}
+          {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
+            ''
+          ) : (
+            <i
+              class="fa-solid fa-xmark"
+              style={{ marginLeft: '8px' }}
+              onClick={() => setPicture('Ajouter une image (png, jpeg, jpg)')}
+            ></i>
+          )}
         </ImageLabel>
         <ImageInput
           type="file"

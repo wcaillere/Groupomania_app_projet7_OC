@@ -42,6 +42,10 @@ export const PostAuthor = styled.div`
 export const ImageLabel = styled.label`
   font-size: 15px;
   color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
+  :hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export const ImageInput = styled.input`
