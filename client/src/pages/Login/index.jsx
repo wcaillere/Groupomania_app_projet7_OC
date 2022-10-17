@@ -48,6 +48,7 @@ function Login() {
             if (result.message) {
               console.log(result.message);
             } else {
+              localStorage.setItem('token', result.token);
               window.location.href = `./home`;
             }
           },

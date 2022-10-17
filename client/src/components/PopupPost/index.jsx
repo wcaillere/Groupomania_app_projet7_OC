@@ -35,7 +35,7 @@ function PopupPost(props) {
           </PostDescrition>
         </PostHeader>
         <PopupCloseButton onClick={() => props.setTrigger(false)}>
-          <i class="fa-solid fa-xmark fa-2xl"></i>
+          <i className="fa-solid fa-xmark fa-2xl"></i>
         </PopupCloseButton>
         <PopupContent rows={3}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

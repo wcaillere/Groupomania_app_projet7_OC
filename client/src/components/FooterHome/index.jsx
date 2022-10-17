@@ -13,7 +13,7 @@ function FooterHome() {
         {theme === 'dark' ? (
           <i className="fa-solid fa-sun fa-xl"></i>
         ) : (
-          <i class="fa-solid fa-moon fa-xl"></i>
+          <i className="fa-solid fa-moon fa-xl"></i>
         )}
       </Footerbutton>
       <FooterText>@Groupomania, 2022</FooterText>
