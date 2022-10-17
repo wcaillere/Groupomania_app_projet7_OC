@@ -13,9 +13,13 @@ exports.signup = (req, res, next) => {
         [req.body.firstname, req.body.lastname, req.body.email, hash],
         function (error, results, fields) {
           if (error) {
-            res.status(500).json({ error });
+            if (error.errno === 1062) {
+              res.status(500).json({ message: 'Vous êtes déjà inscrit !' });
+            } else {
+              res.status(500).json({ error });
+            }
           } else {
-            res.status(200).json({ message: 'utilisateur créé' });
+            res.status(200).json({ message: 'Inscription réussie !' });
           }
         }
       );

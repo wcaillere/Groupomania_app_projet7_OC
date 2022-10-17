@@ -5,7 +5,7 @@ const rateLimit = require('../middleware/rateLimit');
 const router = express.Router();
 
 //routes
-router.post('/signup', rateLimit.signupLimiter, userCrtl.signup);
+router.post('/signup', userCrtl.signup);
 router.post('/login', rateLimit.loginLimiter, userCrtl.login);
 
 module.exports = router;

@@ -13,19 +13,77 @@ import {
   FormLabel,
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
-import { SignupContainer, FormColumn } from './style';
+import { SignupContainer, FormColumn, Popup } from './style';
 
 //Returns the Signup page
 function Signup() {
   const theme = useContext(ThemeContext).theme;
   const [firstname, setFirstname] = useState('');
-  const [lasttname, setLastname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [popup, setPopup] = useState(false);
+  const [popupText, setPopupText] = useState('');
+
+  function sendSignup(
+    firstnameInput,
+    lastnameInput,
+    emailInput,
+    passwordInput,
+    confirmInput
+  ) {
+    setPopup(false);
+    var inputValidation = true;
+
+    if (confirmInput !== passwordInput) {
+      document
+        .querySelector('input#confirm')
+        .setCustomValidity("La confirmation du mot de passe n'est pas corecte");
+    } else {
+      document.querySelector('input#confirm').setCustomValidity('');
+    }
+
+    for (let input of document.querySelectorAll(
+      'input#firstname, input#lastname, input#email, input#password, input#confirm'
+    )) {
+      inputValidation &= input.reportValidity();
+    }
+
+    if (inputValidation) {
+      fetch('http://localhost:5000/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname: firstnameInput,
+          lastname: lastnameInput,
+          email: emailInput,
+          password: passwordInput,
+        }),
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            if (result.message) {
+              setPopup(true);
+              setPopupText(result.message);
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }
+
   return (
     <div>
       <Header />
+      {popup ? <Popup>{popupText}</Popup> : ''}
       <SignupContainer theme={theme}>
         <Form>
           <FormColumn id="firstColumn">
@@ -52,7 +110,7 @@ function Signup() {
                 name="lastname"
                 id="lastname"
                 placeholder="Doe"
-                value={lasttname}
+                value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 required
               ></FormItemInput>
@@ -104,7 +162,14 @@ function Signup() {
             </FormItem>
           </FormColumn>
         </Form>
-        <ConnectButton type="submit" value="S'inscrire" theme={theme} />
+        <ConnectButton
+          type="submit"
+          value="S'inscrire"
+          theme={theme}
+          onClick={() =>
+            sendSignup(firstname, lastname, email, password, confirm)
+          }
+        />
         <SignupLoginLink to="/">
           Déjà un compte ? Connectez-vous ici !
         </SignupLoginLink>

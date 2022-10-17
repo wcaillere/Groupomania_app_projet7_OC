@@ -24,3 +24,18 @@ export const FormColumn = styled.div`
     padding-top: ${(props) => (props.id === 'firstColumn' ? '80px' : '20px')};
   }
 `;
+
+export const Popup = styled.div`
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  background: ${colors.primary};
+  border-radius: 10px;
+  color: white;
+  @media (min-width: 993px) {
+    top: 110px;
+  }
+`;
