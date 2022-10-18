@@ -48,7 +48,7 @@ function Post(props) {
           <PostButtonText>Supprimer</PostButtonText>
         </PostButton>
       </PostHeader>
-      <PostLike>
+      <PostLike theme={theme}>
         8
         <PostLikeIcon>
           <i className="fa-solid fa-thumbs-up fa-xl"></i>

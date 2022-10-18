@@ -81,6 +81,7 @@ export const PostButtonText = styled.span`
 export const PostContent = styled.div`
   font-size: 15px;
   text-align: justify;
+  margin: 5px 0px;
   color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
@@ -89,6 +90,7 @@ export const PostLike = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
+  color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
 `;
 
 export const PostLikeIcon = styled.div`

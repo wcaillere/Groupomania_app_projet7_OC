@@ -18,7 +18,16 @@ function FooterHome() {
       </Footerbutton>
       <FooterText>@Groupomania, 2022</FooterText>
       <Footerbutton>
-        <i className="fa-solid fa-chevron-up fa-xl"></i>
+        <i
+          className="fa-solid fa-chevron-up fa-xl"
+          onClick={() => {
+            window.scroll({
+              top: 0,
+              left: 0,
+              behavior: 'smooth',
+            });
+          }}
+        ></i>
       </Footerbutton>
     </Footer>
   );
