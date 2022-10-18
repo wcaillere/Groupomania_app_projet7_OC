@@ -45,13 +45,12 @@ export const ConnectButton = styled.input`
   border: none;
   border-radius: 15px;
   color: white;
-  background: ${(props) =>
-    props.theme === 'dark' ? colors.darkTheme : colors.primary};
+  background: ${colors.primary};
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   :hover {
     cursor: pointer;
-    box-shadow: 2px 4px 10px 2px #9c9c9c;
+    box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.4);
   }
 `;
 

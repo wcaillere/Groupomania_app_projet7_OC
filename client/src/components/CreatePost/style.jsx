@@ -71,12 +71,13 @@ export const PublishButton = styled.input`
   border: none;
   border-radius: 10px;
   color: white;
-  background: ${(props) =>
-    props.theme === 'dark' ? colors.darkTheme : colors.primary};
+  background: ${colors.primary};
   font-weight: bold;
   font-size: 14px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
   :hover {
     cursor: pointer;
+    box-shadow: 2px 3px 8px 1px rgba(0, 0, 0, 0.4);
   }
 `;
