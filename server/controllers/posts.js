@@ -4,23 +4,23 @@ const fs = require('fs');
 
 //Gets all posts of the Data Base
 exports.getAllPosts = (req, res, next) => {
-  connection.query(`SELECT * FROM posts`, function (error, results, fields) {
-    if (error) {
-      res.status(500).json({ error });
-    } else {
-      results.forEach(async (element) => {
-        await connection.query(
-          `SELECT users_id_users FROM appreciate WHERE posts_id_posts = ?`,
-          [element.id_posts],
-          function (error, likes, fields) {
-            console.log(likes);
-            element.likes = likes;
-          }
-        );
-      });
-      res.status(200).json(results);
+  connection.query(
+    `SELECT p.id_posts, p.content, p.image_url, p.date, u.id_users, u.firstname, u.lastname, u.is_admin, GROUP_CONCAT(a.users_id_users) AS likes
+    FROM posts p
+      JOIN users u
+        ON p.users_id_users = u.id_users
+      LEFT JOIN appreciate a
+        ON p.id_posts = a.posts_id_posts
+      GROUP BY p.id_posts
+    ORDER BY date DESC;`,
+    function (error, results, fields) {
+      if (error) {
+        res.status(500).json({ error });
+      } else {
+        res.status(200).json(results);
+      }
     }
-  });
+  );
 };
 
 //Gets one post of the Data Base thanks to its ID
