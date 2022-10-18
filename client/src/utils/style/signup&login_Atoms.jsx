@@ -70,3 +70,24 @@ export const SignupLoginLink = styled(Link)`
   font-weight: bold;
   text-align: center;
 `;
+
+export const Popup = styled.div`
+  position: absolute;
+  width: 80%;
+  top: 160px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  background: ${colors.primary};
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  @media (min-width: 993px) {
+    top: 110px;
+    font-size: 16px;
+  }
+  @media (min-width: 768px) {
+    width: 40%;
+  }
+`;

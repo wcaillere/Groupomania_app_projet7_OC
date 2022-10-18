@@ -13,24 +13,21 @@ import {
   SeparationBar,
   SignupLoginLink,
   FormLabel,
+  Popup,
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
-import {
-  ConnectionContainer,
-  ConnectionLogo,
-  FormColumn,
-  BadLoginPoppup,
-} from './style';
+import { ConnectionContainer, ConnectionLogo, FormColumn } from './style';
 
 //Returns Login page
 function Login() {
   const theme = useContext(ThemeContext).theme;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(true);
+  const [popup, setPopup] = useState(false);
+  const [popupText, setPopupText] = useState('');
 
   function sendLogin(emailInput, passwordInput) {
-    setSuccess(true);
+    setPopup(false);
     var inputValidation = true;
     for (let input of document.querySelectorAll(
       'input#email, input#password'
@@ -53,7 +50,13 @@ function Login() {
         .then(
           (result) => {
             if (result.message) {
-              setSuccess(false);
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth',
+              });
+              setPopup(true);
+              setPopupText(result.message);
             } else {
               localStorage.setItem('token', result.token);
               window.location.href = `./home`;
@@ -69,11 +72,7 @@ function Login() {
   return (
     <div>
       <Header />
-      {success ? (
-        ''
-      ) : (
-        <BadLoginPoppup>Paire email/mot de passe invalide !</BadLoginPoppup>
-      )}
+      {popup ? <Popup>{popupText}</Popup> : ''}
       <ConnectionContainer theme={theme}>
         <Form>
           <FormColumn>

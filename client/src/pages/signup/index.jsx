@@ -11,9 +11,10 @@ import {
   SeparationBar,
   SignupLoginLink,
   FormLabel,
+  Popup,
 } from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
-import { SignupContainer, FormColumn, Popup } from './style';
+import { SignupContainer, FormColumn } from './style';
 
 //Returns the Signup page
 function Signup() {
@@ -67,8 +68,12 @@ function Signup() {
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log(result);
             if (result.message) {
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth',
+              });
               setPopup(true);
               setPopupText(result.message);
             }
