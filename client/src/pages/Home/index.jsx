@@ -23,9 +23,10 @@ function Home() {
       .then((res) => res.json())
       .then(
         (result) => {
-          if (result) {
-            setAllPostData(result);
+          if (result.message) {
+            window.location.href = `./`;
           }
+          setAllPostData(result);
         },
         (error) => {
           console.log(error);

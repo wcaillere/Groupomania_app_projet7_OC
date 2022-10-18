@@ -12,7 +12,12 @@ function HeaderHome() {
   return (
     <HeaderContainer>
       <HeaderLogo src={Logo} alt="Logo Groupomania" />
-      <Deconnectionbutton to="/">
+      <Deconnectionbutton
+        to="/"
+        onClick={() => {
+          localStorage.removeItem('token');
+        }}
+      >
         <i
           className="fa-solid fa-power-off fa-lg"
           style={{
