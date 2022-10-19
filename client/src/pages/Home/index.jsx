@@ -50,6 +50,7 @@ function Home() {
               content={post.content}
               imageUrl={post.image_url}
               likes={post.likes === null ? [] : post.likes.split(',')}
+              setTrigger={setButtonPopup}
             />
           ))}
         </div>
