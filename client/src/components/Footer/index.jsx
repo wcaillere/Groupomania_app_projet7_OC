@@ -1,5 +1,5 @@
 //imports components created with styled-components from style.jsx
-import { FooterContainer, Footerbutton, FooterText } from './style';
+import './footer.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 
@@ -7,16 +7,28 @@ import { ThemeContext } from '../../utils/context/index';
 function Footer() {
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
-    <FooterContainer>
-      <Footerbutton onClick={() => toggleTheme()} theme={theme}>
+    <footer className="footerContainer">
+      <button
+        onClick={() => toggleTheme()}
+        className={
+          theme === 'dark' ? 'footerButton footerButtonDark' : 'footerButton'
+        }
+      >
         {theme === 'dark' ? (
           <i className="fa-solid fa-sun fa-xl"></i>
         ) : (
           <i className="fa-solid fa-moon fa-xl"></i>
         )}
-      </Footerbutton>
-      <FooterText theme={theme}> @Groupomania, 2022</FooterText>
-    </FooterContainer>
+      </button>
+      <span
+        className={
+          theme === 'dark' ? 'footerText footerTextDark' : 'footerText'
+        }
+      >
+        {' '}
+        @Groupomania, 2022
+      </span>
+    </footer>
   );
 }
 

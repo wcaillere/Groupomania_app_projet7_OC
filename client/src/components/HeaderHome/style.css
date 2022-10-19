@@ -1,0 +1,27 @@
+.headerHomeLogo {
+  height: 30px;
+}
+
+.headerHomeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 15px 15px;
+  background: var(--Tertiary);
+}
+
+.headerHomeDeconnectionButton {
+  text-decoration: none;
+}
+
+.headerHomeDeconnectionText {
+  display: none;
+  margin-left: 10px;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .headerHomeDeconnectionText {
+    display: inline;
+  }
+}

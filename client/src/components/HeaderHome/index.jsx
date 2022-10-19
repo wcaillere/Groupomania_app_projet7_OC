@@ -1,11 +1,7 @@
 import Logo from '../../assets/logo_white.svg';
+import { Link } from 'react-router-dom';
 //imports components created with styled-components from style.jsx
-import {
-  Deconnectionbutton,
-  DeconnectionText,
-  HeaderContainer,
-  HeaderLogo,
-} from './style';
+import './style.css';
 
 //Returns Header for the homePage
 function HeaderHome() {
@@ -16,9 +12,10 @@ function HeaderHome() {
     }
   }
   return (
-    <HeaderContainer>
-      <HeaderLogo src={Logo} alt="Logo Groupomania" />
-      <Deconnectionbutton
+    <header className="headerHomeContainer">
+      <img src={Logo} alt="Logo Groupomania" className="headerHomeLogo" />
+      <Link
+        className="headerHomeDeconnectionButton"
         onClick={() => {
           deconnection();
         }}
@@ -29,9 +26,9 @@ function HeaderHome() {
             color: 'white',
           }}
         ></i>
-        <DeconnectionText>Déconnexion</DeconnectionText>
-      </Deconnectionbutton>
-    </HeaderContainer>
+        <span className="headerHomeDeconnectionText">Déconnexion</span>
+      </Link>
+    </header>
   );
 }
 

@@ -1,0 +1,97 @@
+.createPostContainer {
+  position: relative;
+  width: 90%;
+  max-width: 550px;
+  background: white;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.createPostContainerDark {
+  background: var(--Tertiary);
+}
+
+.createPostDescription {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.createPostInitial {
+  display: flex;
+  background: var(--secondary);
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.createPostAuthor {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  color: black;
+}
+
+.createPostAuthorDark {
+  color: white;
+}
+
+.createPostImageLabel {
+  font-size: 15px;
+  color: black;
+}
+
+.createPostImageLabel:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.createPostImageLabelDark {
+  color: white;
+}
+
+.createPostImageInput {
+  display: none;
+}
+
+.createPostFormTextArea {
+  border: none;
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #e7e7e7;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.createPostFormTextAreaDark {
+  background: white;
+}
+
+.createPostPublishButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background: var(--primary);
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.createPostPublishButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 3px 8px 1px rgba(0, 0, 0, 0.4);
+}

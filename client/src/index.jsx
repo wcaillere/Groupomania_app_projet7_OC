@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import { ThemeProvider } from './utils/context';
+import './utils/style/colors.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

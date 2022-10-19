@@ -1,0 +1,30 @@
+.footerContainer {
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.footerButton {
+  background: white;
+  border: none;
+  color: var(--Tertiary);
+}
+
+.footerButton:hover {
+  cursor: pointer;
+}
+
+.footerButtonDark {
+  background: var(--darkTheme);
+  color: white;
+}
+
+.footerText {
+  margin: 0px 30px;
+  color: var(--darkTheme);
+}
+
+.footerTextDark {
+  color: white;
+}

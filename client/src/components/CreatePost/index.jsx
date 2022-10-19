@@ -1,16 +1,6 @@
 //imports components created with styled-components from style.jsx
-import {
-  CreatePostContainer,
-  PostDescrition,
-  Postinitial,
-  PostAuthor,
-  ImageInput,
-  ImageLabel,
-  FormTextArea,
-  PublishButton,
-} from './style';
+import './style.css';
 //imports colors and useState utils
-import colors from '../../utils/style/colors';
 import { useState, useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 
@@ -24,26 +14,57 @@ function CreatePost() {
   };
 
   return (
-    <CreatePostContainer theme={theme}>
-      <PostDescrition>
-        <Postinitial>F</Postinitial>
-        <PostAuthor theme={theme}>Fred Doe</PostAuthor>
+    <div
+      className={
+        theme === 'dark'
+          ? 'createPostContainer createPostContainerDark'
+          : 'createPostContainer'
+      }
+    >
+      <div className="createPostDescription">
+        <div className="createPostInitial">F</div>
+        <div
+          className={
+            theme === 'dark'
+              ? 'createPostAuthor createPostAuthorDark'
+              : 'createPostAuthor'
+          }
+        >
+          Fred Doe
+        </div>
         <i
           className="fa-solid fa-shield-halved fa-lg"
           style={{
-            color: `${theme === 'dark' ? 'white' : colors.primary}`,
+            color: `${
+              theme === 'dark'
+                ? 'white'
+                : `${getComputedStyle(document.body).getPropertyValue(
+                    '--primary'
+                  )}`
+            }`,
           }}
         ></i>
-      </PostDescrition>
+      </div>
       <form id="post-form">
-        <FormTextArea
+        <textarea
           id="PostContent"
           name="PostContent"
           rows={3}
           placeholder="Partagez vos pensées..."
-          theme={theme}
-        ></FormTextArea>
-        <ImageLabel htmlFor="image" theme={theme}>
+          className={
+            theme === 'dark'
+              ? 'createPostFormTextArea createPostFormTextAreaDark'
+              : 'createPostFormTextArea'
+          }
+        ></textarea>
+        <label
+          htmlFor="image"
+          className={
+            theme === 'dark'
+              ? 'createPostImageLabel createPostImageLabelDark'
+              : 'createPostImageLabel'
+          }
+        >
           <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
           {picture}
           {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
@@ -55,8 +76,9 @@ function CreatePost() {
               onClick={() => setPicture('Ajouter une image (png, jpeg, jpg)')}
             ></i>
           )}
-        </ImageLabel>
-        <ImageInput
+        </label>
+        <input
+          className="createPostImageInput"
           type="file"
           id="image"
           name="image"
@@ -64,13 +86,13 @@ function CreatePost() {
           onChange={(e) => onChangePicture(e)}
         />
       </form>
-      <PublishButton
+      <input
         type="submit"
         form="post-form"
         value="Publiez !"
-        theme={theme}
+        className="createPostPublishButton"
       />
-    </CreatePostContainer>
+    </div>
   );
 }
 

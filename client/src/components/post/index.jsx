@@ -1,20 +1,6 @@
 import colors from '../../utils/style/colors';
 //imports components created with styled-components from style.jsx
-import {
-  PostContainer,
-  PostHeader,
-  PostDescrition,
-  Postinitial,
-  PostDetails,
-  PostAuthor,
-  PostDate,
-  PostButton,
-  PostButtonText,
-  PostLike,
-  PostLikeIcon,
-  PostContent,
-  PostImage,
-} from './style';
+import './style.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 
@@ -23,16 +9,32 @@ function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
   return (
-    <PostContainer theme={theme}>
-      <PostHeader>
-        <PostDescrition>
-          <Postinitial>{props.firstname[0]}</Postinitial>
-          <PostDetails theme={theme}>
-            <PostAuthor
-              isAdmin={props.isAdmin}
-            >{`${props.firstname} ${props.lastname[0]}.`}</PostAuthor>
-            <PostDate>15/04/2012</PostDate>
-          </PostDetails>
+    <div
+      className={
+        theme === 'dark' ? 'postContainer postContainerDark' : 'postContainer'
+      }
+    >
+      <div className="postHeader">
+        <div className="postDescrition">
+          <div className="postinitial">{props.firstname[0]}</div>
+          <div
+            className={
+              theme === 'dark' ? 'postDetails postDetailsDark' : 'postDetails'
+            }
+          >
+            <div
+              className={
+                props.isAdmin
+                  ? theme === 'dark'
+                    ? 'postAuthor postAuthorDark postAuthorIsAdmin'
+                    : 'postAuthor postAuthorIsAdmin'
+                  : theme === 'dark'
+                  ? 'postAuthor postAuthorDark'
+                  : 'postAuthor'
+              }
+            >{`${props.firstname} ${props.lastname[0]}.`}</div>
+            <div className="postDate">15/04/2012</div>
+          </div>
           {props.isAdmin ? (
             <i
               className="fa-solid fa-shield-halved fa-lg"
@@ -44,25 +46,35 @@ function Post(props) {
           ) : (
             ''
           )}
-        </PostDescrition>
-        <PostButton onClick={() => props.setTrigger(true)} theme={theme}>
+        </div>
+        <button onClick={() => props.setTrigger(true)} className="postButton">
           <i className="fa-solid fa-arrow-rotate-right"></i>
-          <PostButtonText>Modifier</PostButtonText>
-        </PostButton>
-        <PostButton theme={theme}>
+          <span className="postButtonText">Modifier</span>
+        </button>
+        <button className="postButton">
           <i className="fa-solid fa-trash-can"></i>
-          <PostButtonText>Supprimer</PostButtonText>
-        </PostButton>
-      </PostHeader>
-      <PostLike theme={theme}>
+          <span className="postButtonText">Supprimer</span>
+        </button>
+      </div>
+      <div className={theme === 'dark' ? 'postLike postLikeDark' : 'postLike'}>
         {props.likes.length}
-        <PostLikeIcon>
+        <div className="postLikeIcon">
           <i className="fa-solid fa-thumbs-up fa-xl"></i>
-        </PostLikeIcon>
-      </PostLike>
-      <PostContent theme={theme}>{props.content}</PostContent>
-      <PostImage src={props.imageUrl}></PostImage>
-    </PostContainer>
+        </div>
+      </div>
+      <div
+        className={
+          theme === 'dark' ? 'postContent postContentDark' : 'postContent'
+        }
+      >
+        {props.content}
+      </div>
+      <img
+        className="postImage"
+        src={props.imageUrl}
+        alt="illustration du post"
+      />
+    </div>
   );
 }
 

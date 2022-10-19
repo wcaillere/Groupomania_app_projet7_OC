@@ -1,0 +1,24 @@
+.footerHome {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background: var(--Tertiary);
+  text-align: center;
+}
+
+.footerHomeButton {
+  background: var(--Tertiary);
+  border: none;
+  color: white;
+}
+
+.footerHomeButton:hover {
+  cursor: pointer;
+}
+
+.footerHomeText {
+  margin: 0px 30px;
+  color: white;
+}

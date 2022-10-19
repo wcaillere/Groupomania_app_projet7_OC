@@ -5,7 +5,6 @@ import colors from './colors';
 
 const StyledGlobalStyle = createGlobalStyle`
     * {
-      font-family: 'Lato', Helvetica, sans-serif;
       box-sizing: border-box;
     }
     body {
