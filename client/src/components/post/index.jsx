@@ -27,15 +27,16 @@ function Post(props) {
     <PostContainer theme={theme}>
       <PostHeader>
         <PostDescrition>
-          <Postinitial>F</Postinitial>
+          <Postinitial>{props.firstname[0]}</Postinitial>
           <PostDetails theme={theme}>
-            <PostAuthor>Fred Doe</PostAuthor>
+            <PostAuthor>{`${props.firstname} ${props.lastname[0]}.`}</PostAuthor>
             <PostDate>15/04/2012</PostDate>
           </PostDetails>
           <i
             className="fa-solid fa-shield-halved fa-lg"
             style={{
               color: `${theme === 'dark' ? 'white' : colors.primary}`,
+              marginRight: '50px',
             }}
           ></i>
         </PostDescrition>

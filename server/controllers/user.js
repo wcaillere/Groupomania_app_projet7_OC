@@ -3,6 +3,10 @@ const connection = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+function capitalize(string) {
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
 //Allows an user to signup on the site if he's not
 exports.signup = (req, res, next) => {
   bcrypt
@@ -10,12 +14,18 @@ exports.signup = (req, res, next) => {
     .then((hash) => {
       connection.query(
         `INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)`,
-        [req.body.firstname, req.body.lastname, req.body.email, hash],
+        [
+          capitalize(req.body.firstname),
+          capitalize(req.body.lastname),
+          req.body.email,
+          hash,
+        ],
         function (error, results, fields) {
           if (error) {
             if (error.errno === 1062) {
               res.status(500).json({ message: 'Vous êtes déjà inscrit !' });
             } else {
+              console.log(capitalize(req.body.firstname));
               res.status(500).json({ error });
             }
           } else {

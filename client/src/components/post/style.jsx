@@ -13,11 +13,7 @@ export const PostContainer = styled.div`
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 `;
 
-export const PostHeader = styled.div`
-  @media (min-width: 768px) {
-    display: flex;
-  }
-`;
+export const PostHeader = styled.div``;
 
 export const PostDescrition = styled.div`
   display: flex;
@@ -49,6 +45,9 @@ export const PostDetails = styled.div`
 export const PostAuthor = styled.div`
   font-weight: bold;
   font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const PostDate = styled.div`
@@ -64,9 +63,6 @@ export const PostButton = styled.button`
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   background: ${colors.primary};
   transition: all 0.3s;
-  @media (min-width: 768px) {
-    margin: 0px 0px 15px 20px;
-  }
   :hover {
     cursor: pointer;
     box-shadow: 2px 3px 8px 1px rgba(0, 0, 0, 0.4);

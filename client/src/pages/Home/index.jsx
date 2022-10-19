@@ -42,7 +42,11 @@ function Home() {
         <SeparationBar theme={theme} />
         <div>
           {allPostData.map((post) => (
-            <Post key={`${post.id_posts}`} />
+            <Post
+              key={`${post.id_posts}`}
+              firstname={post.firstname}
+              lastname={post.lastname}
+            />
           ))}
         </div>
         <PopupPost trigger={buttonPopup} setTrigger={setButtonPopup} />
