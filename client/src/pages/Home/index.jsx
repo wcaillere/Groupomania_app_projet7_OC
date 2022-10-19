@@ -46,6 +46,10 @@ function Home() {
               key={`${post.id_posts}`}
               firstname={post.firstname}
               lastname={post.lastname}
+              isAdmin={post.is_admin}
+              content={post.content}
+              imageUrl={post.image_url}
+              likes={post.likes === null ? [] : post.likes.split(',')}
             />
           ))}
         </div>

@@ -1,5 +1,4 @@
 import colors from '../../utils/style/colors';
-import test from '../../assets/test.jpg';
 //imports components created with styled-components from style.jsx
 import {
   PostContainer,
@@ -29,16 +28,22 @@ function Post(props) {
         <PostDescrition>
           <Postinitial>{props.firstname[0]}</Postinitial>
           <PostDetails theme={theme}>
-            <PostAuthor>{`${props.firstname} ${props.lastname[0]}.`}</PostAuthor>
+            <PostAuthor
+              isAdmin={props.isAdmin}
+            >{`${props.firstname} ${props.lastname[0]}.`}</PostAuthor>
             <PostDate>15/04/2012</PostDate>
           </PostDetails>
-          <i
-            className="fa-solid fa-shield-halved fa-lg"
-            style={{
-              color: `${theme === 'dark' ? 'white' : colors.primary}`,
-              marginRight: '50px',
-            }}
-          ></i>
+          {props.isAdmin ? (
+            <i
+              className="fa-solid fa-shield-halved fa-lg"
+              style={{
+                color: `${theme === 'dark' ? 'white' : colors.primary}`,
+                marginRight: '50px',
+              }}
+            ></i>
+          ) : (
+            ''
+          )}
         </PostDescrition>
         <PostButton onClick={() => props.setTrigger(true)} theme={theme}>
           <i className="fa-solid fa-arrow-rotate-right"></i>
@@ -50,19 +55,13 @@ function Post(props) {
         </PostButton>
       </PostHeader>
       <PostLike theme={theme}>
-        8
+        {props.likes.length}
         <PostLikeIcon>
           <i className="fa-solid fa-thumbs-up fa-xl"></i>
         </PostLikeIcon>
       </PostLike>
-      <PostContent theme={theme}>
-        Lorem ipsum dolor sit amet,
-        <br /> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.
-        <br /> Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex.
-      </PostContent>
-      <PostImage src={test}></PostImage>
+      <PostContent theme={theme}>{props.content}</PostContent>
+      <PostImage src={props.imageUrl}></PostImage>
     </PostContainer>
   );
 }

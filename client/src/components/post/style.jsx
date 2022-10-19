@@ -45,6 +45,7 @@ export const PostDetails = styled.div`
 export const PostAuthor = styled.div`
   font-weight: bold;
   font-size: 18px;
+  margin-right: ${(props) => (props.isAdmin === 1 ? '0px' : '35px')};
   @media (max-width: 768px) {
     font-size: 16px;
   }
@@ -79,6 +80,7 @@ export const PostContent = styled.div`
   text-align: justify;
   margin: 5px 0px;
   color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
+  white-space: pre-line;
 `;
 
 export const PostLike = styled.div`
