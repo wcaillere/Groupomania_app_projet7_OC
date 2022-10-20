@@ -60,6 +60,9 @@ function Login() {
     }
   }
 
+  if (localStorage.getItem('token')) {
+    window.location.href = `./home`;
+  }
   return (
     <div className={theme === 'dark' ? 'bodydark' : 'bodylight'}>
       <Header />

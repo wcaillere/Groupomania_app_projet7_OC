@@ -24,9 +24,11 @@ function Home() {
       .then(
         (result) => {
           if (result.message) {
+            localStorage.removeItem('token');
             window.location.href = `./`;
+          } else {
+            setAllPostData(result);
           }
-          setAllPostData(result);
         },
         (error) => {
           console.log(error);
