@@ -52,7 +52,8 @@ function Post(props) {
             ''
           )}
         </div>
-        {localStorage.getItem('isAdmin') === '1' ? (
+        {localStorage.getItem('isAdmin') === '1' ||
+        localStorage.getItem('user').split(' ')[0] === `${props.userId}` ? (
           <div>
             <button
               onClick={() => props.setTrigger(true)}
