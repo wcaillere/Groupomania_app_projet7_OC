@@ -1,0 +1,37 @@
+.connectionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  background: var(--secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.connectionContainerDark {
+  background: var(--Tertiary);
+}
+
+.connectionLogo {
+  display: none;
+  margin: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .connectionContainer {
+    padding: 40px 40px 20px 40px;
+  }
+  .connectionFormColumn {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding-top: 20px;
+  }
+  .connectionLogo {
+    display: flex;
+  }
+}

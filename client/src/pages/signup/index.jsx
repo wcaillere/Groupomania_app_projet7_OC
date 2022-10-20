@@ -1,20 +1,11 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../utils/context/index';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-//imports shared components with Login page, created with styled-components from signup&login_Atoms.jsx
-import {
-  Form,
-  FormItem,
-  FormItemInput,
-  ConnectButton,
-  SeparationBar,
-  SignupLoginLink,
-  FormLabel,
-  Popup,
-} from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
-import { SignupContainer, FormColumn } from './style';
+import './signup.css';
+import '../../utils/style/signup&login_Atoms.css';
 
 //Returns the Signup page
 function Signup() {
@@ -86,17 +77,27 @@ function Signup() {
   }
 
   return (
-    <div>
+    <div className={theme === 'dark' ? 'bodydark' : 'bodylight'}>
       <Header />
-      {popup ? <Popup>{popupText}</Popup> : ''}
-      <SignupContainer theme={theme}>
-        <Form>
-          <FormColumn id="firstColumn">
-            <FormItem>
-              <FormLabel htmlFor="firstname" theme={theme}>
+      {popup ? <div className="popup">{popupText}</div> : ''}
+      <div
+        className={
+          theme === 'dark'
+            ? ' signupContainer signupContainerDark'
+            : 'signupContainer'
+        }
+      >
+        <form className="formContainer">
+          <div id="firstColumn" className="signupFormColumn">
+            <div className="formItem">
+              <label
+                htmlFor="firstname"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Prénom{' '}
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="text"
                 name="firstname"
                 id="firstname"
@@ -104,13 +105,17 @@ function Signup() {
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel htmlFor="lastname" theme={theme}>
+              ></input>
+            </div>
+            <div className="formItem">
+              <label
+                htmlFor="lastname"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Nom de famille{' '}
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="text"
                 name="lastname"
                 id="lastname"
@@ -118,16 +123,26 @@ function Signup() {
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-          </FormColumn>
-          <SeparationBar theme={theme} />
-          <FormColumn id="secondColumn">
-            <FormItem>
-              <FormLabel htmlFor="email" theme={theme}>
+              ></input>
+            </div>
+          </div>
+          <nav
+            className={
+              theme === 'dark'
+                ? 'separationBar separationBarDark'
+                : 'separationBar'
+            }
+          />
+          <div id="secondColumn" className="signupFormColumn">
+            <div className="formItem">
+              <label
+                htmlFor="email"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Adresse email{' '}
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="email"
                 name="email"
                 id="email"
@@ -135,13 +150,17 @@ function Signup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel htmlFor="password" theme={theme}>
+              ></input>
+            </div>
+            <div className="formItem">
+              <label
+                htmlFor="password"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Mot de passe{' '}
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="password"
                 name="password"
                 id="password"
@@ -149,13 +168,17 @@ function Signup() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel htmlFor="confirm" theme={theme}>
+              ></input>
+            </div>
+            <div className="formItem">
+              <label
+                htmlFor="confirm"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Confirmer{' '}
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="password"
                 name="confirm"
                 id="confirm"
@@ -163,11 +186,12 @@ function Signup() {
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-          </FormColumn>
-        </Form>
-        <ConnectButton
+              ></input>
+            </div>
+          </div>
+        </form>
+        <input
+          className="connectButton"
           type="submit"
           value="S'inscrire"
           theme={theme}
@@ -175,10 +199,17 @@ function Signup() {
             sendSignup(firstname, lastname, email, password, confirm)
           }
         />
-        <SignupLoginLink to="/" theme={theme}>
+        <Link
+          to="/"
+          className={
+            theme === 'dark'
+              ? 'signupLoginLink signupLoginLinkDark'
+              : 'signupLoginLink'
+          }
+        >
           Déjà un compte ? Connectez-vous ici !
-        </SignupLoginLink>
-      </SignupContainer>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

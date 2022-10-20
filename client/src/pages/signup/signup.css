@@ -1,0 +1,31 @@
+.signupContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  background: var(--secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.signupContainerDark {
+  background: var(--Tertiary);
+}
+
+@media (min-width: 768px) {
+  .signupContainer {
+    padding: 40px 2% 20px 2%;
+  }
+  .signupFormColumn {
+    width: 45%;
+  }
+  #firstColumn {
+    padding-top: 80px;
+  }
+  #secondColumn {
+    padding-top: 20px;
+  }
+}

@@ -1,0 +1,108 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formItem {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.formLabel {
+  color: black;
+}
+
+.formLabelDark {
+  color: white;
+}
+
+.formItemInput {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 16px;
+}
+
+.formItemInput::placeholder {
+  color: var(--Tertiary);
+  font-weight: bold;
+  opacity: 80%;
+}
+
+.connectButton {
+  width: 80%;
+  max-width: 250px;
+  font-size: 25px;
+  margin: 20px auto;
+  padding: 20px;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  background: var(--primary);
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.connectButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.4);
+}
+
+.separationBar {
+  display: none;
+  border: 2px solid var(--primary);
+}
+
+.separationBarDark {
+  display: none;
+  border: 2px solid white;
+}
+
+.signupLoginLink {
+  margin: 10px auto;
+  color: var(--Tertiary);
+  font-weight: bold;
+  text-align: center;
+}
+
+.signupLoginLinkDark {
+  color: white;
+}
+
+.popup {
+  position: absolute;
+  width: 80%;
+  top: 160px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  background: var(--primary);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+@media (min-width: 993px) {
+  .popup {
+    top: 110px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .formContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .separationBar {
+    display: flex;
+  }
+  .popup {
+    width: 40%;
+  }
+}

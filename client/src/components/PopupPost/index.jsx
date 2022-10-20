@@ -1,4 +1,3 @@
-import colors from '../../utils/style/colors';
 import test from '../../assets/test.jpg';
 //imports components created with styled-components from style.jsx of Post component
 import '../post/style.css';
@@ -40,7 +39,13 @@ function PopupPost(props) {
             <i
               className="fa-solid fa-shield-halved fa-lg"
               style={{
-                color: `${theme === 'dark' ? 'white' : colors.primary}`,
+                color: `${
+                  theme === 'dark'
+                    ? 'white'
+                    : `${getComputedStyle(document.body).getPropertyValue(
+                        '--primary'
+                      )}`
+                }`,
               }}
             ></i>
           </div>

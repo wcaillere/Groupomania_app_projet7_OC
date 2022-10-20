@@ -1,0 +1,34 @@
+:root {
+  --primary: #fd2d01;
+  --secondary: #ffd7d7;
+  --Tertiary: #4e5166;
+  --darkTheme: #6a6f8c;
+}
+
+#root {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+* {
+  font-family: 'Lato', Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.bodylight {
+  background: white;
+  height: 100%;
+}
+
+.bodydark {
+  background: var(--darkTheme);
+  height: 100%;
+}

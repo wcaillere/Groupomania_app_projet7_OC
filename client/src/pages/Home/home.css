@@ -1,0 +1,26 @@
+.mainContainer {
+  background: #e7e7e7;
+  padding: 20px 0px;
+}
+
+.mainContainerDark {
+  background: var(--darkTheme);
+}
+
+.homeSeparationBar {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  width: 95%;
+  margin: auto;
+  max-width: 600px;
+}
+
+.homeSeparationBarDark {
+  border: 1px solid white;
+  background: white;
+}
+
+/* Used to not have a footer fixed hiding end of the page */
+.clearDiv {
+  height: 30px;
+}

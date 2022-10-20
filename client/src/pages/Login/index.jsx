@@ -1,22 +1,13 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../utils/context/index';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LogoRed from '../../assets/logo_red.svg';
 import LogoWhite from '../../assets/logo_white.svg';
-//imports shared components with Signup page, created with styled-components from signup&login_Atoms.jsx
-import {
-  Form,
-  FormItem,
-  FormItemInput,
-  ConnectButton,
-  SeparationBar,
-  SignupLoginLink,
-  FormLabel,
-  Popup,
-} from '../../utils/style/signup&login_Atoms';
 //imports components created with styled-components from style.jsx
-import { ConnectionContainer, ConnectionLogo, FormColumn } from './style';
+import '../../utils/style/signup&login_Atoms.css';
+import './login.css';
 
 //Returns Login page
 function Login() {
@@ -70,24 +61,41 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className={theme === 'dark' ? 'bodydark' : 'bodylight'}>
       <Header />
-      {popup ? <Popup>{popupText}</Popup> : ''}
-      <ConnectionContainer theme={theme}>
-        <Form>
-          <FormColumn>
-            <ConnectionLogo
+      {popup ? <div className="popup">{popupText}</div> : ''}
+      <div
+        className={
+          theme === 'dark'
+            ? 'connectionContainer connectionContainerDark'
+            : 'connectionContainer'
+        }
+      >
+        <form className="formContainer">
+          <div className="connectionFormColumn">
+            <img
               src={theme === 'dark' ? LogoWhite : LogoRed}
               alt="Logo groupomania"
-            ></ConnectionLogo>
-          </FormColumn>
-          <SeparationBar theme={theme} />
-          <FormColumn>
-            <FormItem>
-              <FormLabel htmlFor="email" theme={theme}>
+              className="connectionLogo"
+            ></img>
+          </div>
+          <nav
+            className={
+              theme === 'dark'
+                ? 'separationBar separationBarDark'
+                : 'separationBar'
+            }
+          />
+          <div className="connectionFormColumn">
+            <div className="formItem">
+              <label
+                htmlFor="email"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Adresse email
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="email"
                 name="email"
                 id="email"
@@ -95,13 +103,17 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel htmlFor="password" theme={theme}>
+              ></input>
+            </div>
+            <div className="formItem">
+              <label
+                htmlFor="password"
+                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
+              >
                 Mot de passe
-              </FormLabel>
-              <FormItemInput
+              </label>
+              <input
+                className="formItemInput"
                 type="password"
                 name="password"
                 id="password"
@@ -109,20 +121,28 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-              ></FormItemInput>
-            </FormItem>
-          </FormColumn>
-        </Form>
-        <ConnectButton
+              ></input>
+            </div>
+          </div>
+        </form>
+        <input
+          className="connectButton"
           type="submit"
           value="Se connecter"
           theme={theme}
           onClick={() => sendLogin(email, password)}
         />
-        <SignupLoginLink to="/signup" theme={theme}>
+        <Link
+          to="/signup"
+          className={
+            theme === 'dark'
+              ? 'signupLoginLink signupLoginLinkDark'
+              : 'signupLoginLink'
+          }
+        >
           Pas encore de compte ? Inscrivez-vous ici !
-        </SignupLoginLink>
-      </ConnectionContainer>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

@@ -4,7 +4,7 @@ import Post from '../../components/post';
 import CreatePost from '../../components/CreatePost';
 import PopupPost from '../../components/PopupPost';
 //imports components created with styled-components from style.jsx
-import { MainContainer, SeparationBar, ClearDiv } from './style';
+import './home.css';
 import { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 
@@ -37,9 +37,19 @@ function Home() {
   return (
     <div>
       <HeaderHome />
-      <MainContainer theme={theme}>
+      <main
+        className={
+          theme === 'dark' ? 'mainContainer mainContainerDark' : 'mainContainer'
+        }
+      >
         <CreatePost />
-        <SeparationBar theme={theme} />
+        <div
+          className={
+            theme === 'dark'
+              ? 'homeSeparationBar homeSeparationBarDark'
+              : 'homeSeparationBar'
+          }
+        />
         <div>
           {allPostData.map((post) => (
             <Post
@@ -55,8 +65,8 @@ function Home() {
           ))}
         </div>
         <PopupPost trigger={buttonPopup} setTrigger={setButtonPopup} />
-      </MainContainer>
-      <ClearDiv />
+      </main>
+      <div className="clearDiv" />
       <FooterHome />
     </div>
   );

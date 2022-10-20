@@ -1,0 +1,37 @@
+.errorContainer {
+  background: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.errorLogo {
+  width: 80%;
+  max-width: 600px;
+}
+
+.error404 {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 40px;
+  margin: 50px auto;
+}
+
+.errorTxt {
+  color: var(--primary);
+  font-weight: bold;
+  width: 80%;
+  font-size: 30px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .error404 {
+    font-size: 50px;
+  }
+  .errorTxt {
+    font-size: 40px;
+  }
+}

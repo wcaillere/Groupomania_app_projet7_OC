@@ -1,4 +1,3 @@
-import colors from '../../utils/style/colors';
 //imports components created with styled-components from style.jsx
 import './style.css';
 import { useContext } from 'react';
@@ -39,7 +38,13 @@ function Post(props) {
             <i
               className="fa-solid fa-shield-halved fa-lg"
               style={{
-                color: `${theme === 'dark' ? 'white' : colors.primary}`,
+                color: `${
+                  theme === 'dark'
+                    ? 'white'
+                    : `${getComputedStyle(document.body).getPropertyValue(
+                        '--primary'
+                      )}`
+                }`,
                 marginRight: '50px',
               }}
             ></i>
@@ -69,11 +74,15 @@ function Post(props) {
       >
         {props.content}
       </div>
-      <img
-        className="postImage"
-        src={props.imageUrl}
-        alt="illustration du post"
-      />
+      {props.imageUrl === null ? (
+        ''
+      ) : (
+        <img
+          className="postImage"
+          src={props.imageUrl}
+          alt="illustration du post"
+        />
+      )}
     </div>
   );
 }
