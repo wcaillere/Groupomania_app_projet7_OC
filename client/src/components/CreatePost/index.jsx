@@ -1,5 +1,5 @@
 //imports components created with styled-components from style.jsx
-import './style.css';
+import './createPost.css';
 //imports colors and useState utils
 import { useState, useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';

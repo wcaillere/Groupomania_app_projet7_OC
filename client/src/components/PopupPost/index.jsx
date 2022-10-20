@@ -1,8 +1,8 @@
 import test from '../../assets/test.jpg';
 //imports components created with styled-components from style.jsx of Post component
-import '../post/style.css';
+import '../post/post.css';
 //imports components created with styled-components from style.jsx of Post component
-import './style.css';
+import './popupPost.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 

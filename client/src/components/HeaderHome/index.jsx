@@ -1,7 +1,7 @@
 import Logo from '../../assets/logo_white.svg';
 import { Link } from 'react-router-dom';
 //imports components created with styled-components from style.jsx
-import './style.css';
+import './headerHome.css';
 
 //Returns Header for the homePage
 function HeaderHome() {
