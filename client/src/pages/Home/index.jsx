@@ -59,6 +59,7 @@ function Home() {
               firstname={post.firstname}
               lastname={post.lastname}
               isAdmin={post.is_admin}
+              date={post.date}
               content={post.content}
               imageUrl={post.image_url}
               likes={post.likes === null ? [] : post.likes.split(',')}

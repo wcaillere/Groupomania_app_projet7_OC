@@ -32,7 +32,7 @@ function Post(props) {
                   : 'postAuthor'
               }
             >{`${props.firstname} ${props.lastname[0]}.`}</div>
-            <div className="postDate">15/04/2012</div>
+            <div className="postDate">{props.date}</div>
           </div>
           {props.isAdmin ? (
             <i
