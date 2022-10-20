@@ -22,7 +22,9 @@ function CreatePost() {
       }
     >
       <div className="createPostDescription">
-        <div className="createPostInitial">F</div>
+        <div className="createPostInitial">
+          {localStorage.getItem('user').split(' ')[1][0]}
+        </div>
         <div
           className={
             theme === 'dark'
@@ -30,20 +32,26 @@ function CreatePost() {
               : 'createPostAuthor'
           }
         >
-          Fred Doe
+          {`${localStorage.getItem('user').split(' ')[1]} ${
+            localStorage.getItem('user').split(' ')[2][0]
+          }.`}
         </div>
-        <i
-          className="fa-solid fa-shield-halved fa-lg"
-          style={{
-            color: `${
-              theme === 'dark'
-                ? 'white'
-                : `${getComputedStyle(document.body).getPropertyValue(
-                    '--primary'
-                  )}`
-            }`,
-          }}
-        ></i>
+        {localStorage.getItem('isAdmin') === '1' ? (
+          <i
+            className="fa-solid fa-shield-halved fa-lg"
+            style={{
+              color: `${
+                theme === 'dark'
+                  ? 'white'
+                  : `${getComputedStyle(document.body).getPropertyValue(
+                      '--primary'
+                    )}`
+              }`,
+            }}
+          ></i>
+        ) : (
+          ''
+        )}
       </div>
       <form id="post-form">
         <textarea

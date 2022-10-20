@@ -49,7 +49,10 @@ function Login() {
               setPopup(true);
               setPopupText(result.message);
             } else {
-              localStorage.setItem('userId', result.userId);
+              localStorage.setItem(
+                'user',
+                `${result.user.userId} ${result.user.userName}`
+              );
               localStorage.setItem('isAdmin', result.isAdmin);
               localStorage.setItem('token', result.token);
               window.location.href = `./home`;

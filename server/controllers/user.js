@@ -40,7 +40,7 @@ exports.signup = (req, res, next) => {
 //Allows an user to login on the site if he's in the Data Base
 exports.login = (req, res, next) => {
   connection.query(
-    `SELECT id_users, password, is_admin FROM users WHERE email = ?`,
+    `SELECT id_users, password, is_admin, firstname, lastname FROM users WHERE email = ?`,
     [req.body.email],
     function (error, results, fields) {
       if (error) {
@@ -61,13 +61,16 @@ exports.login = (req, res, next) => {
                 .json({ message: 'Paire email/mot de passe invalide !' });
             } else {
               res.status(200).json({
-                userId: results[0].id_users,
+                isAdmin: results[0].is_admin,
                 token: jwt.sign(
                   { userId: results[0].id_users },
                   process.env.TOKEN_KEY,
                   { expiresIn: '1h' }
                 ),
-                isAdmin: results[0].is_admin,
+                user: {
+                  userId: results[0].id_users,
+                  userName: `${results[0].firstname} ${results[0].lastname}`,
+                },
               });
             }
           })
