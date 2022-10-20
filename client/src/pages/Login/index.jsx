@@ -49,6 +49,8 @@ function Login() {
               setPopup(true);
               setPopupText(result.message);
             } else {
+              localStorage.setItem('userId', result.userId);
+              localStorage.setItem('isAdmin', result.isAdmin);
               localStorage.setItem('token', result.token);
               window.location.href = `./home`;
             }
@@ -63,6 +65,7 @@ function Login() {
   if (localStorage.getItem('token')) {
     window.location.href = `./home`;
   }
+
   return (
     <div className={theme === 'dark' ? 'bodydark' : 'bodylight'}>
       <Header />

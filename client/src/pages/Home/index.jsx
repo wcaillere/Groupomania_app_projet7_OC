@@ -25,6 +25,8 @@ function Home() {
         (result) => {
           if (result.message) {
             localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('isAdmin');
             window.location.href = `./`;
           } else {
             setAllPostData(result);

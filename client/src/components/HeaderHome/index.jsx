@@ -7,6 +7,8 @@ import './headerHome.css';
 function HeaderHome() {
   function deconnection() {
     if (window.confirm('Voulez-vous vraiment vous déconnecter ?')) {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('isAdmin');
       localStorage.removeItem('token');
       window.location.href = '/';
     }

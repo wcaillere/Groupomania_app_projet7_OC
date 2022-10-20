@@ -40,7 +40,7 @@ exports.signup = (req, res, next) => {
 //Allows an user to login on the site if he's in the Data Base
 exports.login = (req, res, next) => {
   connection.query(
-    `SELECT id_users, password FROM users WHERE email = ?`,
+    `SELECT id_users, password, is_admin FROM users WHERE email = ?`,
     [req.body.email],
     function (error, results, fields) {
       if (error) {
@@ -67,6 +67,7 @@ exports.login = (req, res, next) => {
                   process.env.TOKEN_KEY,
                   { expiresIn: '1h' }
                 ),
+                isAdmin: results[0].is_admin,
               });
             }
           })

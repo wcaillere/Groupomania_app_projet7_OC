@@ -52,14 +52,23 @@ function Post(props) {
             ''
           )}
         </div>
-        <button onClick={() => props.setTrigger(true)} className="postButton">
-          <i className="fa-solid fa-arrow-rotate-right"></i>
-          <span className="postButtonText">Modifier</span>
-        </button>
-        <button className="postButton">
-          <i className="fa-solid fa-trash-can"></i>
-          <span className="postButtonText">Supprimer</span>
-        </button>
+        {localStorage.getItem('isAdmin') === '1' ? (
+          <div>
+            <button
+              onClick={() => props.setTrigger(true)}
+              className="postButton"
+            >
+              <i className="fa-solid fa-arrow-rotate-right"></i>
+              <span className="postButtonText">Modifier</span>
+            </button>
+            <button className="postButton">
+              <i className="fa-solid fa-trash-can"></i>
+              <span className="postButtonText">Supprimer</span>
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <div className={theme === 'dark' ? 'postLike postLikeDark' : 'postLike'}>
         {props.likes.length}
