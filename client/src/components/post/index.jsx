@@ -8,15 +8,48 @@ function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
   function ManageLike(e) {
+    var likeValue = 2;
     if (e.currentTarget.classList.contains('postLikeIconLiked')) {
       e.currentTarget.classList.remove('postLikeIconLiked');
       e.currentTarget.previousSibling.innerHTML =
         parseInt(e.currentTarget.previousSibling.innerHTML) - 1;
+      likeValue = 0;
     } else {
       e.currentTarget.classList.add('postLikeIconLiked');
       e.currentTarget.previousSibling.innerHTML =
         parseInt(e.currentTarget.previousSibling.innerHTML) + 1;
+      likeValue = 1;
     }
+    fetch(`http://localhost:5000/api/posts/${props.postId}/like`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem('user').split(' ')[0],
+        like: likeValue,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (
+            result.message &&
+            result.message === "erreur d'authentification"
+          ) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            localStorage.removeItem('isAdmin');
+            window.location.href = `./`;
+          }
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   return (

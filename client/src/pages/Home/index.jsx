@@ -58,6 +58,7 @@ function Home() {
           {allPostData.map((post) => (
             <Post
               key={`${post.id_posts}`}
+              postId={post.id_posts}
               userId={post.id_users}
               firstname={post.firstname}
               lastname={post.lastname}
