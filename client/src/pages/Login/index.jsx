@@ -1,24 +1,31 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../utils/context/index';
+//Imports components
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LogoRed from '../../assets/logo_red.svg';
 import LogoWhite from '../../assets/logo_white.svg';
-//imports components created with styled-components from style.jsx
+//Imports CSS
 import '../../utils/style/signup&login_Atoms.css';
 import './login.css';
 
 //Returns Login page
 function Login() {
   const theme = useContext(ThemeContext).theme;
+  //States to stock inputs' values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  //States to stock and trigger the poppups
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState('');
 
+  //Send login informations to the API
   function sendLogin(emailInput, passwordInput) {
+    //Erases the poppup before a new try of login
     setPopup(false);
+
+    //Verifies the validity of each input
     var inputValidation = true;
     for (let input of document.querySelectorAll(
       'input#email, input#password'
@@ -49,6 +56,7 @@ function Login() {
               setPopup(true);
               setPopupText(result.message);
             } else {
+              //Saves the result in the localStorage to identify the user during his session
               localStorage.setItem(
                 'user',
                 `${result.user.userId} ${result.user.userName}`
@@ -65,6 +73,7 @@ function Login() {
     }
   }
 
+  //If there is a token in the localStorage, the user session is not finished
   if (localStorage.getItem('token')) {
     window.location.href = `./home`;
   }
@@ -75,9 +84,8 @@ function Login() {
       {popup ? <div className="popup">{popupText}</div> : ''}
       <div
         className={
-          theme === 'dark'
-            ? 'connectionContainer connectionContainerDark'
-            : 'connectionContainer'
+          'connectionContainer ' +
+          (theme === 'dark' ? 'connectionContainerDark' : '')
         }
       >
         <form className="formContainer">
@@ -90,9 +98,7 @@ function Login() {
           </div>
           <nav
             className={
-              theme === 'dark'
-                ? 'separationBar separationBarDark'
-                : 'separationBar'
+              'separationBar ' + (theme === 'dark' ? 'separationBarDark' : '')
             }
           />
           <div className="connectionFormColumn">
@@ -144,9 +150,7 @@ function Login() {
         <Link
           to="/signup"
           className={
-            theme === 'dark'
-              ? 'signupLoginLink signupLoginLinkDark'
-              : 'signupLoginLink'
+            'signupLoginLink ' + (theme === 'dark' ? 'signupLoginLinkDark' : '')
           }
         >
           Pas encore de compte ? Inscrivez-vous ici !

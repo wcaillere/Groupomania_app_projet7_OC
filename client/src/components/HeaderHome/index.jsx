@@ -1,11 +1,11 @@
 import Logo from '../../assets/logo_white.svg';
 import { Link } from 'react-router-dom';
-//imports components created with styled-components from style.jsx
 import './headerHome.css';
 
 //Returns Header for the homePage
 function HeaderHome() {
   function deconnection() {
+    //With the deconnection, LocalStorage is cleaned and the user is redirected to the Login Page
     if (window.confirm('Voulez-vous vraiment vous déconnecter ?')) {
       localStorage.removeItem('user');
       localStorage.removeItem('isAdmin');

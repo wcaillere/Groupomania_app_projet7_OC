@@ -1,10 +1,8 @@
 import test from '../../assets/test.jpg';
-//imports components created with styled-components from style.jsx of Post component
-import '../post/post.css';
-//imports components created with styled-components from style.jsx of Post component
-import './popupPost.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import '../post/post.css';
+import './popupPost.css';
 
 //Returns The Post as a popup when the user wants to modify it
 function PopupPost(props) {
@@ -14,9 +12,8 @@ function PopupPost(props) {
     <div className="popupContainer">
       <div
         className={
-          theme === 'dark'
-            ? 'selectedPostContainer selectedPostContainerDark'
-            : 'selectedPostContainer'
+          'selectedPostContainer ' +
+          (theme === 'dark' ? 'selectedPostContainerDark' : '')
         }
       >
         <div className="postHeader">
@@ -24,38 +21,25 @@ function PopupPost(props) {
             <div className="postinitial">F</div>
             <div
               className={
-                theme === 'dark' ? 'postDetails postDetailsDark' : 'postDetails'
+                'postDetails ' + (theme === 'dark' ? 'postDetailsDark' : '')
               }
             >
               <div
                 className={
-                  theme === 'dark' ? 'postAuthor postAuthorDark' : 'postAuthor'
+                  'postAuthor ' + (theme === 'dark' ? 'postAuthorDark' : '')
                 }
               >
                 Fred Doe
               </div>
               <div className="postDate">15/04/2012</div>
             </div>
-            <i
-              className="fa-solid fa-shield-halved fa-lg"
-              style={{
-                color: `${
-                  theme === 'dark'
-                    ? 'white'
-                    : `${getComputedStyle(document.body).getPropertyValue(
-                        '--primary'
-                      )}`
-                }`,
-              }}
-            ></i>
           </div>
         </div>
         <button
           onClick={() => props.setTrigger(false)}
           className={
-            theme === 'dark'
-              ? 'popupCloseButton popupCloseButtonDark'
-              : 'popupCloseButton'
+            'popupCloseButton ' +
+            (theme === 'dark' ? 'popupCloseButtonDark' : '')
           }
         >
           <i className="fa-solid fa-xmark fa-2xl"></i>

@@ -1,23 +1,27 @@
-//imports components created with styled-components from style.jsx
-import './post.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import './post.css';
 
 //Returns one Post, created from informations of the DataBase
 function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
-  function ManageLike(e) {
+  //Manages the like's frontend and route API when the like button of a post is clicked
+  function ManageLike(event) {
+    //Initializes a bad value for the request. Then, if there is a problem during the function, the value is not changed and the API returns a res 400: invalid request
     var likeValue = 2;
-    if (e.currentTarget.classList.contains('postLikeIconLiked')) {
-      e.currentTarget.classList.remove('postLikeIconLiked');
-      e.currentTarget.previousSibling.innerHTML =
-        parseInt(e.currentTarget.previousSibling.innerHTML) - 1;
+    //if the action is to remove a like
+    if (event.currentTarget.classList.contains('postLikeIconLiked')) {
+      event.currentTarget.classList.remove('postLikeIconLiked');
+      event.currentTarget.previousSibling.innerHTML =
+        parseInt(event.currentTarget.previousSibling.innerHTML) - 1;
       likeValue = 0;
-    } else {
-      e.currentTarget.classList.add('postLikeIconLiked');
-      e.currentTarget.previousSibling.innerHTML =
-        parseInt(e.currentTarget.previousSibling.innerHTML) + 1;
+    }
+    //if the action is to add a like
+    else {
+      event.currentTarget.classList.add('postLikeIconLiked');
+      event.currentTarget.previousSibling.innerHTML =
+        parseInt(event.currentTarget.previousSibling.innerHTML) + 1;
       likeValue = 1;
     }
     fetch(`http://localhost:5000/api/posts/${props.postId}/like`, {
@@ -35,6 +39,7 @@ function Post(props) {
       .then((res) => res.json())
       .then(
         (result) => {
+          //If the session expires, the localStorage is cleaned and the user is redirected to the login Page
           if (
             result.message &&
             result.message === "erreur d'authentification"
@@ -55,26 +60,23 @@ function Post(props) {
   return (
     <div
       className={
-        theme === 'dark' ? 'postContainer postContainerDark' : 'postContainer'
+        'postContainer ' + (theme === 'dark' ? 'postContainerDark' : '')
       }
     >
+      {/* post header */}
       <div className="postHeader">
         <div className="postDescrition">
           <div className="postinitial">{props.firstname[0]}</div>
           <div
             className={
-              theme === 'dark' ? 'postDetails postDetailsDark' : 'postDetails'
+              'postDetails ' + (theme === 'dark' ? 'postDetailsDark' : '')
             }
           >
             <div
               className={
-                props.isAdmin
-                  ? theme === 'dark'
-                    ? 'postAuthor postAuthorDark postAuthorIsAdmin'
-                    : 'postAuthor postAuthorIsAdmin'
-                  : theme === 'dark'
-                  ? 'postAuthor postAuthorDark'
-                  : 'postAuthor'
+                'postAuthor ' +
+                (theme === 'dark' ? 'postAuthorDark ' : '') +
+                (props.isAdmin ? 'postAuthorIsAdmin' : '')
               }
             >{`${props.firstname} ${props.lastname[0]}.`}</div>
             <div className="postDate">{props.date}</div>
@@ -97,6 +99,7 @@ function Post(props) {
             ''
           )}
         </div>
+        {/* Buttons to modify or to suppress a post are only available if the user is admin or the post's author  */}
         {localStorage.getItem('isAdmin') === '1' ||
         localStorage.getItem('user').split(' ')[0] === `${props.userId}` ? (
           <div>
@@ -116,8 +119,9 @@ function Post(props) {
           ''
         )}
       </div>
-      <div className={theme === 'dark' ? 'postLike postLikeDark' : 'postLike'}>
-        <div>{props.likes.length}</div>
+      {/* post likes */}
+      <div className={'postLike ' + (theme === 'dark' ? 'postLikeDark' : '')}>
+        <span>{props.likes.length}</span>
         <div
           className={
             'postLikeIcon ' +
@@ -132,10 +136,9 @@ function Post(props) {
           <i className="fa-solid fa-thumbs-up fa-xl"></i>
         </div>
       </div>
+      {/* post Content */}
       <div
-        className={
-          theme === 'dark' ? 'postContent postContentDark' : 'postContent'
-        }
+        className={'postContent ' + (theme === 'dark' ? 'postContentDark' : '')}
       >
         {props.content}
       </div>

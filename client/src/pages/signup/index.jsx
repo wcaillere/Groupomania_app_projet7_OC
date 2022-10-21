@@ -1,23 +1,27 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../utils/context/index';
+//Imports components
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-//imports components created with styled-components from style.jsx
+//Imports CSS
 import './signup.css';
 import '../../utils/style/signup&login_Atoms.css';
 
 //Returns the Signup page
 function Signup() {
   const theme = useContext(ThemeContext).theme;
+  //States to stock inputs' values
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  //States to stock and trigger the poppups
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState('');
 
+  //Send Signup informations to the API
   function sendSignup(
     firstnameInput,
     lastnameInput,
@@ -25,9 +29,11 @@ function Signup() {
     passwordInput,
     confirmInput
   ) {
+    //Erases the poppup before a new try of signup
     setPopup(false);
-    var inputValidation = true;
 
+    //Verifies the validity of each input
+    var inputValidation = true;
     if (confirmInput !== passwordInput) {
       document
         .querySelector('input#confirm')
@@ -82,9 +88,7 @@ function Signup() {
       {popup ? <div className="popup">{popupText}</div> : ''}
       <div
         className={
-          theme === 'dark'
-            ? ' signupContainer signupContainerDark'
-            : 'signupContainer'
+          'signupContainer ' + (theme === 'dark' ? 'signupContainerDark' : '')
         }
       >
         <form className="formContainer">
@@ -128,9 +132,7 @@ function Signup() {
           </div>
           <nav
             className={
-              theme === 'dark'
-                ? 'separationBar separationBarDark'
-                : 'separationBar'
+              'separationBar ' + (theme === 'dark' ? 'separationBarDark' : '')
             }
           />
           <div id="secondColumn" className="signupFormColumn">
@@ -202,9 +204,7 @@ function Signup() {
         <Link
           to="/"
           className={
-            theme === 'dark'
-              ? 'signupLoginLink signupLoginLinkDark'
-              : 'signupLoginLink'
+            'signupLoginLink ' + (theme === 'dark' ? 'signupLoginLinkDark' : '')
           }
         >
           Déjà un compte ? Connectez-vous ici !

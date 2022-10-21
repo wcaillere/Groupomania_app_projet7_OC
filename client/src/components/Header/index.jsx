@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../utils/context/index';
 import Logogrey from '../../assets/logo_grey.svg';
 import LogoWhite from '../../assets/logo_white.svg';
-//imports components created with styled-components from style.jsx
 import './header.css';
 
 //Returns the Header for the Login and Signup pages
@@ -12,9 +11,7 @@ function Header() {
   return (
     <header
       className={
-        theme === 'dark'
-          ? 'headerContainer headerContainerDark'
-          : 'headerContainer'
+        'headerContainer ' + (theme === 'dark' ? 'headerContainerDark' : '')
       }
     >
       <img

@@ -1,14 +1,11 @@
-//imports components created with styled-components from style.jsx
-import './createPost.css';
-//imports colors and useState utils
 import { useState, useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import './createPost.css';
 
-//returns the tool used by users to create a Post
+//returns the component used by users to create a Post
 function CreatePost() {
   const theme = useContext(ThemeContext).theme;
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
-
   const onChangePicture = (e) => {
     setPicture(e.target.files[0].name);
   };
@@ -16,43 +13,27 @@ function CreatePost() {
   return (
     <div
       className={
-        theme === 'dark'
-          ? 'createPostContainer createPostContainerDark'
-          : 'createPostContainer'
+        'createPostContainer ' +
+        (theme === 'dark' ? 'createPostContainerDark' : '')
       }
     >
+      {/* Header of the CreationPost component */}
       <div className="createPostDescription">
         <div className="createPostInitial">
           {localStorage.getItem('user').split(' ')[1][0]}
         </div>
         <div
           className={
-            theme === 'dark'
-              ? 'createPostAuthor createPostAuthorDark'
-              : 'createPostAuthor'
+            'createPostAuthor ' +
+            (theme === 'dark' ? 'createPostAuthorDark' : '')
           }
         >
           {`${localStorage.getItem('user').split(' ')[1]} ${
             localStorage.getItem('user').split(' ')[2][0]
           }.`}
         </div>
-        {localStorage.getItem('isAdmin') === '1' ? (
-          <i
-            className="fa-solid fa-shield-halved fa-lg"
-            style={{
-              color: `${
-                theme === 'dark'
-                  ? 'white'
-                  : `${getComputedStyle(document.body).getPropertyValue(
-                      '--primary'
-                    )}`
-              }`,
-            }}
-          ></i>
-        ) : (
-          ''
-        )}
       </div>
+      {/* Form of the CreationPost component */}
       <form id="post-form">
         <textarea
           id="PostContent"
@@ -60,17 +41,15 @@ function CreatePost() {
           rows={3}
           placeholder="Partagez vos pensées..."
           className={
-            theme === 'dark'
-              ? 'createPostFormTextArea createPostFormTextAreaDark'
-              : 'createPostFormTextArea'
+            'createPostFormTextArea ' +
+            (theme === 'dark' ? 'createPostFormTextAreaDark' : '')
           }
         ></textarea>
         <label
           htmlFor="image"
           className={
-            theme === 'dark'
-              ? 'createPostImageLabel createPostImageLabelDark'
-              : 'createPostImageLabel'
+            'createPostImageLabel ' +
+            (theme === 'dark' ? 'createPostImageLabelDark' : '')
           }
         >
           <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>

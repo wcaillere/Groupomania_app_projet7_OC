@@ -1,7 +1,6 @@
-//imports components created with styled-components from style.jsx
-import './footerHome.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import './footerHome.css';
 
 //Returns the Footer for the homePage
 function FooterHome() {

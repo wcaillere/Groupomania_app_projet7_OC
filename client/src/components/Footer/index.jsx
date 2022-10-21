@@ -1,7 +1,6 @@
-//imports components created with styled-components from style.jsx
-import './footer.css';
 import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import './footer.css';
 
 //returns the Footer for the Login and Signup pages
 function Footer() {
@@ -11,7 +10,7 @@ function Footer() {
       <button
         onClick={() => toggleTheme()}
         className={
-          theme === 'dark' ? 'footerButton footerButtonDark' : 'footerButton'
+          'footerButton ' + (theme === 'dark' ? 'footerButtonDark' : '')
         }
       >
         {theme === 'dark' ? (
@@ -21,9 +20,7 @@ function Footer() {
         )}
       </button>
       <span
-        className={
-          theme === 'dark' ? 'footerText footerTextDark' : 'footerText'
-        }
+        className={'footerText ' + (theme === 'dark' ? 'footerTextDark' : '')}
       >
         {' '}
         @Groupomania, 2022

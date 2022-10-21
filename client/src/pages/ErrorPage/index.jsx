@@ -1,5 +1,4 @@
 import Logo from '../../assets/logo_red.svg';
-//imports components created with styled-components from style.jsx
 import './errorPage.css';
 
 //Returns the page for Error 404

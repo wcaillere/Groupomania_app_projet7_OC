@@ -1,9 +1,10 @@
+//Imports components
 import HeaderHome from '../../components/HeaderHome';
 import FooterHome from '../../components/FooterHome';
 import Post from '../../components/post';
 import CreatePost from '../../components/CreatePost';
 import PopupPost from '../../components/PopupPost';
-//imports components created with styled-components from style.jsx
+//other tools
 import './home.css';
 import { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../../utils/context/index';
@@ -11,7 +12,9 @@ import { ThemeContext } from '../../utils/context/index';
 //Returns Home page
 function Home() {
   const theme = useContext(ThemeContext).theme;
+  //State for the popup during the modification of a post
   const [buttonPopup, setButtonPopup] = useState(false);
+  //State to stock the list of posts returned during the API call
   const [allPostData, setAllPostData] = useState([]);
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function Home() {
       .then((res) => res.json())
       .then(
         (result) => {
+          //if the session is expired, the localStorage is cleaned and the user is redirected on the login Page
           if (result.message) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
@@ -43,15 +47,14 @@ function Home() {
       <HeaderHome />
       <main
         className={
-          theme === 'dark' ? 'mainContainer mainContainerDark' : 'mainContainer'
+          'mainContainer ' + (theme === 'dark' ? 'mainContainerDark' : '')
         }
       >
         <CreatePost />
         <div
           className={
-            theme === 'dark'
-              ? 'homeSeparationBar homeSeparationBarDark'
-              : 'homeSeparationBar'
+            'homeSeparationBar ' +
+            (theme === 'dark' ? 'homeSeparationBarDark' : '')
           }
         />
         <div>

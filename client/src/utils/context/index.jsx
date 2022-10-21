@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 
+//Setting up a change theme functionality (light or dark)
 export const ThemeContext = createContext();
-
 export function ThemeProvider({ children }) {
   if (localStorage.getItem('theme') === null) {
     localStorage.setItem('theme', 'light');
@@ -13,10 +13,7 @@ export function ThemeProvider({ children }) {
   };
 
   return (
-    <ThemeContext.Provider
-      value={{ theme, toggleTheme }}
-      style={{ background: 'red' }}
-    >
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
