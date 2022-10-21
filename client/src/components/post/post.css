@@ -111,6 +111,10 @@
   margin-left: 5px;
 }
 
+.postLikeIconLiked {
+  color: green;
+}
+
 .postImage {
   display: flex;
   width: 100%;

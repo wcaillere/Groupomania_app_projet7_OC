@@ -7,6 +7,18 @@ import { ThemeContext } from '../../utils/context/index';
 function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
+  function ManageLike(e) {
+    if (e.currentTarget.classList.contains('postLikeIconLiked')) {
+      e.currentTarget.classList.remove('postLikeIconLiked');
+      e.currentTarget.previousSibling.innerHTML =
+        parseInt(e.currentTarget.previousSibling.innerHTML) - 1;
+    } else {
+      e.currentTarget.classList.add('postLikeIconLiked');
+      e.currentTarget.previousSibling.innerHTML =
+        parseInt(e.currentTarget.previousSibling.innerHTML) + 1;
+    }
+  }
+
   return (
     <div
       className={
@@ -72,8 +84,18 @@ function Post(props) {
         )}
       </div>
       <div className={theme === 'dark' ? 'postLike postLikeDark' : 'postLike'}>
-        {props.likes.length}
-        <div className="postLikeIcon">
+        <div>{props.likes.length}</div>
+        <div
+          className={
+            'postLikeIcon ' +
+            (props.likes.includes(localStorage.getItem('user').split(' ')[0])
+              ? 'postLikeIconLiked'
+              : '')
+          }
+          onClick={(e) => {
+            ManageLike(e);
+          }}
+        >
           <i className="fa-solid fa-thumbs-up fa-xl"></i>
         </div>
       </div>
