@@ -59,6 +59,18 @@
   color: white;
 }
 
+.cross {
+  margin-left: 8px;
+}
+
+.crossDark {
+  color: white;
+}
+
+.cross:hover {
+  cursor: pointer;
+}
+
 .createPostImageInput {
   display: none;
 }

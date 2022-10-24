@@ -5,10 +5,42 @@ import './createPost.css';
 //returns the component used by users to create a Post
 function CreatePost() {
   const theme = useContext(ThemeContext).theme;
+  const [content, setContent] = useState('');
+  const [fileContent, setFileContent] = useState(null);
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
   const onChangePicture = (e) => {
+    console.log(e.target.files[0]);
+    setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
+
+  function publishPost(event, txtContent, file) {
+    event.preventDefault();
+
+    if (document.querySelector('textarea').reportValidity()) {
+      let postFormData = new FormData();
+      postFormData.append('content', txtContent);
+      postFormData.append('image', file);
+
+      fetch('http://localhost:5000/api/posts/', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: postFormData,
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            window.location.reload();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }
 
   return (
     <div
@@ -40,10 +72,12 @@ function CreatePost() {
           name="PostContent"
           rows={3}
           placeholder="Partagez vos pensées..."
+          required
           className={
             'createPostFormTextArea ' +
             (theme === 'dark' ? 'createPostFormTextAreaDark' : '')
           }
+          onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <label
           htmlFor="image"
@@ -54,16 +88,21 @@ function CreatePost() {
         >
           <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
           {picture}
-          {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
-            ''
-          ) : (
-            <i
-              className="fa-solid fa-xmark"
-              style={{ marginLeft: '8px' }}
-              onClick={() => setPicture('Ajouter une image (png, jpeg, jpg)')}
-            ></i>
-          )}
         </label>
+        {/* If there is a file, a button to cancel it appears */}
+        {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
+          ''
+        ) : (
+          <i
+            className={
+              'fa-solid fa-xmark cross ' + (theme === 'dark' ? 'crossDark' : '')
+            }
+            onClick={() => {
+              setPicture('Ajouter une image (png, jpeg, jpg)');
+              setFileContent(null);
+            }}
+          ></i>
+        )}
         <input
           className="createPostImageInput"
           type="file"
@@ -78,6 +117,7 @@ function CreatePost() {
         form="post-form"
         value="Publiez !"
         className="createPostPublishButton"
+        onClick={(e) => publishPost(e, content, fileContent)}
       />
     </div>
   );
