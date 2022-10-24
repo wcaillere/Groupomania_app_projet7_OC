@@ -4,9 +4,17 @@
 }
 
 .formItem {
+  position: relative;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 50px;
+}
+
+.formItem i {
+  position: absolute;
+  left: 15px;
+  top: 77px;
+  color: black;
 }
 
 .formLabel {
@@ -25,6 +33,7 @@
   border-radius: 15px;
   font-size: 20px;
   padding: 16px;
+  padding-left: 50px;
 }
 
 .formItemInput::placeholder {

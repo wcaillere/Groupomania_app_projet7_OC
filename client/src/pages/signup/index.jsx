@@ -110,6 +110,7 @@ function Signup() {
                 onChange={(e) => setFirstname(e.target.value)}
                 required
               ></input>
+              <i class="fa-solid fa-user fa-sm"></i>
             </div>
             <div className="formItem">
               <label
@@ -128,6 +129,7 @@ function Signup() {
                 onChange={(e) => setLastname(e.target.value)}
                 required
               ></input>
+              <i class="fa-solid fa-user fa-sm"></i>
             </div>
           </div>
           <nav
@@ -153,6 +155,7 @@ function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               ></input>
+              <i class="fa-solid fa-envelope fa-sm"></i>
             </div>
             <div className="formItem">
               <label
@@ -171,6 +174,7 @@ function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               ></input>
+              <i class="fa-solid fa-lock fa-sm"></i>
             </div>
             <div className="formItem">
               <label
@@ -189,6 +193,7 @@ function Signup() {
                 onChange={(e) => setConfirm(e.target.value)}
                 required
               ></input>
+              <i class="fa-solid fa-lock fa-sm"></i>
             </div>
           </div>
         </form>
