@@ -7,6 +7,10 @@
   height: 100vh;
 }
 
+.errorContainerDark {
+  background: var(--Tertiary);
+}
+
 .errorLogo {
   width: 80%;
   max-width: 600px;
@@ -19,12 +23,16 @@
   margin: 50px auto;
 }
 
-.errorTxt {
+.errorText {
   color: var(--primary);
   font-weight: bold;
   width: 80%;
   font-size: 30px;
   text-align: center;
+}
+
+.darkText {
+  color: white;
 }
 
 @media (min-width: 768px) {
