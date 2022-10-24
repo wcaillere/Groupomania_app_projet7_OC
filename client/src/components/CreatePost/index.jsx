@@ -32,8 +32,15 @@ function CreatePost() {
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log(result);
-            window.location.reload();
+            if (result.message === "erreur d'authentification") {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              localStorage.removeItem('isAdmin');
+              window.location.href = `./`;
+            } else {
+              console.log(result);
+              window.location.reload();
+            }
           },
           (error) => {
             console.log(error);

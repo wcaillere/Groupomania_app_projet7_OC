@@ -5,7 +5,7 @@ const fs = require('fs');
 //Gets all posts of the Data Base
 exports.getAllPosts = (req, res, next) => {
   connection.query(
-    `SELECT p.id_posts, p.content, p.image_url, DATE_FORMAT(p.date, "%d/%m/%Y") AS date, u.id_users, u.firstname, u.lastname, u.is_admin, GROUP_CONCAT(a.users_id_users) AS likes
+    `SELECT p.id_posts, p.content, p.image_url, DATE_FORMAT(p.date, "%d/%m/%Y, %H:%i") AS date, u.id_users, u.firstname, u.lastname, u.is_admin, GROUP_CONCAT(a.users_id_users) AS likes
     FROM posts p
       JOIN users u
         ON p.users_id_users = u.id_users
@@ -50,7 +50,7 @@ exports.createOnePost = (req, res, next) => {
       }
     : { content: req.body.content };
   connection.query(
-    `INSERT INTO posts (content, image_url, date, users_id_users) VALUES (? , ? , DATE (NOW()), ?)`,
+    `INSERT INTO posts (content, image_url, date, users_id_users) VALUES (? , ? , NOW(), ?)`,
     [postObject.content, postObject.imageUrl, req.auth.userId],
     function (error, results, fields) {
       if (error) {

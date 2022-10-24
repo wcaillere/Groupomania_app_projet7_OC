@@ -43,7 +43,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className={theme === 'dark' ? 'bodydark' : 'bodygrey'}>
       <HeaderHome />
       <main
         className={

@@ -111,6 +111,10 @@
   margin-left: 5px;
 }
 
+.postLikeIcon:hover {
+  cursor: pointer;
+}
+
 .postLikeIconLiked {
   color: green;
 }

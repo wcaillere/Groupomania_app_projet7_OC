@@ -32,3 +32,8 @@ body {
   background: var(--darkTheme);
   height: 100%;
 }
+
+.bodygrey {
+  background: #e7e7e7;
+  height: 100%;
+}
