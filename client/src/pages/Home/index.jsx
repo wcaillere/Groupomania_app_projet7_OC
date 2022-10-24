@@ -42,7 +42,9 @@ function Home() {
       );
   }, []);
 
-  return (
+  return localStorage.getItem('token') === null ? (
+    ''
+  ) : (
     <div className={theme === 'dark' ? 'bodydark' : 'bodygrey'}>
       <HeaderHome />
       <main

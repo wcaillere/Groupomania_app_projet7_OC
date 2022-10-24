@@ -119,7 +119,7 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               ></input>
-              <i class="fa-solid fa-envelope fa-sm"></i>
+              <i className="fa-solid fa-envelope fa-sm"></i>
             </div>
             <div className="formItem">
               <label
@@ -138,7 +138,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               ></input>
-              <i class="fa-solid fa-lock fa-sm"></i>
+              <i className="fa-solid fa-lock fa-sm"></i>
             </div>
           </div>
         </form>
