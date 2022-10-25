@@ -14,6 +14,7 @@ function Home() {
   const theme = useContext(ThemeContext).theme;
   //State for the popup during the modification of a post
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [idPostToModify, setIdPostToModify] = useState('');
   //State to stock the list of posts returned during the API call
   const [allPostData, setAllPostData] = useState([]);
 
@@ -73,10 +74,15 @@ function Home() {
               imageUrl={post.image_url}
               likes={post.likes === null ? [] : post.likes.split(',')}
               setTrigger={setButtonPopup}
+              handlePopup={setIdPostToModify}
             />
           ))}
         </div>
-        <PopupPost trigger={buttonPopup} setTrigger={setButtonPopup} />
+        <PopupPost
+          trigger={buttonPopup}
+          setTrigger={setButtonPopup}
+          idPost={idPostToModify}
+        />
       </main>
       <div className="clearDiv" />
       <FooterHome />

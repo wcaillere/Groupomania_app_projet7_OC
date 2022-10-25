@@ -58,7 +58,7 @@ function Post(props) {
   }
 
   return (
-    <div
+    <article
       className={
         'postContainer ' + (theme === 'dark' ? 'postContainerDark' : '')
       }
@@ -104,7 +104,10 @@ function Post(props) {
         localStorage.getItem('user').split(' ')[0] === `${props.userId}` ? (
           <div>
             <button
-              onClick={() => props.setTrigger(true)}
+              onClick={(e) => {
+                props.handlePopup(props.postId);
+                props.setTrigger(true);
+              }}
               className="postButton"
             >
               <i className="fa-solid fa-arrow-rotate-right"></i>
@@ -151,7 +154,7 @@ function Post(props) {
           alt="illustration du post"
         />
       )}
-    </div>
+    </article>
   );
 }
 

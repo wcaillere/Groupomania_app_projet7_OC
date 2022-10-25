@@ -26,7 +26,13 @@ exports.getAllPosts = (req, res, next) => {
 //Gets one post of the Data Base thanks to its ID
 exports.getOnePost = (req, res, next) => {
   connection.query(
-    `SELECT * FROM posts WHERE id_posts = ?`,
+    `SELECT p.id_posts, p.content, p.image_url, DATE_FORMAT(p.date, "%d/%m/%Y, %H:%i") AS date, u.id_users, u.firstname, u.lastname, u.is_admin, GROUP_CONCAT(a.users_id_users) AS likes
+    FROM posts p
+      JOIN users u
+        ON p.users_id_users = u.id_users
+      LEFT JOIN appreciate a
+        ON p.id_posts = a.posts_id_posts
+      WHERE id_posts = ?`,
     [req.params.id],
     function (error, results, fields) {
       if (error) {
