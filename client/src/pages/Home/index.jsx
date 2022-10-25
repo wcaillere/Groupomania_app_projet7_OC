@@ -32,6 +32,7 @@ function Home() {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('isAdmin');
+            alert('Session expirée');
             window.location.href = `./`;
           } else {
             setAllPostData(result);

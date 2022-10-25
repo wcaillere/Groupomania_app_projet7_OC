@@ -9,7 +9,6 @@ function CreatePost() {
   const [fileContent, setFileContent] = useState(null);
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
   const onChangePicture = (e) => {
-    console.log(e.target.files[0]);
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
@@ -36,6 +35,7 @@ function CreatePost() {
               localStorage.removeItem('token');
               localStorage.removeItem('user');
               localStorage.removeItem('isAdmin');
+              alert('Session expirée');
               window.location.href = `./`;
             } else {
               console.log(result);

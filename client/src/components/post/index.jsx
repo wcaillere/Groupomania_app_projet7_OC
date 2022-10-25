@@ -47,6 +47,7 @@ function Post(props) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('isAdmin');
+            alert('Session expirée');
             window.location.href = `./`;
           }
           console.log(result);
