@@ -4,7 +4,10 @@ import LogoRed from '../../assets/logo_red.svg';
 import LogoWhite from '../../assets/logo_white.svg';
 import './errorPage.css';
 
-//Returns the page for Error 404
+/**
+ * Returns the page for Error 404
+ * @returns {React.ReactElement}
+ */
 function ErrorPage() {
   const theme = useContext(ThemeContext).theme;
 

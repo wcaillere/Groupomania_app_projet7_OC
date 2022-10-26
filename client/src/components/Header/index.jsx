@@ -5,7 +5,10 @@ import Logogrey from '../../assets/logo_grey.svg';
 import LogoWhite from '../../assets/logo_white.svg';
 import './header.css';
 
-//Returns the Header for the Login and Signup pages
+/**
+ * Returns the Header for the Login and Signup pages
+ * @returns {React.ReactElement}
+ */
 function Header() {
   const theme = useContext(ThemeContext).theme;
   return (
@@ -23,6 +26,7 @@ function Header() {
         <Link
           to="/"
           className="navItem"
+          //Depending on the page where the user is, border of a nav item is not the same
           style={{
             borderBottom: `5px solid ${
               window.location.href.endsWith('/') === true

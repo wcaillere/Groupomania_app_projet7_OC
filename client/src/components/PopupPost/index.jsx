@@ -3,18 +3,30 @@ import { ThemeContext } from '../../utils/context/index';
 import '../post/post.css';
 import './popupPost.css';
 
-//Returns The Post as a popup when the user wants to modify it
+/**
+ *Returns the post as a popup when the user wants to modify it
+ * @param {object} props
+ * @returns {React.ReactElement}
+ */
 function PopupPost(props) {
   const theme = useContext(ThemeContext).theme;
+  //State to stock data asked to the API with the getOnePost route
   const [postData, setPostData] = useState({});
+  //States to stock inputs' values and update them
   const [content, setContent] = useState('');
   const [fileContent, setFileContent] = useState(null);
+  //State to update name of the choosen image if there is one
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
+  const onCancelPicture = () => {
+    setPicture('Ajouter une image (png, jpeg, jpg)');
+    setFileContent(null);
+  };
 
+  //UseEffect allows to activate the fetch request every time the props.idPost is changed
   useEffect(() => {
     fetch(`http://localhost:5000/api/posts/${props.idPost}`, {
       headers: {
@@ -24,7 +36,7 @@ function PopupPost(props) {
       .then((res) => res.json())
       .then(
         (result) => {
-          //if the session is expired, the localStorage is cleaned and the user is redirected on the login Page
+          //Manages the redirection to the login page if the API can't get the post due to expired session
           if (result.message) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
@@ -32,7 +44,6 @@ function PopupPost(props) {
             alert('Session expirée');
             window.location.href = `./`;
           } else {
-            console.log(result);
             setPostData(result[0]);
             setContent(result[0].content);
             result[0].image_url
@@ -46,6 +57,13 @@ function PopupPost(props) {
       );
   }, [props.idPost]);
 
+  /**
+   * Modifies the post in the dataBase and reloads the page
+   * @param {object} event
+   * @param {number} idPost
+   * @param {string} txtContent
+   * @param {object} file
+   */
   function modifyPost(event, idPost, txtContent, file) {
     event.preventDefault();
 
@@ -64,6 +82,7 @@ function PopupPost(props) {
         .then((res) => res.json())
         .then(
           (result) => {
+            //Manages the redirection to the login page if the API can't modify the post due to expired session
             if (result.message === "erreur d'authentification") {
               localStorage.removeItem('token');
               localStorage.removeItem('user');
@@ -83,7 +102,7 @@ function PopupPost(props) {
   }
 
   return props.trigger ? (
-    <div
+    <article
       className={
         'popupContainer ' + (theme === 'dark' ? 'popupContainerDark' : '')
       }
@@ -154,17 +173,14 @@ function PopupPost(props) {
                 'fa-solid fa-xmark cross ' +
                 (theme === 'dark' ? 'crossDark' : '')
               }
-              onClick={() => {
-                setPicture('Ajouter une image (png, jpeg, jpg)');
-                setFileContent(null);
-              }}
+              onClick={() => onCancelPicture()}
             ></i>
           )}
           <input
             className="createPostImageInput"
             type="file"
             id="popupImage"
-            name="image"
+            name="popupImage"
             accept="image/png, image/jpeg, image/jpg"
             onChange={(e) => onChangePicture(e)}
           />
@@ -179,7 +195,7 @@ function PopupPost(props) {
           }
         />
       </div>
-    </div>
+    </article>
   ) : (
     ''
   );

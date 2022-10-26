@@ -2,7 +2,10 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 import './footer.css';
 
-//returns the Footer for the Login and Signup pages
+/**
+ * returns the Footer for the Login and Signup pages
+ * @returns {React.ReactElement}
+ */
 function Footer() {
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
@@ -22,7 +25,6 @@ function Footer() {
       <span
         className={'footerText ' + (theme === 'dark' ? 'footerTextDark' : '')}
       >
-        {' '}
         @Groupomania, 2022
       </span>
     </footer>

@@ -8,7 +8,10 @@ import Footer from '../../components/Footer';
 import './signup.css';
 import '../../utils/style/signup&login_Atoms.css';
 
-//Returns the Signup page
+/**
+ * Returns the Signup page
+ * @returns {React.ReactElement}
+ */
 function Signup() {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values

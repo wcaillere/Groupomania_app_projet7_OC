@@ -49,7 +49,7 @@
   display: inline-block;
   font-size: 15px;
   color: black;
-  width: 90%;
+  max-width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

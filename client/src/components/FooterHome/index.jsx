@@ -2,7 +2,10 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 import './footerHome.css';
 
-//Returns the Footer for the homePage
+/**
+ * Returns the Footer for the homePage
+ * @returns {React.ReactElement}
+ */
 function FooterHome() {
   const { toggleTheme, theme } = useContext(ThemeContext);
 

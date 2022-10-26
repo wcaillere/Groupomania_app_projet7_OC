@@ -13,7 +13,7 @@ import './login.css';
 //Returns Login page
 function Login() {
   const theme = useContext(ThemeContext).theme;
-  //States to stock inputs' values
+  //States to stock inputs' values and update them
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   //States to stock and trigger the poppups
@@ -104,7 +104,7 @@ function Login() {
           <div className="connectionFormColumn">
             <div className="formItem">
               <label
-                htmlFor="email"
+                htmlFor="loginEmail"
                 className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
               >
                 Adresse email
@@ -112,8 +112,8 @@ function Login() {
               <input
                 className="formItemInput"
                 type="email"
-                name="email"
-                id="email"
+                name="loginEmail"
+                id="loginEmail"
                 placeholder="exemple@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -123,7 +123,7 @@ function Login() {
             </div>
             <div className="formItem">
               <label
-                htmlFor="password"
+                htmlFor="loginPassword"
                 className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
               >
                 Mot de passe
@@ -131,8 +131,8 @@ function Login() {
               <input
                 className="formItemInput"
                 type="password"
-                name="password"
-                id="password"
+                name="loginPassword"
+                id="loginPassword"
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

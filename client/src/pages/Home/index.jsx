@@ -5,11 +5,14 @@ import Post from '../../components/post';
 import CreatePost from '../../components/CreatePost';
 import PopupPost from '../../components/PopupPost';
 //other tools
-import './home.css';
 import { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../../utils/context/index';
+import './home.css';
 
-//Returns Home page
+/**
+ * Returns Home page
+ * @returns {React.ReactElement}
+ */
 function Home() {
   const theme = useContext(ThemeContext).theme;
   //State for the popup during the modification of a post
@@ -18,6 +21,7 @@ function Home() {
   //State to stock the list of posts returned during the API call
   const [allPostData, setAllPostData] = useState([]);
 
+  //UseEffect allows to call the API only on the load of the page
   useEffect(() => {
     fetch('http://localhost:5000/api/posts', {
       headers: {
@@ -27,7 +31,7 @@ function Home() {
       .then((res) => res.json())
       .then(
         (result) => {
-          //if the session is expired, the localStorage is cleaned and the user is redirected on the login Page
+          //Manages the redirection to the login page if the API can't getAllPost due to expired session
           if (result.message) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
@@ -61,6 +65,7 @@ function Home() {
             (theme === 'dark' ? 'homeSeparationBarDark' : '')
           }
         />
+        {/* Create one component Post for every post of the list returned by the API */}
         <div>
           {allPostData.map((post) => (
             <Post

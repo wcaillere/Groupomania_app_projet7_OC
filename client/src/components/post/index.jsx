@@ -2,11 +2,18 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 import './post.css';
 
-//Returns one Post, created from informations of the DataBase
+/**
+ * Returns one Post, created from informations of the DataBase
+ * @param {object} props
+ * @returns {React.ReactElement}
+ */
 function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
-  //Manages the like's frontend and route API when the like button of a post is clicked
+  /**
+   * Manages the like's frontend and route API when the like button of a post is clicked
+   * @param {object} event
+   */
   function ManageLike(event) {
     //Initializes a bad value for the request. Then, if there is a problem during the function, the value is not changed and the API returns a res 400: invalid request
     var likeValue = 2;

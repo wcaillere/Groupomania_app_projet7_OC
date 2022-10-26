@@ -2,7 +2,10 @@ import Logo from '../../assets/logo_white.svg';
 import { Link } from 'react-router-dom';
 import './headerHome.css';
 
-//Returns Header for the homePage
+/**
+ * Returns Header for the homePage
+ * @returns {React.ReactElement}
+ */
 function HeaderHome() {
   function deconnection() {
     //With the deconnection, LocalStorage is cleaned and the user is redirected to the Login Page

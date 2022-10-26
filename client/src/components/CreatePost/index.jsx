@@ -2,17 +2,32 @@ import { useState, useContext } from 'react';
 import { ThemeContext } from '../../utils/context/index';
 import './createPost.css';
 
-//returns the component used by users to create a Post
+/**
+ * returns the component used by users to create a Post
+ * @returns {React.ReactElement}
+ */
 function CreatePost() {
   const theme = useContext(ThemeContext).theme;
+  //States to stock inputs' values and update them
   const [content, setContent] = useState('');
   const [fileContent, setFileContent] = useState(null);
+  //State to update name of the choosen image if there is one
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
+  const onCancelPicture = () => {
+    setPicture('Ajouter une image (png, jpeg, jpg)');
+    setFileContent(null);
+  };
 
+  /**
+   * Creates the post in the dataBase and reloads the page
+   * @param {object} event
+   * @param {string} txtContent
+   * @param {object} file
+   */
   function publishPost(event, txtContent, file) {
     event.preventDefault();
 
@@ -31,6 +46,7 @@ function CreatePost() {
         .then((res) => res.json())
         .then(
           (result) => {
+            //Manages the redirection to the login page if the API can't create the post due to expired session
             if (result.message === "erreur d'authentification") {
               localStorage.removeItem('token');
               localStorage.removeItem('user');
@@ -75,19 +91,19 @@ function CreatePost() {
       {/* Form of the CreationPost component */}
       <form id="post-form">
         <textarea
-          id="PostContent"
-          name="PostContent"
-          rows={3}
+          id="postContent"
+          name="postContent"
+          rows={4}
           placeholder="Partagez vos pensées..."
-          required
           className={
             'createPostFormTextArea ' +
             (theme === 'dark' ? 'createPostFormTextAreaDark' : '')
           }
           onChange={(e) => setContent(e.target.value)}
+          required
         ></textarea>
         <label
-          htmlFor="image"
+          htmlFor="createPostImage"
           className={
             'createPostImageLabel ' +
             (theme === 'dark' ? 'createPostImageLabelDark' : '')
@@ -104,17 +120,14 @@ function CreatePost() {
             className={
               'fa-solid fa-xmark cross ' + (theme === 'dark' ? 'crossDark' : '')
             }
-            onClick={() => {
-              setPicture('Ajouter une image (png, jpeg, jpg)');
-              setFileContent(null);
-            }}
+            onClick={() => onCancelPicture()}
           ></i>
         )}
         <input
           className="createPostImageInput"
           type="file"
-          id="image"
-          name="image"
+          id="createPostImage"
+          name="createPostImage"
           accept="image/png, image/jpeg, image/jpg"
           onChange={(e) => onChangePicture(e)}
         />
