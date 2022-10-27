@@ -6,7 +6,7 @@ import './createPost.css';
  * returns the component used by users to create a Post
  * @returns {React.ReactElement}
  */
-function CreatePost() {
+function CreatePost(props) {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values and update them
   const [content, setContent] = useState('');
@@ -55,7 +55,11 @@ function CreatePost() {
               window.location.href = `./`;
             } else {
               console.log(result);
-              window.location.reload();
+              //Inputs the CreationPost component are reset
+              setContent('');
+              setPicture('Ajouter une image (png, jpeg, jpg)');
+              setFileContent(null);
+              props.reloadTrigger();
             }
           },
           (error) => {
@@ -99,6 +103,7 @@ function CreatePost() {
             'createPostFormTextArea ' +
             (theme === 'dark' ? 'createPostFormTextAreaDark' : '')
           }
+          value={content}
           onChange={(e) => setContent(e.target.value)}
           required
         ></textarea>

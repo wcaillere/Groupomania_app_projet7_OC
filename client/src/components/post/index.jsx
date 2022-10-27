@@ -12,25 +12,15 @@ function Post(props) {
 
   /**
    * Manages the like's frontend and route API when the like button of a post is clicked
-   * @param {object} event
    */
-  function ManageLike(event) {
+  function ManageLike() {
     //Initializes a bad value for the request. Then, if there is a problem during the function, the value is not changed and the API returns a res 400: invalid request
     var likeValue = 2;
-    //if the action is to remove a like
-    if (event.currentTarget.classList.contains('postLikeIconLiked')) {
-      event.currentTarget.classList.remove('postLikeIconLiked');
-      event.currentTarget.previousSibling.innerHTML =
-        parseInt(event.currentTarget.previousSibling.innerHTML) - 1;
-      likeValue = 0;
-    }
-    //if the action is to add a like
-    else {
-      event.currentTarget.classList.add('postLikeIconLiked');
-      event.currentTarget.previousSibling.innerHTML =
-        parseInt(event.currentTarget.previousSibling.innerHTML) + 1;
-      likeValue = 1;
-    }
+    //Control if the action is a added like or a removed like
+    props.likes.includes(localStorage.getItem('user').split(' ')[0])
+      ? (likeValue = 0)
+      : (likeValue = 1);
+
     fetch(`http://localhost:5000/api/posts/${props.postId}/like`, {
       method: 'PUT',
       headers: {
@@ -58,6 +48,7 @@ function Post(props) {
             window.location.href = `./`;
           }
           console.log(result);
+          props.reloadTrigger();
         },
         (error) => {
           console.log(error);
@@ -65,6 +56,9 @@ function Post(props) {
       );
   }
 
+  /**
+   * Manages the delete route when the 'supprimer' button of a post is clicked
+   */
   function DeleteOnePost() {
     if (window.confirm('Voulez-vous vraiment supprimer ce post ?')) {
       fetch(`http://localhost:5000/api/posts/${props.postId}`, {
@@ -88,7 +82,7 @@ function Post(props) {
               window.location.href = `./`;
             }
             console.log(result);
-            window.location.reload();
+            props.reloadTrigger();
           },
           (error) => {
             console.log(error);

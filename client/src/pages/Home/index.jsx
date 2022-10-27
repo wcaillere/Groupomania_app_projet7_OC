@@ -64,7 +64,7 @@ function Home() {
           'mainContainer ' + (theme === 'dark' ? 'mainContainerDark' : '')
         }
       >
-        <CreatePost />
+        <CreatePost reloadTrigger={triggerReload} />
         <div
           className={
             'homeSeparationBar ' +
