@@ -85,8 +85,19 @@ exports.modifyOnePost = (req, res, next) => {
                 req.file.filename
               }`,
             }
-          : { content: req.body.content };
-        if (results[0].image_url != null) {
+          : req.body.image == 'null'
+          ? {
+              content: req.body.content,
+              imageUrl: null,
+            }
+          : {
+              content: req.body.content,
+              imageUrl: results[0].image_url,
+            };
+        if (
+          req.body.image == 'null' ||
+          (req.file && results[0].image_url != null)
+        ) {
           //if the image is changed, the previous one is deleted from the 'images' file
           const filename = results[0].image_url.split('/images/')[1];
           fs.unlink(`images/${filename}`, () => {});

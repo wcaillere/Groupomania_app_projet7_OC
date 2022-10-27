@@ -20,6 +20,10 @@ function Home() {
   const [idPostToModify, setIdPostToModify] = useState('');
   //State to stock the list of posts returned during the API call
   const [allPostData, setAllPostData] = useState([]);
+  const [reload, setReload] = useState(0);
+  const triggerReload = () => {
+    setReload(reload + 1);
+  };
 
   //UseEffect allows to call the API only on the load of the page
   useEffect(() => {
@@ -33,10 +37,12 @@ function Home() {
         (result) => {
           //Manages the redirection to the login page if the API can't getAllPost due to expired session
           if (result.message) {
+            if (localStorage.getItem('token')) {
+              alert('Session expirée');
+            }
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('isAdmin');
-            alert('Session expirée');
             window.location.href = `./`;
           } else {
             setAllPostData(result);
@@ -46,7 +52,7 @@ function Home() {
           console.log(error);
         }
       );
-  }, []);
+  }, [reload]);
 
   return localStorage.getItem('token') === null ? (
     ''
@@ -81,12 +87,14 @@ function Home() {
               likes={post.likes === null ? [] : post.likes.split(',')}
               setTrigger={setButtonPopup}
               handlePopup={setIdPostToModify}
+              reloadTrigger={triggerReload}
             />
           ))}
         </div>
         <PopupPost
           trigger={buttonPopup}
           setTrigger={setButtonPopup}
+          reloadTrigger={triggerReload}
           idPost={idPostToModify}
         />
       </main>

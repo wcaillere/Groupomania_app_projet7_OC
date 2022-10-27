@@ -14,7 +14,7 @@ function PopupPost(props) {
   const [postData, setPostData] = useState({});
   //States to stock inputs' values and update them
   const [content, setContent] = useState('');
-  const [fileContent, setFileContent] = useState(null);
+  const [fileContent, setFileContent] = useState('pas de changement');
   //State to update name of the choosen image if there is one
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
   const onChangePicture = (e) => {
@@ -91,7 +91,8 @@ function PopupPost(props) {
               window.location.href = `./`;
             } else {
               console.log(result);
-              window.location.reload();
+              props.setTrigger();
+              props.reloadTrigger();
             }
           },
           (error) => {

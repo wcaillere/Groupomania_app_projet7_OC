@@ -35,12 +35,12 @@
   top: 25px;
   right: 18px;
   border: none;
-  background: white;
+  background: transparent !important;
   color: var(--primary);
 }
 
 .popupCloseButtonDark {
-  background: var(--Tertiary);
+  background: transparent !important;
 }
 
 .popupCloseButton:hover {
