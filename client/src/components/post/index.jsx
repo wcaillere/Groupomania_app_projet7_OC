@@ -46,7 +46,7 @@ function Post(props) {
       .then((res) => res.json())
       .then(
         (result) => {
-          //If the session expires, the localStorage is cleaned and the user is redirected to the login Page
+          //Manages the redirection to the login page if the API can't like or remove like from the post due to expired session
           if (
             result.message &&
             result.message === "erreur d'authentification"
@@ -63,6 +63,38 @@ function Post(props) {
           console.log(error);
         }
       );
+  }
+
+  function DeleteOnePost() {
+    if (window.confirm('Voulez-vous vraiment supprimer ce post ?')) {
+      fetch(`http://localhost:5000/api/posts/${props.postId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            //Manages the redirection to the login page if the API can't like or remove like from the post due to expired session
+            if (
+              result.message &&
+              result.message === "erreur d'authentification"
+            ) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              localStorage.removeItem('isAdmin');
+              alert('Session expirée');
+              window.location.href = `./`;
+            }
+            console.log(result);
+            window.location.reload();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
 
   return (
@@ -121,7 +153,12 @@ function Post(props) {
               <i className="fa-solid fa-arrow-rotate-right"></i>
               <span className="postButtonText">Modifier</span>
             </button>
-            <button className="postButton">
+            <button
+              onClick={() => {
+                DeleteOnePost();
+              }}
+              className="postButton"
+            >
               <i className="fa-solid fa-trash-can"></i>
               <span className="postButtonText">Supprimer</span>
             </button>

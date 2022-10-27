@@ -112,22 +112,39 @@ exports.deleteOnePost = (req, res, next) => {
   connection.query(
     `SELECT * FROM posts WHERE id_posts = ?`,
     [req.params.id],
-    function (error, results, fields) {
-      if (results[0].users_id_users != req.auth.userId) {
-        res.status(403).json({ message: 'Unauthorized request' });
+    function (error, post, fields) {
+      if (error) {
+        res.status(500).json({ error });
       } else {
-        if (results[0].image_url != null) {
-          const filename = results[0].image_url.split('/images/')[1];
-          fs.unlink(`images/${filename}`, () => {});
-        }
         connection.query(
-          `DELETE FROM posts WHERE id_posts = ?`,
-          [req.params.id],
-          function (error, results, fields) {
+          `SELECT is_admin FROM users WHERE id_users = ?`,
+          [req.auth.userId],
+          function (error, user, fields) {
             if (error) {
               res.status(500).json({ error });
             } else {
-              res.status(200).json({ message: 'post supprimé !' });
+              if (
+                post[0].users_id_users == req.auth.userId ||
+                user[0].is_admin == 1
+              ) {
+                if (post[0].image_url != null) {
+                  const filename = post[0].image_url.split('/images/')[1];
+                  fs.unlink(`images/${filename}`, () => {});
+                }
+                connection.query(
+                  `DELETE FROM posts WHERE id_posts = ?`,
+                  [req.params.id],
+                  function (error, results, fields) {
+                    if (error) {
+                      res.status(500).json({ error });
+                    } else {
+                      res.status(200).json({ message: 'post supprimé !' });
+                    }
+                  }
+                );
+              } else {
+                res.status(403).json({ message: 'Unauthorized request' });
+              }
             }
           }
         );
