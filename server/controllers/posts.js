@@ -77,9 +77,10 @@ exports.modifyOnePost = (req, res, next) => {
       if (results[0].users_id_users != req.auth.userId) {
         res.status(403).json({ message: 'Unauthorized request' });
       } else {
-        //Verifies if there is a file in the request cause of multer
+        //Verifies the nature of the modification
         const postObject = req.file
           ? {
+              //If there is a file in the req, it's to add a image or change the previous one
               content: req.body.content,
               imageUrl: `${req.protocol}://${req.get('host')}/images/${
                 req.file.filename
@@ -87,10 +88,12 @@ exports.modifyOnePost = (req, res, next) => {
             }
           : req.body.image == 'null'
           ? {
+              //If req.body.image == null, it's to delete the previous image
               content: req.body.content,
               imageUrl: null,
             }
           : {
+              //If req.body.image == 'pas de changement', it's to not modify the imageUrl of the post
               content: req.body.content,
               imageUrl: results[0].image_url,
             };
@@ -98,7 +101,7 @@ exports.modifyOnePost = (req, res, next) => {
           req.body.image == 'null' ||
           (req.file && results[0].image_url != null)
         ) {
-          //if the image is changed, the previous one is deleted from the 'images' file
+          //if the image is changed or deleted, it's deleted from the 'images' file
           const filename = results[0].image_url.split('/images/')[1];
           fs.unlink(`images/${filename}`, () => {});
         }

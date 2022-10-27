@@ -17,10 +17,12 @@ function PopupPost(props) {
   const [fileContent, setFileContent] = useState('pas de changement');
   //State to update name of the choosen image if there is one
   const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
+  //If the image is added or modified
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
+  //If the image is deleted
   const onCancelPicture = () => {
     setPicture('Ajouter une image (png, jpeg, jpg)');
     setFileContent(null);
