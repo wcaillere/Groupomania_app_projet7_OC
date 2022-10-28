@@ -25,56 +25,32 @@ function Header() {
       <nav className="navContainer">
         <Link
           to="/"
-          className="navItem"
-          //Depending on the page where the user is, border of a nav item is not the same
-          style={{
-            borderBottom: `5px solid ${
-              window.location.href.endsWith('/') === true
-                ? theme === 'dark'
-                  ? 'white'
-                  : `${getComputedStyle(document.body).getPropertyValue(
-                      '--Tertiary'
-                    )}`
-                : theme === 'dark'
-                ? `${getComputedStyle(document.body).getPropertyValue(
-                    '--Tertiary'
-                  )}`
-                : 'white'
-            }`,
-            color:
-              theme === 'dark'
-                ? 'white'
-                : `${getComputedStyle(document.body).getPropertyValue(
-                    '--Tertiary'
-                  )}`,
-          }}
+          /* Depending on the name of the page where the user is, and if the theme is dark or light, the border bottom of nav item changes*/
+          className={
+            'navItem ' +
+            (window.location.href.endsWith('/') === true
+              ? theme === 'dark'
+                ? 'navItemDarkOn'
+                : 'navItemOn'
+              : theme === 'dark'
+              ? 'navItemDark '
+              : '')
+          }
         >
           Se connecter
         </Link>
         <Link
           to="/signup"
-          className="navItem"
-          style={{
-            borderBottom: `5px solid ${
-              window.location.href.endsWith('/signup') === true
-                ? theme === 'dark'
-                  ? 'white'
-                  : `${getComputedStyle(document.body).getPropertyValue(
-                      '--Tertiary'
-                    )}`
-                : theme === 'dark'
-                ? `${getComputedStyle(document.body).getPropertyValue(
-                    '--Tertiary'
-                  )}`
-                : 'white'
-            }`,
-            color:
-              theme === 'dark'
-                ? 'white'
-                : `${getComputedStyle(document.body).getPropertyValue(
-                    '--Tertiary'
-                  )}`,
-          }}
+          className={
+            'navItem ' +
+            (window.location.href.endsWith('/signup') === true
+              ? theme === 'dark'
+                ? 'navItemDarkOn'
+                : 'navItemOn'
+              : theme === 'dark'
+              ? 'navItemDark '
+              : '')
+          }
         >
           S'inscrire
         </Link>

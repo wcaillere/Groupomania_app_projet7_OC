@@ -30,17 +30,32 @@
   font-size: 20px;
   font-weight: bold;
   transition: 0.3s all;
+  border-bottom: 5px solid white;
 }
 
-/* .navItem:hover {
-  border-bottom: 5px solid
-    ${(props) =>
-      props.$border === false
-        ? props.theme === 'dark'
-          ? '#b6bce3'
-          : 'rgba(67, 73, 112, 0.5)'
-        : (props.theme = 'dark' ? 'white' : colors.Tertiary)};
-} */
+.navItem:hover {
+  border-bottom: 5px solid rgba(67, 73, 112, 0.5);
+}
+
+.navItemDark {
+  color: white;
+  border-bottom: 5px solid var(--Tertiary);
+}
+
+.navItemDark:hover {
+  border-bottom: 5px solid #b6bce3;
+}
+
+.navItemOn,
+.navItemOn:hover {
+  border-bottom: 5px solid var(--Tertiary);
+}
+
+.navItemDarkOn,
+.navItemDarkOn:hover {
+  color: white;
+  border-bottom: 5px solid white;
+}
 
 @media (min-width: 993px) {
   .headerLogo {
