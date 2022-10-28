@@ -63,8 +63,8 @@
   margin-top: 15px;
   border: none;
   border-radius: 10px;
-  color: white;
-  background: var(--primary);
+  color: black;
+  background: var(--secondary);
   font-weight: bold;
   font-size: 14px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);

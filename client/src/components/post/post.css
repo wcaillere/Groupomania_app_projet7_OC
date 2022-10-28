@@ -64,12 +64,12 @@
 
 .postButton {
   border: none;
-  color: white;
+  color: black;
   padding: 10px;
   margin: 0px 15px 15px 0px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-  background: var(--primary);
+  background: var(--secondary);
   transition: all 0.3s;
 }
 

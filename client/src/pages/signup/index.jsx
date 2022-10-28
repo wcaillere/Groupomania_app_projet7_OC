@@ -135,7 +135,7 @@ function Signup() {
               <i className="fa-solid fa-user fa-sm"></i>
             </div>
           </div>
-          <nav
+          <span
             className={
               'separationBar ' + (theme === 'dark' ? 'separationBarDark' : '')
             }

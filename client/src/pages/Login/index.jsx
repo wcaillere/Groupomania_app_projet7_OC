@@ -96,7 +96,7 @@ function Login() {
               className="connectionLogo"
             ></img>
           </div>
-          <nav
+          <span
             className={
               'separationBar ' + (theme === 'dark' ? 'separationBarDark' : '')
             }
