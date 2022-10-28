@@ -1,7 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
 import { ThemeContext } from '../../utils/context/index';
-import '../post/post.css';
+//Import styles from popupPost css for uniques styles, from post css for informations of the post, and from Create Post css for the input file style
 import './popupPost.css';
+import '../post/post.css';
+import '../CreatePost/createPost.css';
 
 /**
  *Returns the post as a popup when the user wants to modify it
@@ -116,7 +118,8 @@ function PopupPost(props) {
           (theme === 'dark' ? 'selectedPostContainerDark' : '')
         }
       >
-        <div className="postHeader">
+        {/* PopupPost Header */}
+        <div>
           <div className="postDescrition">
             <div className="postinitial">{postData.firstname[0]}</div>
             <div
@@ -135,6 +138,7 @@ function PopupPost(props) {
             </div>
           </div>
         </div>
+        {/* PopupPost Close button */}
         <i
           className={
             'fa-solid fa-xmark fa-xl popupCloseButton ' +
@@ -147,6 +151,7 @@ function PopupPost(props) {
             props.setTrigger(false);
           }}
         ></i>
+        {/* PopupPost Form */}
         <form id="modify-form">
           <textarea
             id="popupText"

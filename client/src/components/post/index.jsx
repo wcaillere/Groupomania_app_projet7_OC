@@ -98,7 +98,7 @@ function Post(props) {
       }
     >
       {/* post header */}
-      <div className="postHeader">
+      <div>
         <div className="postDescrition">
           <div className="postinitial">{props.firstname[0]}</div>
           <div
