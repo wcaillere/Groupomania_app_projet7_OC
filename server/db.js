@@ -1,6 +1,8 @@
+/** @format */
+
 //Imports packages
-const mysql = require('mysql');
-require('dotenv').config();
+const mysql = require("mysql");
+require("dotenv").config();
 
 //Creates the connection to MySQL DB
 const connection = mysql.createPool({
@@ -14,10 +16,10 @@ const connection = mysql.createPool({
 //Writes in the console if the connexion is establishes or not
 connection.getConnection(function (err) {
   if (err) {
-    console.error('error connecting: ' + err.stack);
+    console.error("error connecting: " + err.stack);
     return;
   }
-  console.log('connected to the DB');
+  console.log("connected to the DB");
 });
 
 module.exports = connection;

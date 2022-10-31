@@ -1,7 +1,9 @@
+/** @format */
+
 //Imports DB's connection and packages
-const connection = require('../db');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const connection = require("../db");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase();
@@ -23,13 +25,13 @@ exports.signup = (req, res, next) => {
         function (error, results, fields) {
           if (error) {
             if (error.errno === 1062) {
-              res.status(500).json({ message: 'Vous êtes déjà inscrit !' });
+              res.status(500).json({ message: "Vous êtes déjà inscrit !" });
             } else {
               console.log(capitalize(req.body.firstname));
               res.status(500).json({ error });
             }
           } else {
-            res.status(200).json({ message: 'Inscription réussie !' });
+            res.status(200).json({ message: "Inscription réussie !" });
           }
         }
       );
@@ -50,7 +52,7 @@ exports.login = (req, res, next) => {
       else if (results.length == 0) {
         res
           .status(401)
-          .json({ message: 'Paire email/mot de passe invalide !' });
+          .json({ message: "Paire email/mot de passe invalide !" });
       } else {
         bcrypt
           .compare(req.body.password, results[0].password)
@@ -58,14 +60,14 @@ exports.login = (req, res, next) => {
             if (!valid) {
               res
                 .status(401)
-                .json({ message: 'Paire email/mot de passe invalide !' });
+                .json({ message: "Paire email/mot de passe invalide !" });
             } else {
               res.status(200).json({
                 isAdmin: results[0].is_admin,
                 token: jwt.sign(
                   { userId: results[0].id_users },
                   process.env.TOKEN_KEY,
-                  { expiresIn: '1h' }
+                  { expiresIn: "1h" }
                 ),
                 user: {
                   userId: results[0].id_users,

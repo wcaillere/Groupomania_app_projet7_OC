@@ -1,12 +1,14 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ThemeContext } from '../../utils/context/index';
+/** @format */
+
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { ThemeContext } from "../../utils/context/index";
 //Imports components
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 //Imports CSS
-import './signup.css';
-import '../../utils/style/signup&login_Atoms.css';
+import "./signup.css";
+import "../../utils/style/signup&login_Atoms.css";
 
 /**
  * Returns the Signup page
@@ -15,14 +17,14 @@ import '../../utils/style/signup&login_Atoms.css';
 function Signup() {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   //States to stock and trigger the poppups
   const [popup, setPopup] = useState(false);
-  const [popupText, setPopupText] = useState('');
+  const [popupText, setPopupText] = useState("");
 
   //Send Signup informations to the API
   function sendSignup(
@@ -39,24 +41,24 @@ function Signup() {
     var inputValidation = true;
     if (confirmInput !== passwordInput) {
       document
-        .querySelector('input#confirm')
+        .querySelector("input#confirm")
         .setCustomValidity("La confirmation du mot de passe n'est pas corecte");
     } else {
-      document.querySelector('input#confirm').setCustomValidity('');
+      document.querySelector("input#confirm").setCustomValidity("");
     }
 
     for (let input of document.querySelectorAll(
-      'input#firstname, input#lastname, input#email, input#password, input#confirm'
+      "input#firstname, input#lastname, input#email, input#password, input#confirm"
     )) {
       inputValidation &= input.reportValidity();
     }
 
     if (inputValidation) {
-      fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
+      fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstname: firstnameInput,
@@ -72,7 +74,7 @@ function Signup() {
               window.scroll({
                 top: 0,
                 left: 0,
-                behavior: 'smooth',
+                behavior: "smooth",
               });
               setPopup(true);
               setPopupText(result.message);
@@ -86,22 +88,20 @@ function Signup() {
   }
 
   return (
-    <div className={theme === 'dark' ? 'bodydark' : 'bodylight'}>
+    <div className={theme === "dark" ? "bodydark" : "bodylight"}>
       <Header />
-      {popup ? <div className="popup">{popupText}</div> : ''}
+      {popup ? <div className="popup">{popupText}</div> : ""}
       <div
         className={
-          'signupContainer ' + (theme === 'dark' ? 'signupContainerDark' : '')
-        }
-      >
+          "signupContainer " + (theme === "dark" ? "signupContainerDark" : "")
+        }>
         <form className="formContainer">
           <div id="firstColumn" className="signupFormColumn">
             <div className="formItem">
               <label
                 htmlFor="firstname"
-                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
-              >
-                Prénom{' '}
+                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                Prénom{" "}
               </label>
               <input
                 className="formItemInput"
@@ -111,16 +111,14 @@ function Signup() {
                 placeholder="John"
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
-                required
-              ></input>
+                required></input>
               <i className="fa-solid fa-user fa-sm"></i>
             </div>
             <div className="formItem">
               <label
                 htmlFor="lastname"
-                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
-              >
-                Nom de famille{' '}
+                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                Nom de famille{" "}
               </label>
               <input
                 className="formItemInput"
@@ -130,23 +128,21 @@ function Signup() {
                 placeholder="Doe"
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
-                required
-              ></input>
+                required></input>
               <i className="fa-solid fa-user fa-sm"></i>
             </div>
           </div>
           <span
             className={
-              'separationBar ' + (theme === 'dark' ? 'separationBarDark' : '')
+              "separationBar " + (theme === "dark" ? "separationBarDark" : "")
             }
           />
           <div id="secondColumn" className="signupFormColumn">
             <div className="formItem">
               <label
                 htmlFor="email"
-                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
-              >
-                Adresse email{' '}
+                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                Adresse email{" "}
               </label>
               <input
                 className="formItemInput"
@@ -156,16 +152,14 @@ function Signup() {
                 placeholder="John.Doe@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
-              ></input>
+                required></input>
               <i className="fa-solid fa-envelope fa-sm"></i>
             </div>
             <div className="formItem">
               <label
                 htmlFor="password"
-                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
-              >
-                Mot de passe{' '}
+                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                Mot de passe{" "}
               </label>
               <input
                 className="formItemInput"
@@ -175,16 +169,14 @@ function Signup() {
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
-              ></input>
+                required></input>
               <i className="fa-solid fa-lock fa-sm"></i>
             </div>
             <div className="formItem">
               <label
                 htmlFor="confirm"
-                className={theme === 'dark' ? 'formLabelDark' : 'formLabel'}
-              >
-                Confirmer{' '}
+                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                Confirmer{" "}
               </label>
               <input
                 className="formItemInput"
@@ -194,8 +186,7 @@ function Signup() {
                 placeholder="Mot de passe"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
-                required
-              ></input>
+                required></input>
               <i className="fa-solid fa-lock fa-sm"></i>
             </div>
           </div>
@@ -212,9 +203,8 @@ function Signup() {
         <Link
           to="/"
           className={
-            'signupLoginLink ' + (theme === 'dark' ? 'signupLoginLinkDark' : '')
-          }
-        >
+            "signupLoginLink " + (theme === "dark" ? "signupLoginLinkDark" : "")
+          }>
           Déjà un compte ? Connectez-vous ici !
         </Link>
       </div>

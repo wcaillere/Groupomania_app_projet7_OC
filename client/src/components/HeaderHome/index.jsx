@@ -1,6 +1,8 @@
-import Logo from '../../assets/logo_white.svg';
-import { Link } from 'react-router-dom';
-import './headerHome.css';
+/** @format */
+
+import Logo from "../../assets/logo_white.svg";
+import { Link } from "react-router-dom";
+import "./headerHome.css";
 
 /**
  * Returns Header for the homePage
@@ -9,11 +11,11 @@ import './headerHome.css';
 function HeaderHome() {
   function deconnection() {
     //With the deconnection, LocalStorage is cleaned and the user is redirected to the Login Page
-    if (window.confirm('Voulez-vous vraiment vous déconnecter ?')) {
-      localStorage.removeItem('user');
-      localStorage.removeItem('isAdmin');
-      localStorage.removeItem('token');
-      window.location.href = '/';
+    if (window.confirm("Voulez-vous vraiment vous déconnecter ?")) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("token");
+      window.location.href = "/";
     }
   }
   return (
@@ -23,14 +25,12 @@ function HeaderHome() {
         className="headerHomeDeconnectionButton"
         onClick={() => {
           deconnection();
-        }}
-      >
+        }}>
         <i
           className="fa-solid fa-power-off fa-lg"
           style={{
-            color: 'white',
-          }}
-        ></i>
+            color: "white",
+          }}></i>
         <span className="headerHomeDeconnectionText">Déconnexion</span>
       </Link>
     </header>

@@ -1,6 +1,8 @@
+/** @format */
+
 //Imports DB's connection and packages
-const connection = require('../db');
-const fs = require('fs');
+const connection = require("../db");
+const fs = require("fs");
 
 //Gets all posts of the Data Base
 exports.getAllPosts = (req, res, next) => {
@@ -50,7 +52,7 @@ exports.createOnePost = (req, res, next) => {
   const postObject = req.file
     ? {
         content: req.body.content,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`,
       }
@@ -62,7 +64,7 @@ exports.createOnePost = (req, res, next) => {
       if (error) {
         res.status(500).json({ error });
       } else {
-        res.status(200).json({ message: 'post créé !' });
+        res.status(200).json({ message: "post créé !" });
       }
     }
   );
@@ -75,18 +77,18 @@ exports.modifyOnePost = (req, res, next) => {
     [req.params.id],
     function (error, results, fields) {
       if (results[0].users_id_users != req.auth.userId) {
-        res.status(403).json({ message: 'Unauthorized request' });
+        res.status(403).json({ message: "Unauthorized request" });
       } else {
         //Verifies the nature of the modification
         const postObject = req.file
           ? {
               //If there is a file in the req, it's to add a image or change the previous one
               content: req.body.content,
-              imageUrl: `${req.protocol}://${req.get('host')}/images/${
+              imageUrl: `${req.protocol}://${req.get("host")}/images/${
                 req.file.filename
               }`,
             }
-          : req.body.image == 'null'
+          : req.body.image == "null"
           ? {
               //If req.body.image == null, it's to delete the previous image
               content: req.body.content,
@@ -98,11 +100,11 @@ exports.modifyOnePost = (req, res, next) => {
               imageUrl: results[0].image_url,
             };
         if (
-          req.body.image == 'null' ||
+          req.body.image == "null" ||
           (req.file && results[0].image_url != null)
         ) {
           //if the image is changed or deleted, it's deleted from the 'images' file
-          const filename = results[0].image_url.split('/images/')[1];
+          const filename = results[0].image_url.split("/images/")[1];
           fs.unlink(`images/${filename}`, () => {});
         }
         connection.query(
@@ -112,7 +114,7 @@ exports.modifyOnePost = (req, res, next) => {
             if (error) {
               res.status(500).json({ error });
             } else {
-              res.status(200).json({ message: 'post modifié !' });
+              res.status(200).json({ message: "post modifié !" });
             }
           }
         );
@@ -142,7 +144,7 @@ exports.deleteOnePost = (req, res, next) => {
                 user[0].is_admin == 1
               ) {
                 if (post[0].image_url != null) {
-                  const filename = post[0].image_url.split('/images/')[1];
+                  const filename = post[0].image_url.split("/images/")[1];
                   fs.unlink(`images/${filename}`, () => {});
                 }
                 connection.query(
@@ -152,12 +154,12 @@ exports.deleteOnePost = (req, res, next) => {
                     if (error) {
                       res.status(500).json({ error });
                     } else {
-                      res.status(200).json({ message: 'post supprimé !' });
+                      res.status(200).json({ message: "post supprimé !" });
                     }
                   }
                 );
               } else {
-                res.status(403).json({ message: 'Unauthorized request' });
+                res.status(403).json({ message: "Unauthorized request" });
               }
             }
           }
@@ -177,12 +179,12 @@ exports.manageLike = (req, res, next) => {
       function (error, results, fields) {
         if (error) {
           if (error.errno == 1062) {
-            res.status(500).json({ message: 'Vous avez déjà liké ce post' });
+            res.status(500).json({ message: "Vous avez déjà liké ce post" });
           } else {
             res.status(500).json({ error });
           }
         } else {
-          res.status(200).json({ message: 'post liké' });
+          res.status(200).json({ message: "post liké" });
         }
       }
     );
@@ -195,11 +197,11 @@ exports.manageLike = (req, res, next) => {
         if (error) {
           res.status(500).json({ error });
         } else {
-          res.status(200).json({ message: 'like retiré' });
+          res.status(200).json({ message: "like retiré" });
         }
       }
     );
   } else {
-    res.status(400).json({ message: 'Requête invalide' });
+    res.status(400).json({ message: "Requête invalide" });
   }
 };

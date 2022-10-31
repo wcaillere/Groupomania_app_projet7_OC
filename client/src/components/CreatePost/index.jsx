@@ -1,6 +1,8 @@
-import { useState, useContext } from 'react';
-import { ThemeContext } from '../../utils/context/index';
-import './createPost.css';
+/** @format */
+
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../utils/context/index";
+import "./createPost.css";
 
 /**
  * returns the component used by users to create a Post
@@ -9,16 +11,16 @@ import './createPost.css';
 function CreatePost(props) {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values and update them
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [fileContent, setFileContent] = useState(null);
   //State to update name of the choosen image if there is one
-  const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
+  const [picture, setPicture] = useState("Ajouter une image (png, jpeg, jpg)");
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
   const onCancelPicture = () => {
-    setPicture('Ajouter une image (png, jpeg, jpg)');
+    setPicture("Ajouter une image (png, jpeg, jpg)");
     setFileContent(null);
   };
 
@@ -31,15 +33,15 @@ function CreatePost(props) {
   function publishPost(event, txtContent, file) {
     event.preventDefault();
 
-    if (document.querySelector('textarea').reportValidity()) {
+    if (document.querySelector("textarea").reportValidity()) {
       let postFormData = new FormData();
-      postFormData.append('content', txtContent);
-      postFormData.append('image', file);
+      postFormData.append("content", txtContent);
+      postFormData.append("image", file);
 
-      fetch('http://localhost:5000/api/posts/', {
-        method: 'POST',
+      fetch("http://localhost:5000/api/posts/", {
+        method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: postFormData,
       })
@@ -48,16 +50,16 @@ function CreatePost(props) {
           (result) => {
             //Manages the redirection to the login page if the API can't create the post due to expired session
             if (result.message === "erreur d'authentification") {
-              localStorage.removeItem('token');
-              localStorage.removeItem('user');
-              localStorage.removeItem('isAdmin');
-              alert('Session expirée');
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              localStorage.removeItem("isAdmin");
+              alert("Session expirée");
               window.location.href = `./`;
             } else {
               console.log(result);
               //Inputs the CreationPost component are reset
-              setContent('');
-              setPicture('Ajouter une image (png, jpeg, jpg)');
+              setContent("");
+              setPicture("Ajouter une image (png, jpeg, jpg)");
               setFileContent(null);
               props.reloadTrigger();
             }
@@ -72,23 +74,21 @@ function CreatePost(props) {
   return (
     <div
       className={
-        'createPostContainer ' +
-        (theme === 'dark' ? 'createPostContainerDark' : '')
-      }
-    >
+        "createPostContainer " +
+        (theme === "dark" ? "createPostContainerDark" : "")
+      }>
       {/* Header of the CreationPost component */}
       <div className="createPostDescription">
         <div className="createPostInitial">
-          {localStorage.getItem('user').split(' ')[1][0]}
+          {localStorage.getItem("user").split(" ")[1][0]}
         </div>
         <div
           className={
-            'createPostAuthor ' +
-            (theme === 'dark' ? 'createPostAuthorDark' : '')
-          }
-        >
-          {`${localStorage.getItem('user').split(' ')[1]} ${
-            localStorage.getItem('user').split(' ')[2][0]
+            "createPostAuthor " +
+            (theme === "dark" ? "createPostAuthorDark" : "")
+          }>
+          {`${localStorage.getItem("user").split(" ")[1]} ${
+            localStorage.getItem("user").split(" ")[2][0]
           }.`}
         </div>
       </div>
@@ -100,33 +100,30 @@ function CreatePost(props) {
           rows={4}
           placeholder="Partagez vos pensées..."
           className={
-            'createPostFormTextArea ' +
-            (theme === 'dark' ? 'createPostFormTextAreaDark' : '')
+            "createPostFormTextArea " +
+            (theme === "dark" ? "createPostFormTextAreaDark" : "")
           }
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          required
-        ></textarea>
+          required></textarea>
         <label
           htmlFor="createPostImage"
           className={
-            'createPostImageLabel ' +
-            (theme === 'dark' ? 'createPostImageLabelDark' : '')
-          }
-        >
-          <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
+            "createPostImageLabel " +
+            (theme === "dark" ? "createPostImageLabelDark" : "")
+          }>
+          <i className="fa-solid fa-image" style={{ marginRight: "8px" }}></i>
           {picture}
         </label>
         {/* If there is a file, a button to cancel it appears */}
-        {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
-          ''
+        {picture === "Ajouter une image (png, jpeg, jpg)" ? (
+          ""
         ) : (
           <i
             className={
-              'fa-solid fa-xmark cross ' + (theme === 'dark' ? 'crossDark' : '')
+              "fa-solid fa-xmark cross " + (theme === "dark" ? "crossDark" : "")
             }
-            onClick={() => onCancelPicture()}
-          ></i>
+            onClick={() => onCancelPicture()}></i>
         )}
         <input
           className="createPostImageInput"

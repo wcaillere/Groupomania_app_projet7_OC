@@ -1,9 +1,11 @@
-import { useContext, useState, useEffect } from 'react';
-import { ThemeContext } from '../../utils/context/index';
+/** @format */
+
+import { useContext, useState, useEffect } from "react";
+import { ThemeContext } from "../../utils/context/index";
 //Import styles from popupPost css for uniques styles, from post css for informations of the post, and from Create Post css for the input file style
-import './popupPost.css';
-import '../post/post.css';
-import '../CreatePost/createPost.css';
+import "./popupPost.css";
+import "../post/post.css";
+import "../CreatePost/createPost.css";
 
 /**
  *Returns the post as a popup when the user wants to modify it
@@ -15,10 +17,10 @@ function PopupPost(props) {
   //State to stock data asked to the API with the getOnePost route
   const [postData, setPostData] = useState({});
   //States to stock inputs' values and update them
-  const [content, setContent] = useState('');
-  const [fileContent, setFileContent] = useState('pas de changement');
+  const [content, setContent] = useState("");
+  const [fileContent, setFileContent] = useState("pas de changement");
   //State to update name of the choosen image if there is one
-  const [picture, setPicture] = useState('Ajouter une image (png, jpeg, jpg)');
+  const [picture, setPicture] = useState("Ajouter une image (png, jpeg, jpg)");
   //If the image is added or modified
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
@@ -26,7 +28,7 @@ function PopupPost(props) {
   };
   //If the image is deleted
   const onCancelPicture = () => {
-    setPicture('Ajouter une image (png, jpeg, jpg)');
+    setPicture("Ajouter une image (png, jpeg, jpg)");
     setFileContent(null);
   };
 
@@ -34,7 +36,7 @@ function PopupPost(props) {
   useEffect(() => {
     fetch(`http://localhost:5000/api/posts/${props.idPost}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -42,17 +44,17 @@ function PopupPost(props) {
         (result) => {
           //Manages the redirection to the login page if the API can't get the post due to expired session
           if (result.message) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            localStorage.removeItem('isAdmin');
-            alert('Session expirée');
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("isAdmin");
+            alert("Session expirée");
             window.location.href = `./`;
           } else {
             setPostData(result[0]);
             setContent(result[0].content);
             result[0].image_url
               ? setPicture(result[0].image_url)
-              : setPicture('Ajouter une image (png, jpeg, jpg)');
+              : setPicture("Ajouter une image (png, jpeg, jpg)");
           }
         },
         (error) => {
@@ -71,15 +73,15 @@ function PopupPost(props) {
   function modifyPost(event, idPost, txtContent, file) {
     event.preventDefault();
 
-    if (document.getElementById('popupText').reportValidity()) {
+    if (document.getElementById("popupText").reportValidity()) {
       let postFormData = new FormData();
-      postFormData.append('content', txtContent);
-      postFormData.append('image', file);
+      postFormData.append("content", txtContent);
+      postFormData.append("image", file);
 
       fetch(`http://localhost:5000/api/posts/${idPost}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: postFormData,
       })
@@ -88,10 +90,10 @@ function PopupPost(props) {
           (result) => {
             //Manages the redirection to the login page if the API can't modify the post due to expired session
             if (result.message === "erreur d'authentification") {
-              localStorage.removeItem('token');
-              localStorage.removeItem('user');
-              localStorage.removeItem('isAdmin');
-              alert('Session expirée');
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              localStorage.removeItem("isAdmin");
+              alert("Session expirée");
               window.location.href = `./`;
             } else {
               console.log(result);
@@ -109,29 +111,25 @@ function PopupPost(props) {
   return props.trigger ? (
     <article
       className={
-        'popupContainer ' + (theme === 'dark' ? 'popupContainerDark' : '')
-      }
-    >
+        "popupContainer " + (theme === "dark" ? "popupContainerDark" : "")
+      }>
       <div
         className={
-          'selectedPostContainer ' +
-          (theme === 'dark' ? 'selectedPostContainerDark' : '')
-        }
-      >
+          "selectedPostContainer " +
+          (theme === "dark" ? "selectedPostContainerDark" : "")
+        }>
         {/* PopupPost Header */}
         <div>
           <div className="postDescrition">
             <div className="postinitial">{postData.firstname[0]}</div>
             <div
               className={
-                'postDetails ' + (theme === 'dark' ? 'postDetailsDark' : '')
-              }
-            >
+                "postDetails " + (theme === "dark" ? "postDetailsDark" : "")
+              }>
               <div
                 className={
-                  'postAuthor ' + (theme === 'dark' ? 'postAuthorDark' : '')
-                }
-              >
+                  "postAuthor " + (theme === "dark" ? "postAuthorDark" : "")
+                }>
                 {`${postData.firstname} ${postData.lastname[0]}.`}
               </div>
               <div className="postDate">{postData.date}</div>
@@ -141,16 +139,15 @@ function PopupPost(props) {
         {/* PopupPost Close button */}
         <i
           className={
-            'fa-solid fa-xmark fa-xl popupCloseButton ' +
-            (theme === 'dark' ? 'popupCloseButtonDark' : '')
+            "fa-solid fa-xmark fa-xl popupCloseButton " +
+            (theme === "dark" ? "popupCloseButtonDark" : "")
           }
           onClick={() => {
             if (postData.image_url) {
               setPicture(postData.image_url);
             }
             props.setTrigger(false);
-          }}
-        ></i>
+          }}></i>
         {/* PopupPost Form */}
         <form id="modify-form">
           <textarea
@@ -160,29 +157,26 @@ function PopupPost(props) {
             required
             className="popupContent"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
-          ></textarea>
+            onChange={(e) => setContent(e.target.value)}></textarea>
           <label
             htmlFor="popupImage"
             className={
-              'createPostImageLabel ' +
-              (theme === 'dark' ? 'createPostImageLabelDark' : '')
-            }
-          >
-            <i className="fa-solid fa-image" style={{ marginRight: '8px' }}></i>
+              "createPostImageLabel " +
+              (theme === "dark" ? "createPostImageLabelDark" : "")
+            }>
+            <i className="fa-solid fa-image" style={{ marginRight: "8px" }}></i>
             {picture}
           </label>
           {/* If there is a file, a button to cancel it appears */}
-          {picture === 'Ajouter une image (png, jpeg, jpg)' ? (
-            ''
+          {picture === "Ajouter une image (png, jpeg, jpg)" ? (
+            ""
           ) : (
             <i
               className={
-                'fa-solid fa-xmark cross ' +
-                (theme === 'dark' ? 'crossDark' : '')
+                "fa-solid fa-xmark cross " +
+                (theme === "dark" ? "crossDark" : "")
               }
-              onClick={() => onCancelPicture()}
-            ></i>
+              onClick={() => onCancelPicture()}></i>
           )}
           <input
             className="createPostImageInput"
@@ -205,7 +199,7 @@ function PopupPost(props) {
       </div>
     </article>
   ) : (
-    ''
+    ""
   );
 }
 

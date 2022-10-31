@@ -1,6 +1,8 @@
+/** @format */
+
 //imports packages
-const app = require('./app');
-require('dotenv').config();
+const app = require("./app");
+require("dotenv").config();
 
 //returns a port. Val can be a string or a Number
 const normalizePort = (val) => {
@@ -14,8 +16,8 @@ const normalizePort = (val) => {
   }
   return false;
 };
-const port = normalizePort(process.env.API_PORT || '3000');
-app.set('port', port);
+const port = normalizePort(process.env.API_PORT || "3000");
+app.set("port", port);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
