@@ -84,75 +84,78 @@ function Login() {
     <div className={theme === "dark" ? "bodydark" : "bodylight"}>
       <Header />
       {popup ? <div className="popup">{popupText}</div> : ""}
-      <div
-        className={
-          "connectionContainer " +
-          (theme === "dark" ? "connectionContainerDark" : "")
-        }>
-        <form className="formContainer">
-          <div className="connectionFormColumn">
-            <img
-              src={theme === "dark" ? LogoWhite : LogoRed}
-              alt="Logo groupomania"
-              className="connectionLogo"></img>
-          </div>
-          <span
-            className={
-              "separationBar " + (theme === "dark" ? "separationBarDark" : "")
-            }
-          />
-          <div className="connectionFormColumn">
-            <div className="formItem">
-              <label
-                htmlFor="loginEmail"
-                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
-                Adresse email
-              </label>
-              <input
-                className="formItemInput"
-                type="email"
-                name="loginEmail"
-                id="loginEmail"
-                placeholder="exemple@mail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required></input>
-              <i className="fa-solid fa-envelope fa-sm"></i>
-            </div>
-            <div className="formItem">
-              <label
-                htmlFor="loginPassword"
-                className={theme === "dark" ? "formLabelDark" : "formLabel"}>
-                Mot de passe
-              </label>
-              <input
-                className="formItemInput"
-                type="password"
-                name="loginPassword"
-                id="loginPassword"
-                placeholder="Mot de passe"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required></input>
-              <i className="fa-solid fa-lock fa-sm"></i>
-            </div>
-          </div>
-        </form>
-        <input
-          className="connectButton"
-          type="submit"
-          value="Se connecter"
-          theme={theme}
-          onClick={() => sendLogin(email, password)}
-        />
-        <Link
-          to="/signup"
+      <main>
+        <div
           className={
-            "signupLoginLink " + (theme === "dark" ? "signupLoginLinkDark" : "")
+            "connectionContainer " +
+            (theme === "dark" ? "connectionContainerDark" : "")
           }>
-          Pas encore de compte ? Inscrivez-vous ici !
-        </Link>
-      </div>
+          <form className="formContainer">
+            <div className="connectionFormColumn">
+              <img
+                src={theme === "dark" ? LogoWhite : LogoRed}
+                alt="Logo groupomania"
+                className="connectionLogo"></img>
+            </div>
+            <span
+              className={
+                "separationBar " + (theme === "dark" ? "separationBarDark" : "")
+              }
+            />
+            <div className="connectionFormColumn">
+              <div className="formItem">
+                <label
+                  htmlFor="loginEmail"
+                  className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                  Adresse email
+                </label>
+                <input
+                  className="formItemInput"
+                  type="email"
+                  name="loginEmail"
+                  id="loginEmail"
+                  placeholder="exemple@mail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required></input>
+                <i className="fa-solid fa-envelope fa-sm"></i>
+              </div>
+              <div className="formItem">
+                <label
+                  htmlFor="loginPassword"
+                  className={theme === "dark" ? "formLabelDark" : "formLabel"}>
+                  Mot de passe
+                </label>
+                <input
+                  className="formItemInput"
+                  type="password"
+                  name="loginPassword"
+                  id="loginPassword"
+                  placeholder="Mot de passe"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required></input>
+                <i className="fa-solid fa-lock fa-sm"></i>
+              </div>
+            </div>
+          </form>
+          <input
+            className="connectButton"
+            type="submit"
+            value="Se connecter"
+            theme={theme}
+            onClick={() => sendLogin(email, password)}
+          />
+          <Link
+            to="/signup"
+            className={
+              "signupLoginLink " +
+              (theme === "dark" ? "signupLoginLinkDark" : "")
+            }>
+            Pas encore de compte ? Inscrivez-vous ici !
+          </Link>
+        </div>
+      </main>
       <Footer />
     </div>
   );

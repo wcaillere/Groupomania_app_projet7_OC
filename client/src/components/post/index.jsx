@@ -183,11 +183,7 @@ function Post(props) {
       {props.imageUrl === null ? (
         ""
       ) : (
-        <img
-          className="postImage"
-          src={props.imageUrl}
-          alt="illustration du post"
-        />
+        <img className="postImage" src={props.imageUrl} alt="" />
       )}
     </article>
   );

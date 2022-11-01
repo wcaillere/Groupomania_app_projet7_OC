@@ -1,3 +1,5 @@
+/** @format */
+
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -92,8 +94,9 @@
   padding: 10px;
   background: var(--primary);
   border-radius: 10px;
-  color: white;
+  color: black;
   font-size: 14px;
+  font-weight: bold;
 }
 
 @media (min-width: 993px) {

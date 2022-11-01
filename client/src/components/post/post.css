@@ -1,3 +1,5 @@
+/** @format */
+
 .postContainer {
   position: relative;
   width: 90%;
@@ -85,7 +87,6 @@
 
 .postContent {
   font-size: 15px;
-  text-align: justify;
   margin: 5px 0px;
   color: black;
   white-space: pre-line;

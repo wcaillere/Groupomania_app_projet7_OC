@@ -150,6 +150,14 @@ function PopupPost(props) {
           }}></i>
         {/* PopupPost Form */}
         <form id="modify-form">
+          <label
+            htmlFor="popupText"
+            className={
+              "createPostTextAreaLabel " +
+              (theme === "dark" ? "createPostTextAreaLabelDark" : "")
+            }>
+            Contenu de votre post :
+          </label>
           <textarea
             id="popupText"
             name="popupText"

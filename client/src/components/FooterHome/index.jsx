@@ -13,7 +13,10 @@ function FooterHome() {
 
   return (
     <footer className="footerHome">
-      <button onClick={() => toggleTheme()} className="footerHomeButton">
+      <button
+        aria-label="Changer de theme"
+        onClick={() => toggleTheme()}
+        className="footerHomeButton">
         {theme === "dark" ? (
           <i className="fa-solid fa-sun fa-xl"></i>
         ) : (
@@ -22,6 +25,7 @@ function FooterHome() {
       </button>
       <span className="footerHomeText">@Groupomania, 2022</span>
       <button
+        aria-label="Remonter en haut de la page"
         onClick={() => {
           window.scroll({
             top: 0,

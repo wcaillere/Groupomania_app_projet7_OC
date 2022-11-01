@@ -13,6 +13,7 @@ function Footer() {
   return (
     <footer className="footerContainer">
       <button
+        aria-label="Changer de theme"
         onClick={() => toggleTheme()}
         className={
           "footerButton " + (theme === "dark" ? "footerButtonDark" : "")

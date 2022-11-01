@@ -31,6 +31,7 @@ function CreatePost(props) {
    * @param {object} file
    */
   function publishPost(event, txtContent, file) {
+    //Prevents the default refresh page action with a submit button
     event.preventDefault();
 
     if (document.querySelector("textarea").reportValidity()) {
@@ -94,6 +95,14 @@ function CreatePost(props) {
       </div>
       {/* Form of the CreationPost component */}
       <form id="post-form">
+        <label
+          htmlFor="postContent"
+          className={
+            "createPostTextAreaLabel " +
+            (theme === "dark" ? "createPostTextAreaLabelDark" : "")
+          }>
+          Contenu de votre post :
+        </label>
         <textarea
           id="postContent"
           name="postContent"

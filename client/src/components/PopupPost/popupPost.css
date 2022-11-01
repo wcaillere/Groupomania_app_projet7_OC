@@ -1,3 +1,5 @@
+/** @format */
+
 .selectedPostContainer {
   position: relative;
   width: 90%;
@@ -51,6 +53,7 @@
   border: none;
   resize: none;
   width: 100%;
+  margin: 10px 0px;
   padding: 10px;
   margin-bottom: 10px;
   background: #e7e7e7;

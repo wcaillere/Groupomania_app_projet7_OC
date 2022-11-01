@@ -14,7 +14,7 @@ exports.getAllPosts = (req, res, next) => {
       LEFT JOIN appreciate a
         ON p.id_posts = a.posts_id_posts
       GROUP BY p.id_posts
-    ORDER BY date DESC;`,
+    ORDER BY p.date DESC;`,
     function (error, results, fields) {
       if (error) {
         res.status(500).json({ error });
