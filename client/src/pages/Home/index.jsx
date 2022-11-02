@@ -6,7 +6,6 @@ import FooterHome from "../../components/FooterHome";
 import Post from "../../components/post";
 import CreatePost from "../../components/CreatePost";
 import PopupPost from "../../components/PopupPost";
-import Loader from "../../components/Loader";
 //other tools
 import { useState, useContext, useEffect } from "react";
 import { ThemeContext } from "../../utils/context/index";
