@@ -18,7 +18,6 @@ import "./home.css";
  */
 function Home() {
   const theme = useContext(ThemeContext).theme;
-  const [isDataLoading, setDataLoading] = useState(false);
   //State for the popup during the modification of a post
   const [buttonPopup, setButtonPopup] = useState(false);
   const [idPostToModify, setIdPostToModify] = useState("");
@@ -31,7 +30,6 @@ function Home() {
 
   //UseEffect allows to call the API only on the load of the page
   useEffect(() => {
-    setDataLoading(true);
     fetch("http://localhost:5000/api/posts", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,7 +49,6 @@ function Home() {
             window.location.href = `./`;
           } else {
             setAllPostData(result);
-            setDataLoading(false);
           }
         },
         (error) => {
@@ -77,29 +74,25 @@ function Home() {
           }
         />
         {/* Create one component Post for every post of the list returned by the API */}
-        {isDataLoading ? (
-          <Loader />
-        ) : (
-          <div>
-            {allPostData.map((post) => (
-              <Post
-                key={`${post.id_posts}`}
-                postId={post.id_posts}
-                userId={post.id_users}
-                firstname={post.firstname}
-                lastname={post.lastname}
-                isAdmin={post.is_admin}
-                date={post.date}
-                content={post.content}
-                imageUrl={post.image_url}
-                likes={post.likes === null ? [] : post.likes.split(",")}
-                setTrigger={setButtonPopup}
-                handlePopup={setIdPostToModify}
-                reloadTrigger={triggerReload}
-              />
-            ))}
-          </div>
-        )}
+        <div>
+          {allPostData.map((post) => (
+            <Post
+              key={`${post.id_posts}`}
+              postId={post.id_posts}
+              userId={post.id_users}
+              firstname={post.firstname}
+              lastname={post.lastname}
+              isAdmin={post.is_admin}
+              date={post.date}
+              content={post.content}
+              imageUrl={post.image_url}
+              likes={post.likes === null ? [] : post.likes.split(",")}
+              setTrigger={setButtonPopup}
+              handlePopup={setIdPostToModify}
+              reloadTrigger={triggerReload}
+            />
+          ))}
+        </div>
         <PopupPost
           trigger={buttonPopup}
           setTrigger={setButtonPopup}

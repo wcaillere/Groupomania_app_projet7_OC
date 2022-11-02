@@ -10,12 +10,14 @@ const MIME_TYPES = {
 };
 
 module.exports = async (req, res, next) => {
-  const name = req.file.originalname.split(" ").join("_");
-  const extension = MIME_TYPES[req.file.mimetype];
-  const path = name + Date.now() + "." + extension;
-  await sharp(req.file.buffer)
-    .resize({ width: 520 })
-    .toFile(`./images/${path}`);
-  req.file.filename = path;
+  if (req.file) {
+    const name = req.file.originalname.split(" ").join("_");
+    const extension = MIME_TYPES[req.file.mimetype];
+    const path = name + Date.now() + "." + extension;
+    await sharp(req.file.buffer)
+      .resize({ width: 520 })
+      .toFile(`./images/${path}`);
+    req.file.filename = path;
+  }
   next();
 };

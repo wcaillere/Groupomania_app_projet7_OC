@@ -75,46 +75,63 @@ exports.modifyOnePost = (req, res, next) => {
   connection.query(
     `SELECT * FROM posts WHERE id_posts = ?`,
     [req.params.id],
-    function (error, results, fields) {
-      if (results[0].users_id_users != req.auth.userId) {
-        res.status(403).json({ message: "Unauthorized request" });
+    function (error, post, fields) {
+      if (error) {
+        res.status(500).json({ error });
       } else {
-        //Verifies the nature of the modification
-        const postObject = req.file
-          ? {
-              //If there is a file in the req, it's to add a image or change the previous one
-              content: req.body.content,
-              imageUrl: `${req.protocol}://${req.get("host")}/images/${
-                req.file.filename
-              }`,
-            }
-          : req.body.image == "null"
-          ? {
-              //If req.body.image == null, it's to delete the previous image
-              content: req.body.content,
-              imageUrl: null,
-            }
-          : {
-              //If req.body.image == 'pas de changement', it's to not modify the imageUrl of the post
-              content: req.body.content,
-              imageUrl: results[0].image_url,
-            };
-        if (
-          req.body.image == "null" ||
-          (req.file && results[0].image_url != null)
-        ) {
-          //if the image is changed or deleted, it's deleted from the 'images' file
-          const filename = results[0].image_url.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {});
-        }
         connection.query(
-          `UPDATE posts SET content = ? , image_url = ? WHERE id_posts = ?`,
-          [postObject.content, postObject.imageUrl, req.params.id],
-          function (error, results, fields) {
+          `SELECT is_admin FROM users WHERE id_users = ?`,
+          [req.auth.userId],
+          function (error, user, fields) {
             if (error) {
               res.status(500).json({ error });
             } else {
-              res.status(200).json({ message: "post modifié !" });
+              if (
+                post[0].users_id_users == req.auth.userId ||
+                user[0].is_admin == 1
+              ) {
+                //Verifies the nature of the modification
+                const postObject = req.file
+                  ? {
+                      //If there is a file in the req, it's to add a image or change the previous one
+                      content: req.body.content,
+                      imageUrl: `${req.protocol}://${req.get("host")}/images/${
+                        req.file.filename
+                      }`,
+                    }
+                  : req.body.image == "null"
+                  ? {
+                      //If req.body.image == null, it's to delete the previous image
+                      content: req.body.content,
+                      imageUrl: null,
+                    }
+                  : {
+                      //If req.body.image == 'pas de changement', it's to not modify the imageUrl of the post
+                      content: req.body.content,
+                      imageUrl: post[0].image_url,
+                    };
+                if (
+                  req.body.image == "null" ||
+                  (req.file && post[0].image_url != null)
+                ) {
+                  //if the image is changed or deleted, it's deleted from the 'images' file
+                  const filename = post[0].image_url.split("/images/")[1];
+                  fs.unlink(`images/${filename}`, () => {});
+                }
+                connection.query(
+                  `UPDATE posts SET content = ? , image_url = ? WHERE id_posts = ?`,
+                  [postObject.content, postObject.imageUrl, req.params.id],
+                  function (error, results, fields) {
+                    if (error) {
+                      res.status(500).json({ error });
+                    } else {
+                      res.status(200).json({ message: "post modifié !" });
+                    }
+                  }
+                );
+              } else {
+                res.status(403).json({ message: "Unauthorized request" });
+              }
             }
           }
         );
