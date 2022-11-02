@@ -12,10 +12,11 @@
   margin-bottom: 50px;
 }
 
+/* font awesome icons for inputs of the forms */
 .formItem i {
   position: absolute;
   left: 15px;
-  top: 77px;
+  top: 78px;
   color: black;
 }
 
