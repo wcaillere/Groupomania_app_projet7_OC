@@ -1,3 +1,5 @@
+/** @format */
+
 .mainContainer {
   background: #e7e7e7;
   padding: 20px 0px;
@@ -5,6 +7,15 @@
 
 .mainContainerDark {
   background: var(--darkTheme);
+}
+
+.noPostText {
+  text-align: center;
+  margin: 30px 10px;
+}
+
+.noPostTextDark {
+  color: white;
 }
 
 .homeSeparationBar {

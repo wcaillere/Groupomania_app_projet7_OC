@@ -50,11 +50,14 @@ export default function PopupPost(props) {
             alert("Session expirée");
             window.location.href = `./`;
           } else {
-            setPostData(result[0]);
-            setContent(result[0].content);
-            result[0].image_url
-              ? setPicture(result[0].image_url)
-              : setPicture("Ajouter une image (png, jpeg, jpg)");
+            //This verification avoids an error message when there is no post in the database
+            if (result[0] !== undefined) {
+              setPostData(result[0]);
+              setContent(result[0].content);
+              result[0].image_url
+                ? setPicture(result[0].image_url)
+                : setPicture("Ajouter une image (png, jpeg, jpg)");
+            }
           }
         },
         (error) => {

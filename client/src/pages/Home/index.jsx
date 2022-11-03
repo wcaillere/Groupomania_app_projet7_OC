@@ -74,25 +74,35 @@ export default function Home() {
           }
         />
         {/* Create one component Post for every post of the list returned by the API */}
-        <div>
-          {allPostData.map((post) => (
-            <Post
-              key={`${post.id_posts}`}
-              postId={post.id_posts}
-              userId={post.id_users}
-              firstname={post.firstname}
-              lastname={post.lastname}
-              isAdmin={post.is_admin}
-              date={post.date}
-              content={post.content}
-              imageUrl={post.image_url}
-              likes={post.likes === null ? [] : post.likes.split(",")}
-              setTrigger={setButtonPopup}
-              handlePopup={setIdPostToModify}
-              reloadTrigger={triggerReload}
-            />
-          ))}
-        </div>
+        {allPostData.length === 0 ? (
+          <div
+            className={
+              "noPostText " + (theme === "dark" ? "noPostTextDark" : "")
+            }>
+            Aucun post créé pour l'instant, soyez le premier !
+          </div>
+        ) : (
+          <div>
+            {allPostData.map((post) => (
+              <Post
+                key={`${post.id_posts}`}
+                postId={post.id_posts}
+                userId={post.id_users}
+                firstname={post.firstname}
+                lastname={post.lastname}
+                isAdmin={post.is_admin}
+                date={post.date}
+                content={post.content}
+                imageUrl={post.image_url}
+                likes={post.likes === null ? [] : post.likes.split(",")}
+                setTrigger={setButtonPopup}
+                handlePopup={setIdPostToModify}
+                reloadTrigger={triggerReload}
+              />
+            ))}
+          </div>
+        )}
+
         <PopupPost
           trigger={buttonPopup}
           setTrigger={setButtonPopup}
