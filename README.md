@@ -14,11 +14,10 @@ au framework React.
 
 Une fois le code github cloné, lancer `npm install` ou `yarn install` depuis le dossier `server` du projet afin d'installer les dépendances listées dans le fichier package.json. Pour ce qui est de la base de donnée SQL, le véritable fichier .env possédant les variables nécessaires à sa connection n'est pas disponible ici pour des raisons de sécurité. 
 
-Pour la faire fonctionner, il vous suffit de renommer le fichier `.env.exemple` en `.env` et de remplir les variables avec les configurations de votre propre base SQL (en ce qui concerne son architecture, vous trouverez un fichier SQL importable, présent dans le dossier server. Assurez-vous seulement de ne pas déjà avoir de base de données nomée 'groupomania'. Un faux compte admin y est déjà créé pour tester les différentes fonctionnalités nécessitant ce rôle). 
+Pour la faire fonctionner, il vous suffit de renommer le fichier `.env.exemple` en `.env` et de remplir les variables avec les configurations de votre propre base SQL (en ce qui concerne son architecture, vous trouverez un fichier SQL importable, présent dans le dossier server. Assurez-vous seulement de ne pas déjà avoir de base de données nomée 'groupomania'. Un faux compte admin y est déjà créé pour tester les différentes fonctionnalités nécessitant ce rôle. Son identifiant est 'pierre.simon@gmail.com' et son mot de passe 'pierreS'). 
 Toujours dans le fichier `.env`, vous pouvez également choisir une Token_key sécurisée pour votre projet.
 
-Une fois ces étapes réalisées, le lancement du server se fera avec la commande `nodemon server`. Si tout s'est bien passé, les messages "Listening on port 5000"
-et "connected to the DB" s'afficheront dans votre console.
+Une fois ces étapes réalisées, le lancement du server se fera avec la commande `nodemon server`. Si tout s'est bien passé, les messages "Listening on port 5000" et "connected to the DB" s'afficheront dans votre console.
 
 ### Installation du frontend
 
