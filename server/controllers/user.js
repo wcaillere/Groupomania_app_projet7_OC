@@ -5,6 +5,11 @@ const connection = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+/**
+ * Capitalizes a string
+ * @param {string} string
+ * @returns string capitalized
+ */
 function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
@@ -24,10 +29,10 @@ exports.signup = (req, res, next) => {
         ],
         function (error, results, fields) {
           if (error) {
+            //SQL error 1062 is a "Duplicate entry" error
             if (error.errno === 1062) {
               res.status(500).json({ message: "Vous êtes déjà inscrit !" });
             } else {
-              console.log(capitalize(req.body.firstname));
               res.status(500).json({ error });
             }
           } else {
@@ -41,6 +46,7 @@ exports.signup = (req, res, next) => {
 
 //Allows an user to login on the site if he's in the Data Base
 exports.login = (req, res, next) => {
+  console.log(connection);
   connection.query(
     `SELECT id_users, password, is_admin, firstname, lastname FROM users WHERE email = ?`,
     [req.body.email],

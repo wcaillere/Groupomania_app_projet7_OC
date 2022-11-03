@@ -8,7 +8,7 @@ import "./footerHome.css";
  * Returns the Footer for the homePage
  * @returns {React.ReactElement}
  */
-function FooterHome() {
+export default function FooterHome() {
   const { toggleTheme, theme } = useContext(ThemeContext);
 
   return (
@@ -39,5 +39,3 @@ function FooterHome() {
     </footer>
   );
 }
-
-export default FooterHome;

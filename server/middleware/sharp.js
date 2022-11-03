@@ -17,6 +17,7 @@ module.exports = async (req, res, next) => {
     await sharp(req.file.buffer)
       .resize({ width: 520 })
       .toFile(`./images/${path}`);
+    //the new name of the file is saved in the req, to be used by controllers
     req.file.filename = path;
   }
   next();

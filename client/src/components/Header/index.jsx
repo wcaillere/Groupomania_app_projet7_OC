@@ -11,7 +11,7 @@ import "./header.css";
  * Returns the Header for the Login and Signup pages
  * @returns {React.ReactElement}
  */
-function Header() {
+export default function Header() {
   const theme = useContext(ThemeContext).theme;
   return (
     <header
@@ -57,5 +57,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

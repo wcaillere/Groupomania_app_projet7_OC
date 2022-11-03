@@ -10,7 +10,7 @@ import "./errorPage.css";
  * Returns the page for Error 404
  * @returns {React.ReactElement}
  */
-function ErrorPage() {
+export default function ErrorPage() {
   const theme = useContext(ThemeContext).theme;
 
   return (
@@ -32,5 +32,3 @@ function ErrorPage() {
     </div>
   );
 }
-
-export default ErrorPage;

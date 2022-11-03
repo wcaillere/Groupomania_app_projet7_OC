@@ -8,7 +8,7 @@ import "./createPost.css";
  * returns the component used by users to create a Post
  * @returns {React.ReactElement}
  */
-function CreatePost(props) {
+export default function CreatePost(props) {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values and update them
   const [content, setContent] = useState("");
@@ -153,5 +153,3 @@ function CreatePost(props) {
     </div>
   );
 }
-
-export default CreatePost;

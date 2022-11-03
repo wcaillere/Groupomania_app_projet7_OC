@@ -12,7 +12,7 @@ import "../CreatePost/createPost.css";
  * @param {object} props
  * @returns {React.ReactElement}
  */
-function PopupPost(props) {
+export default function PopupPost(props) {
   const theme = useContext(ThemeContext).theme;
   //State to stock data asked to the API with the getOnePost route
   const [postData, setPostData] = useState({});
@@ -210,5 +210,3 @@ function PopupPost(props) {
     ""
   );
 }
-
-export default PopupPost;

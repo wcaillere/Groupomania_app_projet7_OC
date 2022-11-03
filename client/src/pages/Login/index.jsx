@@ -12,8 +12,11 @@ import LogoWhite from "../../assets/logo_white.svg";
 import "../../utils/style/signup&login_Atoms.css";
 import "./login.css";
 
-//Returns Login page
-function Login() {
+/**
+ * Returns Login page
+ * @returns {React.ReactElement}
+ */
+export default function Login() {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values and update them
   const [email, setEmail] = useState("");
@@ -22,7 +25,11 @@ function Login() {
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState("");
 
-  //Send login informations to the API
+  /**
+   * Send login informations to the API
+   * @param {string} emailInput
+   * @param {string} passwordInput
+   */
   function sendLogin(emailInput, passwordInput) {
     //Erases the poppup before a new try of login
     setPopup(false);
@@ -160,5 +167,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

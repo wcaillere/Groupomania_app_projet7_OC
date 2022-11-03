@@ -14,7 +14,7 @@ import "../../utils/style/signup&login_Atoms.css";
  * Returns the Signup page
  * @returns {React.ReactElement}
  */
-function Signup() {
+export default function Signup() {
   const theme = useContext(ThemeContext).theme;
   //States to stock inputs' values
   const [firstname, setFirstname] = useState("");
@@ -26,7 +26,14 @@ function Signup() {
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState("");
 
-  //Send Signup informations to the API
+  /**
+   * Send Signup informations to the API
+   * @param {string} firstnameInput
+   * @param {string} lastnameInput
+   * @param {string} emailInput
+   * @param {string} passwordInput
+   * @param {string} confirmInput
+   */
   function sendSignup(
     firstnameInput,
     lastnameInput,
@@ -91,7 +98,17 @@ function Signup() {
     <div className={theme === "dark" ? "bodydark" : "bodylight"}>
       <Header />
       <main>
-        {popup ? <div className="popup">{popupText}</div> : ""}
+        {popup ? (
+          <div
+            className={
+              "popup " +
+              (popupText === "Inscription réussie !" ? "popupGreen" : "")
+            }>
+            {popupText}
+          </div>
+        ) : (
+          ""
+        )}
         <div
           className={
             "signupContainer " + (theme === "dark" ? "signupContainerDark" : "")
@@ -215,5 +232,3 @@ function Signup() {
     </div>
   );
 }
-
-export default Signup;

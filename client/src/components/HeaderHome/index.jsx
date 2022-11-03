@@ -8,9 +8,11 @@ import "./headerHome.css";
  * Returns Header for the homePage
  * @returns {React.ReactElement}
  */
-function HeaderHome() {
+export default function HeaderHome() {
+  /**
+   * Manages the deconnection of the user : LocalStorage is cleaned and the user is redirected to the Login Page
+   */
   function deconnection() {
-    //With the deconnection, LocalStorage is cleaned and the user is redirected to the Login Page
     if (window.confirm("Voulez-vous vraiment vous déconnecter ?")) {
       localStorage.removeItem("user");
       localStorage.removeItem("isAdmin");
@@ -36,5 +38,3 @@ function HeaderHome() {
     </header>
   );
 }
-
-export default HeaderHome;

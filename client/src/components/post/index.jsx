@@ -9,11 +9,11 @@ import "./post.css";
  * @param {object} props
  * @returns {React.ReactElement}
  */
-function Post(props) {
+export default function Post(props) {
   const theme = useContext(ThemeContext).theme;
 
   /**
-   * Manages the like's frontend and route API when the like button of a post is clicked
+   * Manages the add or remove of a post's like
    */
   function ManageLike() {
     //Initializes a bad value for the request. Then, if there is a problem during the function, the value is not changed and the API returns a res 400: invalid request
@@ -188,5 +188,3 @@ function Post(props) {
     </article>
   );
 }
-
-export default Post;

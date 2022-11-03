@@ -8,7 +8,7 @@ import "./footer.css";
  * returns the Footer for the Login and Signup pages
  * @returns {React.ReactElement}
  */
-function Footer() {
+export default function Footer() {
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <footer className="footerContainer">
@@ -31,5 +31,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

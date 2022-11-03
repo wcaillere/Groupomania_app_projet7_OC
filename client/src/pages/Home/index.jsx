@@ -15,13 +15,14 @@ import "./home.css";
  * Returns Home page
  * @returns {React.ReactElement}
  */
-function Home() {
+export default function Home() {
   const theme = useContext(ThemeContext).theme;
   //State for the popup during the modification of a post
   const [buttonPopup, setButtonPopup] = useState(false);
   const [idPostToModify, setIdPostToModify] = useState("");
   //State to stock the list of posts returned during the API call
   const [allPostData, setAllPostData] = useState([]);
+  //State to call the useEffect showing all posts after every change (create, modify, like, or delete a post)
   const [reload, setReload] = useState(0);
   const triggerReload = () => {
     setReload(reload + 1);
@@ -104,5 +105,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
