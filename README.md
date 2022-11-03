@@ -13,6 +13,7 @@ au framework React.
 ### Installation du backend
 
 Une fois le code github cloné, lancer `npm install` ou `yarn install` depuis le dossier `server` du projet afin d'installer les dépendances listées dans le fichier package.json. Pour ce qui est de la base de donnée SQL, le véritable fichier .env possédant les variables nécessaires à sa connection n'est pas disponible ici pour des raisons de sécurité. 
+
 Pour la faire fonctionner, il vous suffit de renommer le fichier `.env.exemple` en `.env` et de remplir les variables avec les configurations de votre propre base SQL (en ce qui concerne son architecture, vous trouverez un fichier SQL importable, présent dans le dossier server. Assurez-vous seulement de ne pas déjà avoir de base de données nomée 'groupomania'. Un faux compte admin y est déjà créé pour tester les différentes fonctionnalités nécessitant ce rôle). 
 Toujours dans le fichier `.env`, vous pouvez également choisir une Token_key sécurisée pour votre projet.
 
