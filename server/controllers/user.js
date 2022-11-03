@@ -46,7 +46,6 @@ exports.signup = (req, res, next) => {
 
 //Allows an user to login on the site if he's in the Data Base
 exports.login = (req, res, next) => {
-  console.log(connection);
   connection.query(
     `SELECT id_users, password, is_admin, firstname, lastname FROM users WHERE email = ?`,
     [req.body.email],
