@@ -37,7 +37,7 @@ export default function Login() {
     //Verifies the validity of each input
     var inputValidation = true;
     for (let input of document.querySelectorAll(
-      "input#email, input#password"
+      "input#loginEmail, input#loginPassword"
     )) {
       inputValidation &= input.reportValidity();
     }
