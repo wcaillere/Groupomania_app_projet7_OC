@@ -64,7 +64,7 @@ export default function PopupPost(props) {
           console.log(error);
         }
       );
-  }, [props.idPost]);
+  }, [props]);
 
   /**
    * Modifies the post in the dataBase and reloads the page
