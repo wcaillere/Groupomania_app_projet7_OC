@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --primary: #fd2d01;
   --secondary: #ffd7d7;
@@ -6,15 +8,15 @@
 }
 
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 html {
-  height: 100%;
+  min-height: 100%;
 }
 
 * {
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: "Lato", Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
@@ -30,10 +32,10 @@ body {
 
 .bodydark {
   background: var(--darkTheme);
-  height: 100%;
+  min-height: 100%;
 }
 
 .bodygrey {
   background: #e7e7e7;
-  height: 100%;
+  min-height: 100%;
 }
