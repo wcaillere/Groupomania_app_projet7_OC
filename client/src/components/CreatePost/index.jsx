@@ -15,11 +15,15 @@ export default function CreatePost(props) {
   const [fileContent, setFileContent] = useState(null);
   //State to update name of the choosen image if there is one
   const [picture, setPicture] = useState("Ajouter une image (png, jpeg, jpg)");
+  //If the image is added or modified
   const onChangePicture = (e) => {
     setFileContent(e.target.files[0]);
     setPicture(e.target.files[0].name);
   };
-  const onCancelPicture = () => {
+  //If the image is deleted
+  const onCancelPicture = (e) => {
+    //Reset the input file's value, and states
+    e.target.nextSibling.value = "";
     setPicture("Ajouter une image (png, jpeg, jpg)");
     setFileContent(null);
   };
@@ -132,7 +136,7 @@ export default function CreatePost(props) {
             className={
               "fa-solid fa-xmark cross " + (theme === "dark" ? "crossDark" : "")
             }
-            onClick={() => onCancelPicture()}></i>
+            onClick={(e) => onCancelPicture(e)}></i>
         )}
         <input
           className="createPostImageInput"

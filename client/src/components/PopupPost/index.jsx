@@ -27,7 +27,9 @@ export default function PopupPost(props) {
     setPicture(e.target.files[0].name);
   };
   //If the image is deleted
-  const onCancelPicture = () => {
+  const onCancelPicture = (e) => {
+    //Reset the input file's value, and states
+    e.target.nextSibling.value = "";
     setPicture("Ajouter une image (png, jpeg, jpg)");
     setFileContent(null);
   };
@@ -187,7 +189,7 @@ export default function PopupPost(props) {
                 "fa-solid fa-xmark cross " +
                 (theme === "dark" ? "crossDark" : "")
               }
-              onClick={() => onCancelPicture()}></i>
+              onClick={(e) => onCancelPicture(e)}></i>
           )}
           <input
             className="createPostImageInput"

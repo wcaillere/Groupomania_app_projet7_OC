@@ -111,7 +111,7 @@ exports.modifyOnePost = (req, res, next) => {
                       imageUrl: post[0].image_url,
                     };
                 if (
-                  req.body.image == "null" ||
+                  (req.body.image == "null" && post[0].image_url != null) ||
                   (req.file && post[0].image_url != null)
                 ) {
                   //if the image is changed or deleted, it's deleted from the 'images' file
